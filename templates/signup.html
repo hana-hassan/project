@@ -9,8 +9,14 @@
 <body>
     <div class="container">
         <div class="form-box">
-            <form>
+            <form method="POST" action="">
                 <h1>Sign Up</h1>
+                {{ form.hidden_tag ()}}
+                {{ form.username }}
+                {{ form.password }}
+                {{ form.email }}
+                {{ form.submit }}
+                <!--
                 <label for="username">Username: </label><br>
                 <input type="text" id="username" name="username" placeholder="username"><br>
                 <label for="password">Password:</label><br>
@@ -18,6 +24,7 @@
                 <label for="email" id="email" name="email">Email Address:</label><br>
                 <input type="email" id="email" name="email" placeholder="email address"><br>
                 <button type="submit">Sign Up</button>
+                -->
                 <p>Already have an account? <a href="{{url_for('login')}}">Login here</a></p>
             </form>
         </div>
