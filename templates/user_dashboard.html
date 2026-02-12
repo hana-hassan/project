@@ -4,10 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <link rel="stylesheet" href="/static/dashboard.css">
 </head>
 <body>
-    <h1>Welcome, User!</h1>
-    <a href="{{url_for('logout')}}">Click here to log out</a>
-    
+    <!--There's a <nav> tag, maybe use that-->
+    <div class="navbar">
+        <ul>
+            <li><a href="{{url_for('logout')}}">Log Out</a></li>
+        </ul>
+    </div>
+    <div class="page">
+        <div class="top">
+            <h1>Welcome, User!</h1>
+        </div>
+        <div class="watchlists">
+            <p>Lorem Ipsum</p>
+        </div>
+        <div></div>
+    </div>
+    <footer>
+        <p>Here's the footer</p>
+    </footer>
 </body>
 </html>

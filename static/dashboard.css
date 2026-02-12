@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: black;
+    overflow: hidden;
+}
+
+.navbar ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li{
+    float: right;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 20px;
+    display: block;
+    padding: 14px;
+}
+
+.navbar ul li:hover{
+    background-color: aquamarine;
+}
+
+/*.page div{
+    width: 100%;
+}*/
+
+.top{
+    padding: 20px 0px 20px 40px;
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: aquamarine;
+}
+
+.watchlists{
+    border-radius: 5px;
+    border: 2px;
+    min-width: 95%;
+    padding: 15px;
+    background-color: antiquewhite;
+    border-color: blanchedalmond;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+footer{
+    /*padding: 20px 0px 20px 40px;*/
+    background-color: aquamarine;
+}
