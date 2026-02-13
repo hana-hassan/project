@@ -4,6 +4,7 @@
 
 body{
     margin: 0;
+    background-color: #180632
 }
 
 .page{
@@ -11,10 +12,11 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    color: white;
 }
 
 .navbar {
-    background-color: black;
+    background-color: #280659;
     overflow: hidden;
 }
 
@@ -37,32 +39,84 @@ body{
 }
 
 .navbar ul li:hover{
-    background-color: aquamarine;
+    background-color: #4a1ba8;
 }
 
 /*.page div{
     width: 100%;
 }*/
 
+/*Banner part*/
+
 .top{
     padding: 20px 0px 20px 40px;
     width: 100%;
     margin-bottom: 20px;
-    background-color: aquamarine;
+    background-color: #660F56;
 }
+
+/*Watch lists section*/
 
 .watchlists{
     border-radius: 5px;
-    border: 2px;
+    border: 20px;
     min-width: 95%;
     padding: 15px;
-    background-color: antiquewhite;
-    border-color: blanchedalmond;
+    background-color: #341671;
     text-align: left;
     margin-bottom: 20px;
 }
 
+.button{
+    min-width: 100%;
+    padding: 15px;
+    border: 2px;
+    border-radius: 5px;
+    color: white;
+}
+
+.create-wl{
+    text-align: center;
+    background-color: #F54952;
+    margin-bottom: 15px;
+}
+
+.wl-button {
+    text-align: left;
+    background-color: #341671;
+    border-style: double;
+    border-color: #F54952;
+    margin-bottom: 5px;
+}
+
+.create-wl:hover {
+    background-color: aliceblue;
+    color:black;
+}
+
+.wl-button:hover {
+    background-color: #F54952;
+    color: black;
+}
+
+.watchlists a {
+    text-decoration: none;
+    color: white;
+}
+
+hr {
+    height: 7px;
+    background-color: rgb(26, 2, 66);
+    border-style: none;
+    border-radius: 3px;
+    margin: 10px 0px 15px 0px;
+    opacity: 50%;
+}
+
+
+
 footer{
-    /*padding: 20px 0px 20px 40px;*/
-    background-color: aquamarine;
+    padding: 20px 0px 20px 40px;
+    background-color: #180632;
+    color: white;
 }
