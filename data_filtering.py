@@ -2,10 +2,13 @@ from urllib.request import urlopen
 import json
 import pandas as pd
 import requests
+import plotly.express as px
 
 sessions_base = 'https://api.openf1.org/v1/sessions'
 laps_base = 'https://api.openf1.org/v1/laps'
 drivers_base = 'https://api.openf1.org/v1/drivers'
+positions_base = 'https://api.openf1.org/v1/position'
+stints_base = 'https://api.openf1.org/v1/stints'
 
 # response = requests.get(sessions_url, params = params)
 # data = json.loads(response.json())
@@ -53,8 +56,66 @@ def get_drivers(session_key):
 
     return all_drivers
 
-#df_race = get_race('2024', 'Spa-Francorchamps')
+def get_position(driver_num, session_key):
 
-#print(get_laps(df_race["session_key"]))
+    params = {
+        'driver_number' : driver_num,
+        'session_key' : session_key
+    }
+
+    url = requests.Request('GET', positions_base, params=params).prepare().url
+    response = requests.get(url)
+    all_positions = pd.DataFrame(response.json())
+
+    return all_positions
+
+def get_all_positions(session_key):
+
+    params = {
+        'session_key' : session_key
+    }
+
+    url = requests.Request('GET', positions_base, params=params).prepare().url
+    response = requests.get(url)
+    all_positions = pd.DataFrame(response.json())
+
+    return all_positions[['date', 'driver_number', 'position']]
+
+def get_stints(driver_num, session_key):
+
+    params = {
+        'driver_number' : driver_num,
+        'session_key' : session_key
+    }
+
+    url = requests.Request('GET', stints_base, params=params).prepare().url
+    response = requests.get(url)
+    dr_stints = pd.DataFrame(response.json())
+
+    dr_stints["tyre_age_at_end"] = dr_stints["tyre_age_at_start"] + (dr_stints["lap_end"] - dr_stints["lap_start"])
+
+    return dr_stints
+
+df_race = get_race('2024', 'Silverstone')
+
+key = (df_race["session_key"])
+
+df_drivers = get_drivers(key)
+
+driver_num = df_drivers.loc[df_drivers["full_name"] == "Lewis HAMILTON", "driver_number"]
+
+df_stints = get_stints(driver_num, key)
+
+print(df_stints)
+
+
+# position_graph = px.scatter(df_positions, x="date", y="position", color="position")
+
+# position_graph.show()
+
+#print(df_positions)
+
+
+#print (get_position('lewis HAMILTON', key))
 
 
