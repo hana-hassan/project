@@ -9,8 +9,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from flask import g
 import requests
-from data_filtering import get_laps, get_position, get_race, get_drivers, get_all_positions, get_stints
-
+from data_filtering import get_laps, get_position, get_race, get_drivers, get_all_positions, get_stints, get_quali, get_starting_grid, get_results
 base_url_sessions = "https://api.openf1.org/v1/sessions"
 base_url_drivers = "https://api.openf1.org/v1/drivers"
 
@@ -47,11 +46,13 @@ def init_app(url_path):
             ])
         ]),
 
+        # row for dropdowns - here the user selects a year and circuit so that all other visualisation can display the appropriate data
+
         dbc.Row([
             dbc.Col([
                 html.H2('Select a year: '),
-                dcc.Dropdown(id="years", options = [{'label':year, 'value':year} for year in df["year"].unique()], 
-                             value="2025", 
+                dcc.Dropdown(id="years", options = [{'label': year, 'value': year} for year in df["year"].unique()], 
+                             value="2024", 
                              placeholder="Select a year")
             ]),
             dbc.Col([
@@ -62,12 +63,14 @@ def init_app(url_path):
             ])
         ]),
 
+        #section for lap time data vis
+
         dbc.Row([
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
                         html.Div([
-                            html.H3("Lap Times"),
+                            html.H2("Lap Times"),
                             dcc.Graph(id="lap_times_hist"),
                             dcc.Graph(id="lap_times"),
                         ])
@@ -76,18 +79,7 @@ def init_app(url_path):
             ])
         ]),
 
-        dbc.Row([
-            dbc.Col([
-                dbc.Card([
-                    dbc.CardBody([
-                        html.Div([
-                            html.H2("Race Positions"),
-                            dcc.Graph(id="positions_graph"),
-                        ])
-                    ])
-                ])
-            ])
-        ]),
+        # section/div for the stints data vis
 
         dbc.Row([
             dbc.Col([
@@ -97,8 +89,38 @@ def init_app(url_path):
                             value="Lewis HAMILTON", 
                             placeholder="Select a driver"),
                         html.Div([
-                            html.H2("Stints, Lap Times, and Tyre Degredation"),
+                            html.H2("Race Stints"),
                             dcc.Graph(id="stints_tyres"),
+                        ])
+                    ])
+                ])
+            ])
+        ]),
+
+                dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardBody([
+                        dcc.Dropdown(id="drivers_sector", options = [{'label': full_name, 'value': full_name} for full_name in df2["full_name"].unique()], 
+                            value="Lewis HAMILTON", 
+                            placeholder="Select a driver"),
+                        html.Div([
+                            html.H2("Sector Times"),
+                            dcc.Graph(id="sector_times"),
+                        ])
+                    ])
+                ])
+            ])
+        ]),
+
+        # section for the positions data vis
+        dbc.Row([
+            dbc.Col([
+                dbc.Card([
+                    dbc.CardBody([
+                        html.Div([
+                            html.H2("Qualifications and Race Results"),
+                            dcc.Graph(id="positions_graph"),
                         ])
                     ])
                 ])
@@ -110,13 +132,15 @@ def init_app(url_path):
     return app.server
  
 @callback(
-    Output('lap_times', 'figure'),
     Output('lap_times_hist', 'figure'),
+    Output('lap_times', 'figure'),
     Output('positions_graph', 'figure'),
+    Output('sector_times', 'figure'),
     Output('stints_tyres', 'figure'),
     Input('years','value'), 
     Input('circuits', 'value'),
     Input('drivers', 'value'),
+    Input('drivers_sector', 'value'),
     )
 
 # def init_callbacks(app):
@@ -126,7 +150,7 @@ def init_app(url_path):
 #         Input('circuits', 'value')
 #     )
 
-def update_graphs(selected_year, selected_circuit, selected_driver):
+def update_graphs(selected_year, selected_circuit, selected_driver, selected_driver_2):
     if selected_year:
         if selected_circuit:
 
@@ -175,33 +199,44 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
     all_positions = get_all_positions(s_key)
     dr_stints = get_stints(driver_num, s_key)
 
-    fig_hist = px.histogram(all_laps, x="lap_duration")
+    # histogram for lap times
+    fig_hist = px.histogram(all_laps, x="lap_duration", labels = {"lap_duration" : "Lap Duration (seconds)"},title="Distribution of Lap Times")
 
-    fig =  px.line(all_laps, x="lap_number", y="lap_duration", color="driver_number", markers=True)
-    #fig = make_subplots(rows=2, cols=1, row_heights = [0.3, 0.7])
+    fig =  px.line(all_laps, x="lap_number", y="lap_duration", color="driver_number", markers=True, 
+    labels = {"lap_number" : "Lap Number", 
+              "lap_duration" : "Lap Duration (seconds)",
+              "driver_number" : "Driver Number"},
+    title="Driver Lap Times"
+    )
 
-    # fig.add_trace(
-    #     go.Histogram(
-    #         x=all_laps["lap_duration"]
-    #     ), row=1, col=1
-    # )
+    fig.update_xaxes(rangeslider_visible = True)
 
-    # fig.add_trace(
-    #     go.Scatter(
-    #         x=all_laps["lap_number"],
-    #         y=all_laps["lap_duration"],
-    #         marker=dict(
-    #             color=all_laps["driver_number"]
-    #         )
-    #     ), row=2, col=1
-    # )
+    #all_positions["date"] = pd.to_datetime(all_positions["date"], errors='coerce')
 
 
     #fig1 = px.scatter(positions_df, x="date", y="position", color="position")
     #fig1 = go.Figure(data=go.Heatmap(z=all_positions["position"], x=all_positions["date"], y=all_positions["driver_number"]))
-    fig1 = px.bar(all_positions, x="date", y="driver_number", color="position", orientation="h")
-    fig1.update_yaxes(type='category')
-    fig1.update_xaxes(type='date')
+    #fig1 = px.bar(positions_df, x="date", y="position", color="position")
+    # fig1 = px.area(all_positions, x="date", y="position", color="driver_number",
+    # labels = {"date" : "Time",
+    #           "driver_number" : "Driver",
+    #           "position" : "Position"},
+    # title = "Race Positions", height = 800)
+
+    # # fig1 = go.Figure(go.Bar(x=all_positions["date"], y=all_positions["driver_number"], orientation='h'))
+    # fig1.update_yaxes(type='category')
+    # #fig1.update_xaxes(type = 'date')
+    # fig1.update_layout(xaxis_tickformat = '%H:%M')
+
+    quali = get_quali(selected_year, selected_circuit)
+
+    q_key = quali["session_key"]
+
+    results = get_results(s_key, q_key)
+    
+    fig_results = px.bar(results, x="driver_number", y="pos_difference", color="pos_difference", color_continuous_scale="RdBu", labels={"driver_number" : "Driver", "pos_difference" : "Positions Lost/Gained"}, 
+                         title="Positions Lost/Gained", text_auto=".2s")
+    fig_results.update_xaxes(type='category')
 
     #structure for the dumbbell plot copied from https://plotly.com/python/dumbbell-plots/#what-about-dash
 
@@ -237,7 +272,7 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
                 showlegend=False,
                 marker=dict(
                     color="black"
-                )
+                ),
             ),
 
             go.Scatter(
@@ -246,8 +281,9 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
                 mode="markers",
                 marker=dict(
                     color="green",
-                    size=st_data["tyre_age_start"]
-                )
+                    size=10
+                ),
+                name="Start of stint"
             ),
 
             go.Scatter(
@@ -256,17 +292,62 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
                 mode="markers",
                 marker=dict(
                     color="red",
-                    size=st_data["tyre_age_end"]
-                )
+                    size=10,
+                ),
+                name="End of stint"
             ),
 
         ]
     )
 
+    fig2.update_layout(
+        title=dict(
+            text="Stint Lengths"
+        ),
+
+        xaxis=dict(
+            title=dict(
+                text="Lap Number"
+            )
+        ),
+
+        yaxis=dict(
+            title=dict(
+                text="Stints"
+            )
+        ),
+    )
+
+    # density histogram/heatmap for sector times
+
+    fig_sectors = make_subplots(rows=3, cols=1, shared_xaxes=True, horizontal_spacing=0.1 , specs = [[{}], [{}], [{}]], subplot_titles = ("Sector 1", "Sector 2", "Sector 3"), y_title="Sector Time (seconds)", x_title="Lap Number")
+    
+    fig_sectors.add_trace(go.Histogram2dContour(x=all_laps["lap_number"], y = all_laps["duration_sector_1"], autobinx=False, xbins= dict(start=all_laps["lap_number"].min(), end=all_laps["lap_number"].max(), size=1), autobiny=False, ybins= dict(start=(all_laps["duration_sector_1"].min() - 15), end=all_laps["duration_sector_1"].max(), size=5),
+                                                 coloraxis="coloraxis", name="Sector 1", hovertemplate="Lap: %{x} <br>Sector Duration: %{y} <br>Count: %{z}"), 
+                                                 row=1, col=1
+    )
+
+    fig_sectors.add_trace(go.Histogram2dContour(x=all_laps["lap_number"], y = all_laps["duration_sector_2"], autobinx=False, xbins= dict(start=all_laps["lap_number"].min(), end=all_laps["lap_number"].max(), size=1), autobiny=False, ybins= dict(start=(all_laps["duration_sector_2"].min() - 15), end=all_laps["duration_sector_2"].max(), size=5), 
+                                                coloraxis="coloraxis", name="Sector 2", hovertemplate="Lap: %{x} <br>Sector Duration: %{y} <br>Count: %{z}"), 
+                                                row=2, col=1
+    )
+
+    fig_sectors.add_trace(go.Histogram2dContour(x=all_laps["lap_number"], y = all_laps["duration_sector_3"], autobinx=False, xbins= dict(start=all_laps["lap_number"].min(), end=all_laps["lap_number"].max(), size=1), autobiny=False, ybins= dict(start=(all_laps["duration_sector_3"].min() - 15), end=all_laps["duration_sector_3"].max(), size=5), 
+                                                coloraxis="coloraxis", name="Sector 3", hovertemplate="Lap: %{x} <br>Sector Duration: %{y} <br>Count: %{z}"), 
+                                                row=3, col=1
+    )
+
+    fig_sectors.update_layout(
+        height = 1500, 
+        coloraxis = dict(colorscale = 'Viridis'), 
+        title = "Race Sector Times",
+        hoversubplots = "axis",
+        hovermode = "x"
+        
+        )
 
 
-
-    return fig_hist, fig, fig1, fig2
+    return fig_hist, fig, fig_results, fig2, fig_sectors
 
 # @callback(
 #     Output('positions_graph', 'figure'),
