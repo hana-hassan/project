@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 import json # to connect to api
 import pandas as pd # for data 
-import dash # for web app + visualisations
+#import dash # for web app + visualisations
 from dash import Dash, dcc, html, Input, Output, callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from flask import g
 import requests
+import plotly.io as pio
 from data_filtering import get_laps, get_position, get_race, get_drivers, get_all_positions, get_stints, get_quali, get_starting_grid, get_results
 base_url_sessions = "https://api.openf1.org/v1/sessions"
 base_url_drivers = "https://api.openf1.org/v1/drivers"
@@ -47,17 +48,16 @@ def init_app(url_path):
         ]),
 
         # row for dropdowns - here the user selects a year and circuit so that all other visualisation can display the appropriate data
-
         dbc.Row([
             dbc.Col([
                 html.H2('Select a year: '),
-                dcc.Dropdown(id="years", options = [{'label': year, 'value': year} for year in df["year"].unique()], 
+                dcc.Dropdown(className = 'dropdowns', id="years", options = [{'label': year, 'value': year} for year in df["year"].unique()], 
                              value="2024", 
-                             placeholder="Select a year")
+                             placeholder="Select a year"),
             ]),
             dbc.Col([
                 html.H2('Select a circuit: '),
-                dcc.Dropdown(id="circuits", options = [{'label': circuit_short_name, 'value': circuit_short_name} for circuit_short_name in df["circuit_short_name"].unique()],
+                dcc.Dropdown(className = 'dropdowns', id="circuits", options = [{'label': circuit_short_name, 'value': circuit_short_name} for circuit_short_name in df["circuit_short_name"].unique()],
                              value="Spa-Francorchamps",
                              placeholder="Select a circuit")
             ])
@@ -72,8 +72,8 @@ def init_app(url_path):
                         html.Div([
                             html.H2("Lap Times"),
                             dcc.Graph(id="lap_times_hist"),
-                            dcc.Graph(id="lap_times"),
-                        ])
+                            dcc.Graph(className="graphs", id="lap_times"),
+                        ],  className="vis_div" )
                     ])
                 ])
             ])
@@ -91,23 +91,20 @@ def init_app(url_path):
                         html.Div([
                             html.H2("Race Stints"),
                             dcc.Graph(id="stints_tyres"),
-                        ])
+                        ], className="vis_div")
                     ])
                 ])
             ])
         ]),
 
-                dbc.Row([
+        dbc.Row([
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        dcc.Dropdown(id="drivers_sector", options = [{'label': full_name, 'value': full_name} for full_name in df2["full_name"].unique()], 
-                            value="Lewis HAMILTON", 
-                            placeholder="Select a driver"),
                         html.Div([
                             html.H2("Sector Times"),
                             dcc.Graph(id="sector_times"),
-                        ])
+                        ], className="vis_div")
                     ])
                 ])
             ])
@@ -121,7 +118,7 @@ def init_app(url_path):
                         html.Div([
                             html.H2("Qualifications and Race Results"),
                             dcc.Graph(id="positions_graph"),
-                        ])
+                        ], className="vis_div")
                     ])
                 ])
             ])
@@ -140,7 +137,7 @@ def init_app(url_path):
     Input('years','value'), 
     Input('circuits', 'value'),
     Input('drivers', 'value'),
-    Input('drivers_sector', 'value'),
+    #Input('drivers_sector', 'value'),
     )
 
 # def init_callbacks(app):
@@ -150,7 +147,7 @@ def init_app(url_path):
 #         Input('circuits', 'value')
 #     )
 
-def update_graphs(selected_year, selected_circuit, selected_driver, selected_driver_2):
+def update_graphs(selected_year, selected_circuit, selected_driver):
     if selected_year:
         if selected_circuit:
 
@@ -199,8 +196,17 @@ def update_graphs(selected_year, selected_circuit, selected_driver, selected_dri
     all_positions = get_all_positions(s_key)
     dr_stints = get_stints(driver_num, s_key)
 
+    pio.templates.default = "plotly_dark"
+
     # histogram for lap times
     fig_hist = px.histogram(all_laps, x="lap_duration", labels = {"lap_duration" : "Lap Duration (seconds)"},title="Distribution of Lap Times")
+
+    fig_hist.update_layout(
+        font_family="monospace",
+        font_size=15,
+        title_font_size=20,
+        height=450
+    )
 
     fig =  px.line(all_laps, x="lap_number", y="lap_duration", color="driver_number", markers=True, 
     labels = {"lap_number" : "Lap Number", 
@@ -210,33 +216,30 @@ def update_graphs(selected_year, selected_circuit, selected_driver, selected_dri
     )
 
     fig.update_xaxes(rangeslider_visible = True)
-
-    #all_positions["date"] = pd.to_datetime(all_positions["date"], errors='coerce')
-
-
-    #fig1 = px.scatter(positions_df, x="date", y="position", color="position")
-    #fig1 = go.Figure(data=go.Heatmap(z=all_positions["position"], x=all_positions["date"], y=all_positions["driver_number"]))
-    #fig1 = px.bar(positions_df, x="date", y="position", color="position")
-    # fig1 = px.area(all_positions, x="date", y="position", color="driver_number",
-    # labels = {"date" : "Time",
-    #           "driver_number" : "Driver",
-    #           "position" : "Position"},
-    # title = "Race Positions", height = 800)
-
-    # # fig1 = go.Figure(go.Bar(x=all_positions["date"], y=all_positions["driver_number"], orientation='h'))
-    # fig1.update_yaxes(type='category')
-    # #fig1.update_xaxes(type = 'date')
-    # fig1.update_layout(xaxis_tickformat = '%H:%M')
+    fig.update_layout(
+        font_family="monospace",
+        font_size=15,
+        title_font_size=20,
+        height=1000
+    )
 
     quali = get_quali(selected_year, selected_circuit)
 
     q_key = quali["session_key"]
 
     results = get_results(s_key, q_key)
+
+    # vis for positions lost/gained
     
     fig_results = px.bar(results, x="driver_number", y="pos_difference", color="pos_difference", color_continuous_scale="RdBu", labels={"driver_number" : "Driver", "pos_difference" : "Positions Lost/Gained"}, 
                          title="Positions Lost/Gained", text_auto=".2s")
     fig_results.update_xaxes(type='category')
+    fig_results.update_layout(
+        font_family="monospace",
+        font_size=15,
+        title_font_size=20,
+        height=700
+    )
 
     #structure for the dumbbell plot copied from https://plotly.com/python/dumbbell-plots/#what-about-dash
 
@@ -271,7 +274,7 @@ def update_graphs(selected_year, selected_circuit, selected_driver, selected_dri
                 mode="lines",
                 showlegend=False,
                 marker=dict(
-                    color="black"
+                    color="white"
                 ),
             ),
 
@@ -316,6 +319,11 @@ def update_graphs(selected_year, selected_circuit, selected_driver, selected_dri
                 text="Stints"
             )
         ),
+        
+        font_family="monospace",
+        font_size=15,
+        title_font_size=20,
+        height=500
     )
 
     # density histogram/heatmap for sector times
@@ -342,8 +350,10 @@ def update_graphs(selected_year, selected_circuit, selected_driver, selected_dri
         coloraxis = dict(colorscale = 'Viridis'), 
         title = "Race Sector Times",
         hoversubplots = "axis",
-        hovermode = "x"
-        
+        hovermode = "x",
+        font_family="monospace",
+        font_size=15,
+        title_font_size=20
         )
 
 

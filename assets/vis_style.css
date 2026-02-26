@@ -1,0 +1,50 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: #180632;
+    color: white;
+    font-family: monospace;
+    padding: 10px
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: x-large;
+}
+
+.row{
+   padding: 10px;
+   border-radius: 5px;
+   border: 20px;
+   min-width: 95%;
+   /*background-color: #341671;*/
+   text-align: left;
+   margin-bottom: 20px;
+}
+
+.dropdowns{
+    color: black;
+    height: 35px;
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.vis_div {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.vis_div h2 {
+    font-size: 30px;
+}
+
+.graphs {
+    background-color: #180632;
+}
