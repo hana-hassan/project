@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, g
 from flask_sqlalchemy import SQLAlchemy
 #import sqlalchemy as sa
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -6,8 +6,14 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
+from dash_app import visualisations
 
 app = Flask(__name__)
+
+with app.app_context():
+    g.cur_app = app
+
+    app = visualisations.init_app("/visualisations/")
 
 # FYI THIS FIXES THE CREATE TABLES ISSUE
 # from auth import app, db
@@ -63,6 +69,20 @@ class user(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(40), nullable=False, unique=True)
+    reviews = db.relationship('Review', backref='user')
+
+
+# creates table for reviews
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    content = db.Column(db.String(360), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    circuit = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"Review {self.id}"
+
 
 
 # Register form
@@ -147,6 +167,32 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# race demo page (testing atm)
+@app.route('/aus2025', methods=['GET', 'POST'])
+@login_required
+def aus_2025():
+    # code snippet taken from https://www.youtube.com/watch?v=45P3xQPaYxc&t=2388s , edited to fit with my project
+    # start of adjusted code snippet
+
+    # add a review
+    if request.method == "POST":
+        current_review = request.form['content']
+        new_review = Review(content=current_review, year=2025, circuit="Melbourne")
+        try:
+            db.session.add(new_review)
+            db.session.commit()
+            return redirect("/aus2025")
+        except Exception as e:
+            print(f"Error: {e}")
+            return f"Error:{e}"
+    else:
+        reviews = Review.query.filter_by(year=2025, circuit="Melbourne").all()
+        return render_template('aus2025.html', reviews=reviews)
+    # end of adjusted code snippet
+
+
 if __name__ == '__main__':
+    # with app.app_context():
+    #     db.create_all()
     app.run(debug=True)
 

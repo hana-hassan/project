@@ -4,10 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+    <link rel="stylesheet" href="/static/home_style.css">
 </head>
 <body>
-    <h1>This is a home page</h1>
-    <a href="{{url_for('login')}}">Login</a>
-    <a href="{{url_for('signup')}}">Sign up</a>
+    <div class="content">
+        <h1>Welcome!</h1>
+        <button id="links"><a href="{{url_for('login')}}">Login</a></button>
+        <button id="links"><a href="{{url_for('signup')}}">Sign up</a></button>
+    </div>
 </body>
 </html>

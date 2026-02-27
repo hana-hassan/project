@@ -1,0 +1,46 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0 auto;
+    background-color: #180632;
+    color: white;
+    font-family: monospace;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    padding-top: 15%;
+    padding-bottom: 15%;
+
+}
+
+h1 {
+    font-size: 65px;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#links{
+    padding: 10px 20px 10px 20px;
+    margin-bottom: 10px; 
+    border-radius: 5px;
+    border-color: white;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: monospace;
+    font-size: large;
+}
+
+button:hover {
+    background-color: #4f179e;
+    color: white;
+}
