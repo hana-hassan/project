@@ -44,7 +44,7 @@ login_manager.login_view = "login"
 
 @login_manager.user_loader
 def load_user(user_id):
-    return user.query.get(int(user_id))
+    return User.query.get(int(user_id))
 
 # metadata user table?
 
@@ -64,7 +64,7 @@ def load_user(user_id):
 
 
 # creates table for users
-class user(db.Model, UserMixin):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
@@ -79,6 +79,7 @@ class Review(db.Model):
     content = db.Column(db.String(360), nullable=False)
     year = db.Column(db.Integer, nullable=False)
     circuit = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(20), nullable=False)
 
     def __repr__(self) -> str:
         return f"Review {self.id}"
@@ -99,7 +100,7 @@ class SignupForm(FlaskForm):
     # checks whether username hasn't already been used
 
     def validate_username(self, username):
-        existing_username = user.query.filter_by(username=username.data).first()
+        existing_username = User.query.filter_by(username=username.data).first()
 
         if existing_username:
             raise ValidationError("That username is already being used - Please choose a different one.")
@@ -107,7 +108,7 @@ class SignupForm(FlaskForm):
     # checks whether email has already been used 
 
     def validate_email(self, email):
-        existing_email = user.query.filter_by(email=email.data).first()
+        existing_email = User.query.filter_by(email=email.data).first()
 
         if existing_email:
             raise ValidationError("This email address is already connected to an account!")    
@@ -132,7 +133,7 @@ def home():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        l_user = user.query.filter_by(username=form.username.data).first()
+        l_user = User.query.filter_by(username=form.username.data).first()
         if l_user:
             if bcrypt.check_password_hash(l_user.password, form.password.data):
                 login_user(l_user)
@@ -147,7 +148,7 @@ def signup():
 
     if form.validate_on_submit():
         hashed_pw = bcrypt.generate_password_hash(form.password.data)
-        newUser = user(username=form.username.data, password=hashed_pw, email=form.email.data)
+        newUser = User(username=form.username.data, password=hashed_pw, email=form.email.data)
         db.session.add(newUser)
         db.session.commit()
         return redirect(url_for('login'))
@@ -177,7 +178,7 @@ def aus_2025():
     # add a review
     if request.method == "POST":
         current_review = request.form['content']
-        new_review = Review(content=current_review, year=2025, circuit="Melbourne")
+        new_review = Review(content=current_review, year=2025, circuit="Melbourne", user_id = current_user.id, username = current_user.username)
         try:
             db.session.add(new_review)
             db.session.commit()
@@ -188,6 +189,18 @@ def aus_2025():
     else:
         reviews = Review.query.filter_by(year=2025, circuit="Melbourne").all()
         return render_template('aus2025.html', reviews=reviews)
+
+# delete a review
+@app.route("/delete/<int:id>")
+def delete_review(id:int):
+    del_review = Review.query.get_or_404(id)
+    try:
+        db.session.delete(del_review)
+        db.session.commit()
+        return redirect("/aus2025")
+    except Exception as e:
+        return f"Error:{e}"
+    
     # end of adjusted code snippet
 
 

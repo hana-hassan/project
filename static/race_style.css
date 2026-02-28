@@ -1,0 +1,148 @@
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    background-color: #180632;
+    font-family: monospace;
+    color: white;
+}
+
+.navbar {
+    background-color: #280659;
+    overflow: hidden;
+}
+
+.navbar ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar ul li{
+    float: right;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 20px;
+    display: block;
+    padding: 14px;
+}
+
+.navbar ul li:hover{
+    background-color: #4a1ba8;
+}
+
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+p {
+    font-size: larger;
+}
+
+.title {
+    padding: 30px;
+}
+
+.page_contents{
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top{
+    border: 3px solid azure;
+    padding: 10px;
+    border-radius: 15px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+
+.general_info{
+    padding: 5px; 
+    width: 70%;
+}
+
+.ratings{
+    float: right;
+}
+
+.review_section{
+    min-width: 100%;
+    background-color: rgb(23, 23, 27);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.add_review{
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+textarea {
+    width: 100%;
+    height: 85px; 
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 5px;
+    overflow: hidden;
+}
+
+button {
+    min-width: 110px;
+    height: 30px;
+    padding: 5px;
+    background-color: azure;
+    border-radius: 5px;
+    color: black;
+    font-family: monospace;
+}
+
+button:hover{
+    background-color: #4a1ba8;
+    color: azure;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: monospace;
+}
+
+.all_reviews {
+    margin: 5px;
+}
+
+.created_reviews {
+    margin: 5px;
+    padding: 10px;
+    background-color: rgb(66, 66, 72);
+    border-radius: 5px;
+}
+
+.created_reviews button {
+    overflow: hidden;
+    margin-top: 10px;
+    min-width: 80px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.created_reviews h4 {
+    font-size: 15px;
+    font-style: italic;
+}
+
+.created_reviews p {
+    margin: 5px 5px 15px 5px;
+}
