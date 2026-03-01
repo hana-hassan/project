@@ -6,12 +6,14 @@ import plotly.express as px
 import datetime as dt
 
 sessions_base = 'https://api.openf1.org/v1/sessions'
+meetings_base = 'https://api.openf1.org/v1/meetings'
 laps_base = 'https://api.openf1.org/v1/laps'
 drivers_base = 'https://api.openf1.org/v1/drivers'
 positions_base = 'https://api.openf1.org/v1/position'
 stints_base = 'https://api.openf1.org/v1/stints'
 grid_base = 'https://api.openf1.org/v1/starting_grid'
 result_base = 'https://api.openf1.org/v1/session_result'
+
 
 # response = requests.get(sessions_url, params = params)
 # data = json.loads(response.json())
@@ -22,7 +24,8 @@ def get_race(year, circuit):
     params = {
         'year': year, 
         'circuit_short_name' : circuit, 
-        'session_type' : 'Race'
+        'session_type' : 'Race',
+        'session_name' : 'Race'
     }
 
     race_url = requests.Request('GET', sessions_base, params=params).prepare().url
@@ -33,7 +36,25 @@ def get_race(year, circuit):
     # global selected_session_key 
     # selected_session_key = race["session_key"].values[0]
 
-    return race[['session_key', 'year', 'circuit_short_name']]
+    race['date_start'] = pd.to_datetime(race["date_start"], errors='coerce').dt.strftime("%d-%m-%Y %H:%M:%S")
+
+    race['date_end'] = pd.to_datetime(race["date_end"], errors='coerce').dt.strftime("%d-%m-%Y %H:%M:%S")
+
+    return race[['session_key', 'year', 'circuit_short_name', 'date_start', 'date_end']]
+
+def get_meeting(short_name, year):
+
+    params = {
+        'circuit_short_name' : short_name,
+        'year' : year
+    }
+
+    url = requests.Request('GET', meetings_base, params=params).prepare().url
+    response = requests.get(url)
+    meeting = pd.DataFrame(response.json())
+
+    return meeting[['circuit_short_name','circuit_image', 'circuit_type', 'country_flag', 'location', 'meeting_official_name']]
+
 
 def get_laps(session_key):
 
@@ -165,59 +186,34 @@ def get_results(session_key, quali_key):
     return results_df[["driver_number", "position", "final_position", "pos_difference"]]
     #return results
 
-    
 
-df_race = get_race('2024', 'Silverstone')
+def get_website_info (year, circuit):
 
-key = (df_race["session_key"])
+    race = get_race(year, circuit)
+    name = race["circuit_short_name"]
+    #race_dict = race.to_dict("records")
 
-df_drivers = get_drivers(key)
+    meeting = get_meeting(name, year)
+    #meeting_dict = meeting.to_dict("records")
 
-driver_num = df_drivers.loc[df_drivers["full_name"] == "Lewis HAMILTON", "driver_number"]
+    merged = pd.merge(race, meeting, on="circuit_short_name")
 
-# df_quali = get_quali('2024', 'Silverstone')
+    info = merged.to_dict("records")
 
-# q_key = df_quali["session_key"]
+    return info[0]
 
-# print(q_key)
+race = get_website_info(2025, "Melbourne")
 
-# grid = get_starting_grid(q_key)
-
-# print(grid)
-
-
-
-# response = urlopen("https://api.openf1.org/v1/starting_grid?session_key=9558")
-# data = json.loads(response.read().decode('utf-8'))
-# print(pd.DataFrame(data))
-
-# df_results = get_results(key, q_key)
-
-# print(df_results)
-
-# df_grid = get_starting_grid(other_key)
-# print(df_grid)
-#all_pos = get_all_positions(key)
-#print(all_pos)
-#all_laps = get_laps(key)
-#print(all_laps["duration_sector_1"].min())
-#all_laps.sort_values(by=["lap_number"])
-#print(all_laps["lap_number"])
-
-# df_position["date"] = pd.to_datetime(df_position["date"], errors='coerce')
-
-# df_position["date"] = df_position["date"].dt.strftime("%H:%M")
-
-# all_pos = all_pos.sort_values(by=["date"])
-# print(all_pos["date"])
-
-# position_graph = px.scatter(df_positions, x="date", y="position", color="position")
-
-# position_graph.show()
-
-#print(df_positions)
+print(race)
 
 
-#print (get_position('lewis HAMILTON', key))
+
+
+
+
+
+
+
+
 
 

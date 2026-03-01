@@ -10,8 +10,9 @@
 <body>
     <div class="navbar">
             <ul>
-                <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
                 <li><a href="{{url_for('logout')}}">Log Out</a></li>
+                <li><a href="{{url_for('seasons')}}">Seasons</a></li>
+                <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
             </ul>
     </div>
     {% block body %}{% endblock %}

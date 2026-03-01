@@ -7,6 +7,7 @@ from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
 from dash_app import visualisations
+from data_filtering import get_website_info
 
 app = Flask(__name__)
 
@@ -168,36 +169,49 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
-# race demo page (testing atm)
-@app.route('/aus2025', methods=['GET', 'POST'])
+@app.route('/seasons')
 @login_required
-def aus_2025():
+def seasons():
+    return render_template('seasons.html')
+
+# idea IDEA!!! create a folder for all seasons called "seasons",
+# THEN create folders for years called "2022", "2023" etc
+# INSIDE those folders, name race pages after their circuits
+# could also leave them as is and use a lot of switch cases idk
+@app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
+@login_required
+def add_review(season, race):
     # code snippet taken from https://www.youtube.com/watch?v=45P3xQPaYxc&t=2388s , edited to fit with my project
     # start of adjusted code snippet
 
     # add a review
     if request.method == "POST":
         current_review = request.form['content']
-        new_review = Review(content=current_review, year=2025, circuit="Melbourne", user_id = current_user.id, username = current_user.username)
+        if (season == "2025"):
+            if (race == "aus2025"):
+                new_review = Review(content=current_review, year=2025, circuit="Melbourne", user_id = current_user.id, username = current_user.username)
         try:
             db.session.add(new_review)
             db.session.commit()
-            return redirect("/aus2025")
+            return redirect(f"/all_seasons/{season}/{race}")
         except Exception as e:
             print(f"Error: {e}")
             return f"Error:{e}"
     else:
         reviews = Review.query.filter_by(year=2025, circuit="Melbourne").all()
-        return render_template('aus2025.html', reviews=reviews)
+        web_info = get_website_info(2025, "Melbourne")
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info)
 
 # delete a review
+#@app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
 @app.route("/delete/<int:id>")
 def delete_review(id:int):
     del_review = Review.query.get_or_404(id)
     try:
         db.session.delete(del_review)
         db.session.commit()
-        return redirect("/aus2025")
+        # came across an error regarding redirecting to the current page, fixed it below with a line of code from https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission
+        return redirect(request.referrer)
     except Exception as e:
         return f"Error:{e}"
     
