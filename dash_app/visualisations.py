@@ -22,15 +22,6 @@ response2 = urlopen(base_url_drivers)
 data2 = json.loads(response2.read().decode('utf-8'))
 df2 = pd.DataFrame(data2)
 
-# year = "2024"
-# circuit = "Spa-Francorchamps"
-
-# response_t = urlopen("https://api.openf1.org/v1/sessions?session_name=Race&year=2024&circuit_short_name=Spa-Francorchamps")
-# test = json.loads(response_t.read().decode('utf-8'))
-# dftest = pd.DataFrame(test)
-# print(dftest)
-
-
 
 # function semi-copied from https://ploomber.io/blog/dash-in-flask/ , check license
 
@@ -96,6 +87,8 @@ def init_app(url_path):
                 ])
             ])
         ]),
+
+        # section for the sector times data vis
 
         dbc.Row([
             dbc.Col([

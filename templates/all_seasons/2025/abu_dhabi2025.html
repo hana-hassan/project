@@ -1,0 +1,49 @@
+{% extends 'race_template.html'%}
+
+{% block head %}
+<title>Abu Dhabi 2025 GP</title>
+{% endblock %}
+
+{% block body %}
+<div class="title">
+    <h1>{{web_info['meeting_official_name']}}</h1>
+</div>
+<div class="page_contents">
+    <div class="top">
+        <div class="general_info">
+            <p><strong>Location:</strong> {{web_info['location']}}</p>
+            <p><strong>Circuit Type:</strong> {{web_info['circuit_type']}}</p>
+            <p><strong>Started:</strong> {{web_info['date_start']}}</p>
+            <p><strong>Ended:</strong> {{web_info['date_end']}}</p>
+        </div>
+        <div class="ratings">
+            <h4>Your Rating:</h4>
+            <h4>Overall Rating:</h4>
+        </div>
+    </div>
+    <div class="review_section">
+        <h2>Reviews</h2>
+        <div class="add_review">
+            <form method="POST" action="/all_seasons/2025/abu_dhabi2025">
+                <textarea id="content" name="content" placeholder="Add a review..."></textarea><br>
+                <button class="submit_btn" type="submit">Post Review</button>
+            </form>
+        </div>
+        {% if reviews | length < 1%}
+        <h3>No reviews yet...</h3>
+        {% else %}
+        <div class="all_reviews">
+            {% for review in reviews %}
+                <div class="created_reviews">
+                    <h4>Review by {{review.username}}</h4>
+                    <p>{{review.content}}</p>
+                    {% if current_user.id == review.user_id %}
+                        <button><a href="/delete/{{review.id}}">Delete</a></button>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

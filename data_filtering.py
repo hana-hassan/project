@@ -200,11 +200,27 @@ def get_website_info (year, circuit):
 
     info = merged.to_dict("records")
 
-    return info[0]
+    if (circuit == "Sakhir"):
+        return info[1]
+    else:
+        return info[0]
 
-race = get_website_info(2025, "Melbourne")
+def get_circuit_name (page_name):
 
-print(race)
+    circuits = {'aus' : 'Melbourne', 'china' : 'Shanghai', 'japan' : 'Suzuka', 'bahrain' : 'Sakhir',
+                'saudi' : 'Jeddah', 'miami' : 'Miami', 'imola' : 'Imola', 'monaco' : 'Monte Carlo',
+                'spain' : 'Catalunya', 'canada' : 'Montreal', 'austria' : 'Spielberg', 'britain' : 'Silverstone',
+                'belgium' : 'Spa-Francorchamps', 'hungary' : 'Hungaroring', 'dutch' : 'Zandvoort', 
+                'monza' : 'Monza', 'baku' : 'Baku', 'singapore' : 'Singapore', 'cota' : 'Austin',
+                'mexico' : 'Mexico City', 'brazil' : 'Interlagos', 'vegas' : 'Las Vegas', 'qatar' : 'Lusail',
+                'abu_dhabi' : 'Yas Marina Circuit'}
+    
+    return circuits[page_name[:-4]]
+
+
+# print(get_website_info("2025", "Sakhir"))
+
+
 
 
 

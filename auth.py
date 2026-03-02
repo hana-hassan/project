@@ -7,7 +7,7 @@ from wtforms import StringField, PasswordField, EmailField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
 from dash_app import visualisations
-from data_filtering import get_website_info
+from data_filtering import get_website_info, get_circuit_name
 
 app = Flask(__name__)
 
@@ -174,22 +174,20 @@ def logout():
 def seasons():
     return render_template('seasons.html')
 
-# idea IDEA!!! create a folder for all seasons called "seasons",
-# THEN create folders for years called "2022", "2023" etc
-# INSIDE those folders, name race pages after their circuits
-# could also leave them as is and use a lot of switch cases idk
+
 @app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
 @login_required
 def add_review(season, race):
     # code snippet taken from https://www.youtube.com/watch?v=45P3xQPaYxc&t=2388s , edited to fit with my project
     # start of adjusted code snippet
 
+    circuit_name = get_circuit_name(race)
+    year = int(season)
+
     # add a review
     if request.method == "POST":
         current_review = request.form['content']
-        if (season == "2025"):
-            if (race == "aus2025"):
-                new_review = Review(content=current_review, year=2025, circuit="Melbourne", user_id = current_user.id, username = current_user.username)
+        new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
         try:
             db.session.add(new_review)
             db.session.commit()
@@ -198,9 +196,10 @@ def add_review(season, race):
             print(f"Error: {e}")
             return f"Error:{e}"
     else:
-        reviews = Review.query.filter_by(year=2025, circuit="Melbourne").all()
-        web_info = get_website_info(2025, "Melbourne")
+        reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
+        web_info = get_website_info(year, circuit_name)
         return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info)
+            
 
 # delete a review
 #@app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
