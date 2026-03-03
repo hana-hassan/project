@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 #import sqlalchemy as sa
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, SubmitField
+from wtforms import StringField, PasswordField, EmailField, SubmitField, RadioField, TextAreaField
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
 from dash_app import visualisations
@@ -71,6 +71,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(80), nullable=False)
     email = db.Column(db.String(40), nullable=False, unique=True)
     reviews = db.relationship('Review', backref='user')
+    ratings = db.relationship('Rating', backref='user')
 
 
 # creates table for reviews
@@ -84,6 +85,14 @@ class Review(db.Model):
 
     def __repr__(self) -> str:
         return f"Review {self.id}"
+
+# creates table for ratings
+class Rating(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    ratingNum =  year = db.Column(db.Integer, nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    circuit = db.Column(db.String(20), nullable=False)
 
 
 
@@ -122,6 +131,19 @@ class LoginForm(FlaskForm):
     password = PasswordField(validators=[InputRequired(), Length(min=5, max=20)], render_kw={"placeholder":"Password"})
 
     submit = SubmitField("Log in")
+
+class ReviewForm(FlaskForm):
+    content = TextAreaField(validators=[InputRequired(), Length(min=5, max=360)], render_kw={"placeholder" : "Add a review..."})
+
+    review_submit = SubmitField("Post Review")
+
+# creates rating form
+
+class RatingForm(FlaskForm):
+
+    rating = RadioField('Rate this race: ', validators=[InputRequired()],
+                        choices= [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')])
+    rating_submit = SubmitField("Submit Rating")
 
 
 # first page to show up, maybe edit so that it's the login page instead?
@@ -183,9 +205,34 @@ def add_review(season, race):
 
     circuit_name = get_circuit_name(race)
     year = int(season)
+    form1 = RatingForm()
+    form2 = ReviewForm()
+
+    if request.method == "POST":
+
+        # if "rating_submit" in request.form and form1.validate():
+        #     rating = int(form1.rating.data)
+        #     new_rating = Rating(user_id = current_user.id, ratingNum = rating, year = year, circuit =  circuit_name)
+        #     try:
+        #         db.session.add(new_rating)
+        #         db.session.commit()
+        #         return redirect(f"/all_seasons/{season}/{race}")
+        #     except Exception as e:
+        #         print(f"Error: {e}")
+        #         return f"Error:{e}"
+        
+        # if "review_submit" in request.form and form2.validate():
+        #     new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
+        #     try:
+        #         db.session.add(new_review)
+        #         db.session.commit()
+        #         return redirect(f"/all_seasons/{season}/{race}")
+        #     except Exception as e:
+        #         print(f"Error: {e}")
+        #         return f"Error:{e}"
 
     # add a review
-    if request.method == "POST":
+    # if request.method == "POST":
         current_review = request.form['content']
         new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
         try:
@@ -195,11 +242,36 @@ def add_review(season, race):
         except Exception as e:
             print(f"Error: {e}")
             return f"Error:{e}"
+
     else:
+        personal_rating = Rating.query.filter_by(year=year, circuit=circuit_name, user_id = current_user.id).first()
         reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
         web_info = get_website_info(year, circuit_name)
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info)
-            
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info, personal_rating=personal_rating, form1=form1, form2=form2)
+                
+
+# @app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
+# @login_required
+# def add_rating(season, race):
+#     form = RatingForm()
+#     circuit_name = get_circuit_name(race)
+#     year = int(year)
+
+#     if form.validate_on_submit():
+#         rating = int(form.rating.data)
+#         new_rating = Rating(user_id = current_user.id, ratingNum = rating, year = year, circuit =  circuit_name)
+#         try:
+#             db.session.add(new_rating)
+#             db.session.commit()
+#             return redirect(f"/all_seasons/{season}/{race}")
+#         except Exception as e:
+#             print(f"Error: {e}")
+#             return f"Error:{e}"
+        
+#     personal_rating = Rating.query.filter_by(year=year, circuit=circuit_name, user_id = current_user.id).first()
+    
+#     return render_template(f'all_seasons/{season}/{race}.html', form=form, personal_rating=personal_rating)
+    
 
 # delete a review
 #@app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
@@ -218,7 +290,7 @@ def delete_review(id:int):
 
 
 if __name__ == '__main__':
-    # with app.app_context():
-    #     db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 
