@@ -210,16 +210,29 @@ def add_review(season, race):
 
     if request.method == "POST":
 
-        # if "rating_submit" in request.form and form1.validate():
-        #     rating = int(form1.rating.data)
-        #     new_rating = Rating(user_id = current_user.id, ratingNum = rating, year = year, circuit =  circuit_name)
-        #     try:
-        #         db.session.add(new_rating)
-        #         db.session.commit()
-        #         return redirect(f"/all_seasons/{season}/{race}")
-        #     except Exception as e:
-        #         print(f"Error: {e}")
-        #         return f"Error:{e}"
+    # add a review
+        if ('content' in request.form):
+            current_review = request.form['content']
+            new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
+            try:
+                db.session.add(new_review)
+                db.session.commit()
+                return redirect(f"/all_seasons/{season}/{race}")
+            except Exception as e:
+                print(f"Error: {e}")
+                return f"Error:{e}"
+        
+        
+        elif form1.rating_submit.data and form1.validate():
+            rating = int(form1.rating.data)
+            new_rating = Rating(user_id = current_user.id, ratingNum = rating, year = year, circuit =  circuit_name)
+            try:
+                db.session.add(new_rating)
+                db.session.commit()
+                return redirect(f"/all_seasons/{season}/{race}")
+            except Exception as e:
+                print(f"Error: {e}")
+                return f"Error:{e}"
         
         # if "review_submit" in request.form and form2.validate():
         #     new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
@@ -230,24 +243,14 @@ def add_review(season, race):
         #     except Exception as e:
         #         print(f"Error: {e}")
         #         return f"Error:{e}"
-
-    # add a review
-    # if request.method == "POST":
-        current_review = request.form['content']
-        new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
-        try:
-            db.session.add(new_review)
-            db.session.commit()
-            return redirect(f"/all_seasons/{season}/{race}")
-        except Exception as e:
-            print(f"Error: {e}")
-            return f"Error:{e}"
+        
 
     else:
+        avg_rating = get_avg_rating(year, circuit_name)
         personal_rating = Rating.query.filter_by(year=year, circuit=circuit_name, user_id = current_user.id).first()
         reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
         web_info = get_website_info(year, circuit_name)
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info, personal_rating=personal_rating, form1=form1, form2=form2)
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info, personal_rating=personal_rating, avg_rating = avg_rating, form1=form1, form2=form2)
                 
 
 # @app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
@@ -288,9 +291,41 @@ def delete_review(id:int):
     
     # end of adjusted code snippet
 
+@app.route("/delete_rating/<int:id>")
+def delete_rating(id:int):
+    del_rating = Rating.query.get_or_404(id)
+    try:
+        db.session.delete(del_rating)
+        db.session.commit()
+        # came across an error regarding redirecting to the current page, fixed it below with a line of code from https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission
+        return redirect(request.referrer)
+    except Exception as e:
+        return f"Error:{e}"
+    
+
+def get_avg_rating(year, circuit):
+    race_ratings = Rating.query.filter_by(year=year, circuit=circuit).with_entities(Rating.ratingNum).all()
+    # add nested for loop to add ratings together?
+    # divide by length of list
+    rating_len = len(race_ratings)
+
+    # if no ratings have been submitted yet
+    if rating_len == 0:
+        return 0
+    
+    total = 0
+
+    for users_rating in race_ratings:
+        for rating in users_rating:
+            total += rating
+    
+    mean = total / rating_len
+
+    return mean
+
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
     app.run(debug=True)
 

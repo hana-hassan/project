@@ -17,8 +17,20 @@
             <p><strong>Ended:</strong> {{web_info['date_end']}}</p>
         </div>
         <div class="ratings">
-            <h4>Your Rating:</h4>
-            <h4>Overall Rating:</h4>
+            <div class="add_rating">
+                {% if personal_rating == None %}
+                    <h3>Your Rating: --/5 </h3>
+                    <form method="POST" action="/all_seasons/2025/monza2025" class="choose_rating">
+                        {{form1.hidden_tag()}}
+                        {{form1.rating}}<br>
+                        {{form1.rating_submit}}
+                    </form>
+                {% else %}
+                    <h3>Your Rating: {{personal_rating.ratingNum}}/5 </h3>
+                    <button><a href="/delete_rating/{{personal_rating.id}}">Delete Rating</a></button>
+                {% endif %}
+            </div>
+            <h3>Overall Rating: {{ avg_rating }}</h3>
         </div>
     </div>
     <div class="review_section">
