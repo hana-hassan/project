@@ -72,6 +72,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(40), nullable=False, unique=True)
     reviews = db.relationship('Review', backref='user')
     ratings = db.relationship('Rating', backref='user')
+    replies = db.relationship('Reply', backref='user')
 
 
 # creates table for reviews
@@ -82,6 +83,7 @@ class Review(db.Model):
     year = db.Column(db.Integer, nullable=False)
     circuit = db.Column(db.String(20), nullable=False)
     username = db.Column(db.String(20), nullable=False)
+    replies = db.relationship('Reply', backref='review')
 
     def __repr__(self) -> str:
         return f"Review {self.id}"
@@ -94,6 +96,15 @@ class Rating(db.Model):
     year = db.Column(db.Integer, nullable=False)
     circuit = db.Column(db.String(20), nullable=False)
 
+# creates table for replies
+class Reply(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
+    content = db.Column(db.String(360), nullable=False)
+    year = db.Column(db.Integer, nullable=False)
+    circuit = db.Column(db.String(20), nullable=False)
+    username = db.Column(db.String(20), nullable=False)
 
 
 # Register form
@@ -145,6 +156,11 @@ class RatingForm(FlaskForm):
                         choices= [('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5')])
     rating_submit = SubmitField("Submit Rating")
 
+# creates reply form
+class ReplyForm(FlaskForm):
+    reply_content = TextAreaField(validators=[InputRequired(), Length(min=5, max=360)], render_kw={"placeholder" : "Add a reply..."})
+
+    reply_submit = SubmitField("Post Reply")
 
 # first page to show up, maybe edit so that it's the login page instead?
 @app.route('/')
@@ -191,14 +207,18 @@ def logout():
     logout_user()
     return redirect(url_for('login'))
 
+# route for seasons page
 @app.route('/seasons')
 @login_required
 def seasons():
     return render_template('seasons.html')
 
-
+# route for all race pages
 @app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
 @login_required
+# function that both handles the POST requests from the multiple forms in these pages,
+# and returns information that will be displayed on the pages
+
 def add_review(season, race):
     # code snippet taken from https://www.youtube.com/watch?v=45P3xQPaYxc&t=2388s , edited to fit with my project
     # start of adjusted code snippet
@@ -207,13 +227,24 @@ def add_review(season, race):
     year = int(season)
     form1 = RatingForm()
     form2 = ReviewForm()
+    form_reply = ReplyForm()
 
     if request.method == "POST":
 
-    # add a review
-        if ('content' in request.form):
-            current_review = request.form['content']
-            new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
+        # if ('content' in request.form):
+        #     current_review = request.form['content']
+        #     new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
+        #     try:
+        #         db.session.add(new_review)
+        #         db.session.commit()
+        #         return redirect(f"/all_seasons/{season}/{race}")
+        #     except Exception as e:
+        #         print(f"Error: {e}")
+        #         return f"Error:{e}"
+
+        # add a review
+        if "review_submit" in request.form and form2.validate():
+            new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
             try:
                 db.session.add(new_review)
                 db.session.commit()
@@ -234,6 +265,17 @@ def add_review(season, race):
                 print(f"Error: {e}")
                 return f"Error:{e}"
         
+        elif form1.reply_submit.data and form_reply.validate():
+            reply = form_reply.content.data
+            new_reply = Reply(user_id = current_user.id, year = year, circuit = circuit_name, username = current_user.username)
+            try:
+                db.session.add(new_reply)
+                db.session.commit()
+                return redirect(f"/all_seasons/{season}/{race}")
+            except Exception as e:
+                print(f"Error: {e}")
+                return f"Error:{e}"
+        
         # if "review_submit" in request.form and form2.validate():
         #     new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
         #     try:
@@ -248,9 +290,10 @@ def add_review(season, race):
     else:
         avg_rating = get_avg_rating(year, circuit_name)
         personal_rating = Rating.query.filter_by(year=year, circuit=circuit_name, user_id = current_user.id).first()
+        personal_review = Review.query.filter_by(user_id = current_user.id, year = year, circuit = circuit_name).first()
         reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
         web_info = get_website_info(year, circuit_name)
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info, personal_rating=personal_rating, avg_rating = avg_rating, form1=form1, form2=form2)
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info, personal_rating=personal_rating, personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2)
                 
 
 # @app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
