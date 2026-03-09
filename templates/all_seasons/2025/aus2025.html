@@ -60,8 +60,8 @@
                     {% if current_user.id == review.user_id %}
                         <button><a href="/delete/{{review.id}}">Delete</a></button>
                     {% endif %}
+                    <button onclick="makeReply()">Reply</button>
                 </div>
-                <button onclick="makeReply()">Reply</button>
                 <div id="add_reply" class="add_reply">
                     <form method="POST" action="/post_reply/{{review.id}}">
                         {{form_reply.hidden_tag()}}

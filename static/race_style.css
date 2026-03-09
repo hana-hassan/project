@@ -195,6 +195,10 @@ input[type=submit]:hover {
     color: azure;
 }
 
+.add_reply {
+    display: none;
+}
+
 .all_replies {
     margin-top: 10px;
     margin-bottom: 15px;
@@ -206,7 +210,7 @@ input[type=submit]:hover {
 .created_replies {
     margin: 5px;
     padding: 10px;
-    background-color: rgb(66, 66, 72);
+    background-color: rgb(94, 94, 103);
     border-radius: 5px;
     width: 100%
 }

@@ -243,7 +243,7 @@ def add_review(season, race):
         #         return f"Error:{e}"
 
         # add a review
-        if "review_submit" in request.form and form2.validate():
+        if form2.review_submit.data and form2.validate():
             new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
             try:
                 db.session.add(new_review)
