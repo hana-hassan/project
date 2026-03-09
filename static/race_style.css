@@ -44,6 +44,10 @@ h2 {
     font-size: 30px;
 }
 
+h3 {
+    font-size: larger;
+}
+
 p {
     font-size: larger;
 }
@@ -119,6 +123,35 @@ a {
     font-family: monospace;
 }
 
+.choose_rating ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 5px 0px 15px 0px;
+    margin-bottom: 10px;
+}
+
+.choose_rating ul li {
+    float: left;
+    font-size: 20px;
+}
+
+
+.choose_rating input[type=submit] {
+    min-width: 110px;
+    height: 30px;
+    padding: 5px;
+    background-color: azure;
+    border-radius: 5px;
+    color: black;
+    font-family: monospace;
+}
+
+.choose_rating input[type=submit]:hover {
+    background-color: #4a1ba8;
+    color: azure;
+}
+
+
 .all_reviews {
     margin: 5px;
 }
@@ -144,5 +177,53 @@ a {
 }
 
 .created_reviews p {
+    margin: 5px 5px 15px 5px;
+}
+
+input[type=submit] {
+    min-width: 110px;
+    height: 30px;
+    padding: 5px;
+    background-color: azure;
+    border-radius: 5px;
+    color: black;
+    font-family: monospace;
+}
+
+input[type=submit]:hover {
+    background-color: #4a1ba8;
+    color: azure;
+}
+
+.all_replies {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+}
+
+.created_replies {
+    margin: 5px;
+    padding: 10px;
+    background-color: rgb(66, 66, 72);
+    border-radius: 5px;
+    width: 100%
+}
+
+.created_replies button {
+    overflow: hidden;
+    margin-top: 10px;
+    min-width: 80px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.created_replies h4 {
+    font-size: 15px;
+    font-style: italic;
+}
+
+.created_replies p {
     margin: 5px 5px 15px 5px;
 }

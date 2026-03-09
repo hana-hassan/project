@@ -102,8 +102,8 @@ class Reply(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
     content = db.Column(db.String(360), nullable=False)
-    year = db.Column(db.Integer, nullable=False)
-    circuit = db.Column(db.String(20), nullable=False)
+    year = db.Column(db.Integer)
+    circuit = db.Column(db.String(20))
     username = db.Column(db.String(20), nullable=False)
 
 
@@ -158,7 +158,7 @@ class RatingForm(FlaskForm):
 
 # creates reply form
 class ReplyForm(FlaskForm):
-    reply_content = TextAreaField(validators=[InputRequired(), Length(min=5, max=360)], render_kw={"placeholder" : "Add a reply..."})
+    content = TextAreaField(validators=[InputRequired(), Length(min=5, max=360)], render_kw={"placeholder" : "Add a reply..."})
 
     reply_submit = SubmitField("Post Reply")
 
@@ -253,7 +253,7 @@ def add_review(season, race):
                 print(f"Error: {e}")
                 return f"Error:{e}"
         
-        
+        # solution for dealing with multiple forms in one page (following if statement) from stack overflow: https://stackoverflow.com/questions/18290142/multiple-forms-in-a-single-page-using-flask-and-wtforms 
         elif form1.rating_submit.data and form1.validate():
             rating = int(form1.rating.data)
             new_rating = Rating(user_id = current_user.id, ratingNum = rating, year = year, circuit =  circuit_name)
@@ -265,16 +265,16 @@ def add_review(season, race):
                 print(f"Error: {e}")
                 return f"Error:{e}"
         
-        elif form1.reply_submit.data and form_reply.validate():
-            reply = form_reply.content.data
-            new_reply = Reply(user_id = current_user.id, year = year, circuit = circuit_name, username = current_user.username)
-            try:
-                db.session.add(new_reply)
-                db.session.commit()
-                return redirect(f"/all_seasons/{season}/{race}")
-            except Exception as e:
-                print(f"Error: {e}")
-                return f"Error:{e}"
+        # elif form_reply.reply_submit.data and form_reply.validate():
+        #     reply = form_reply.content.data
+        #     new_reply = Reply(user_id = current_user.id, year = year, circuit = circuit_name, username = current_user.username)
+        #     try:
+        #         db.session.add(new_reply)
+        #         db.session.commit()
+        #         return redirect(f"/all_seasons/{season}/{race}")
+        #     except Exception as e:
+        #         print(f"Error: {e}")
+        #         return f"Error:{e}"
         
         # if "review_submit" in request.form and form2.validate():
         #     new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
@@ -292,31 +292,9 @@ def add_review(season, race):
         personal_rating = Rating.query.filter_by(year=year, circuit=circuit_name, user_id = current_user.id).first()
         personal_review = Review.query.filter_by(user_id = current_user.id, year = year, circuit = circuit_name).first()
         reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
+        replies = Reply.query.all()
         web_info = get_website_info(year, circuit_name)
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, web_info=web_info, personal_rating=personal_rating, personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2)
-                
-
-# @app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
-# @login_required
-# def add_rating(season, race):
-#     form = RatingForm()
-#     circuit_name = get_circuit_name(race)
-#     year = int(year)
-
-#     if form.validate_on_submit():
-#         rating = int(form.rating.data)
-#         new_rating = Rating(user_id = current_user.id, ratingNum = rating, year = year, circuit =  circuit_name)
-#         try:
-#             db.session.add(new_rating)
-#             db.session.commit()
-#             return redirect(f"/all_seasons/{season}/{race}")
-#         except Exception as e:
-#             print(f"Error: {e}")
-#             return f"Error:{e}"
-        
-#     personal_rating = Rating.query.filter_by(year=year, circuit=circuit_name, user_id = current_user.id).first()
-    
-#     return render_template(f'all_seasons/{season}/{race}.html', form=form, personal_rating=personal_rating)
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply)
     
 
 # delete a review
@@ -324,7 +302,11 @@ def add_review(season, race):
 @app.route("/delete/<int:id>")
 def delete_review(id:int):
     del_review = Review.query.get_or_404(id)
+    del_replies = Reply.query.filter_by(review_id = id).all()
     try:
+        if del_replies != None:
+            for reply in del_replies:
+                db.session.delete(reply)
         db.session.delete(del_review)
         db.session.commit()
         # came across an error regarding redirecting to the current page, fixed it below with a line of code from https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission
@@ -344,7 +326,34 @@ def delete_rating(id:int):
         return redirect(request.referrer)
     except Exception as e:
         return f"Error:{e}"
-    
+
+# function for adding a reply
+@app.route("/post_reply/<int:id>", methods=["POST"])
+def post_reply(id:int):
+    #review = Review.query.get_or_404(id)
+    form_reply = ReplyForm()
+    if request.method == "POST":
+        # try making year and circuit on reply table nullable?
+        new_reply = Reply(user_id = current_user.id, review_id = id, content = form_reply.content.data, username = current_user.username)
+        try:
+            db.session.add(new_reply)
+            db.session.commit()
+            return redirect(request.referrer)
+        except Exception as e:
+            print(f"Error: {e}")
+            return f"Error:{e}"
+
+# function for deleting a reply
+@app.route("/delete_reply/<int:id>")
+def delete_reply(id:int):
+    delete_reply = Reply.query.get_or_404(id)
+    try:
+        db.session.delete(delete_reply)
+        db.session.commit()
+        # came across an error regarding redirecting to the current page, fixed it below with a line of code from https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission
+        return redirect(request.referrer)
+    except Exception as e:
+        return f"Error:{e}"
 
 def get_avg_rating(year, circuit):
     race_ratings = Rating.query.filter_by(year=year, circuit=circuit).with_entities(Rating.ratingNum).all()
