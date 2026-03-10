@@ -73,6 +73,7 @@ class User(db.Model, UserMixin):
     reviews = db.relationship('Review', backref='user')
     ratings = db.relationship('Rating', backref='user')
     replies = db.relationship('Reply', backref='user')
+    watchlists = db.relationship('Watchlist', backref='user')
 
 
 # creates table for reviews
@@ -102,9 +103,24 @@ class Reply(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
     content = db.Column(db.String(360), nullable=False)
+    # year = db.Column(db.Integer)
+    # circuit = db.Column(db.String(20))
+    username = db.Column(db.String(20), nullable=False)
+
+# creates table for watchlists
+class Watchlist(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    name = db.Column(db.String(50), nullable=False)
+    contents = db.relationship('WatchlistContent', backref='watchlist')
+
+
+# creates table for the contents of watchlists
+class WatchlistContent(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    watchlist_id = db.Column(db.Integer, db.ForeignKey('watchlist.id'))
     year = db.Column(db.Integer)
     circuit = db.Column(db.String(20))
-    username = db.Column(db.String(20), nullable=False)
 
 
 # Register form
@@ -377,7 +393,7 @@ def get_avg_rating(year, circuit):
 
 
 if __name__ == '__main__':
-    # with app.app_context():
-    #     db.create_all()
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
 
