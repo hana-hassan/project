@@ -43,7 +43,7 @@ def init_app(url_path):
             dbc.Col([
                 html.H2('Select a year: '),
                 dcc.Dropdown(className = 'dropdowns', id="years", options = [{'label': year, 'value': year} for year in df["year"].unique()], 
-                             value="2024", 
+                             value = 2023, 
                              placeholder="Select a year"),
             ]),
             dbc.Col([
@@ -76,7 +76,7 @@ def init_app(url_path):
             dbc.Col([
                 dbc.Card([
                     dbc.CardBody([
-                        dcc.Dropdown(id="drivers", options = [{'label': full_name, 'value': full_name} for full_name in df2["full_name"].unique()], 
+                        dcc.Dropdown(className = 'dropdowns', id="drivers", options = [{'label': full_name, 'value': full_name} for full_name in df2["full_name"].unique()], 
                             value="Lewis HAMILTON", 
                             placeholder="Select a driver"),
                         html.Div([

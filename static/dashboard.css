@@ -8,6 +8,18 @@ body{
     font-family: monospace;
 }
 
+h1 {
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+h3 {
+    font-size: 25px;
+}
+
 .page{
     display: flex;
     justify-content: center;
@@ -43,17 +55,12 @@ body{
     background-color: #4a1ba8;
 }
 
-/*.page div{
-    width: 100%;
-}*/
-
 /*Banner part*/
 
 .top{
     padding: 20px 0px 20px 40px;
     width: 100%;
     margin-bottom: 20px;
-    /*background-color: #660F56;*/
 }
 
 /*Watch lists section*/
@@ -63,7 +70,6 @@ body{
     border: 3px solid azure;
     min-width: 95%;
     padding: 15px;
-    /*background-color: #341671;*/
     text-align: left;
     margin-bottom: 20px;
 }
@@ -82,22 +88,56 @@ body{
     text-align: center;
     background-color: white;
     margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .wl-button {
     text-align: left;
     background-color: white;
     margin-bottom: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.wlist {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    color:black;
+    margin-bottom: 5px;
+    padding: 0px 10px 0px 10px;
+    min-width: 100%;
+    border: 2px;
+    border-radius: 5px;
+}
+
+.wlist_contents {
+    width: 100%;
+    align-items: right;
+}
+
+.wlist h4 {
+    font-size: 20px;
+    font-weight: bold;
+    min-width: 80%;
+}
+
+.wlist button {
+    background-color: black;
+    color: white;
+    border-radius: 3px;
+    float: right;
 }
 
 .create-wl:hover {
     background-color: #4717a7;
-    color:black;
+    color:white;
 }
 
 .wl-button:hover {
     background-color: #4717a7;
-    color: black;
+    color: white;
 }
 
 .watchlists a {

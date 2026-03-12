@@ -178,6 +178,12 @@ class ReplyForm(FlaskForm):
 
     reply_submit = SubmitField("Post Reply")
 
+# creates watchlist form
+class WatchlistForm(FlaskForm):
+    name = StringField(validators=[InputRequired(), Length(min=5, max=20)], render_kw={"placeholder":"Name your watchlist"})
+
+    wl_submit = SubmitField("Create Watchlist")
+
 # first page to show up, maybe edit so that it's the login page instead?
 @app.route('/')
 def home():
@@ -210,18 +216,33 @@ def signup():
 
     return render_template('signup.html', form=form)
 
-# redirects user to their user page if login is successful
-@app.route('/user_dashboard', methods=['GET', 'POST'])
-@login_required
-def user_dashboard():
-    return render_template('user_dashboard.html')
-
 # logs out user
 @app.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
     return redirect(url_for('login'))
+
+# redirects user to their user page if login is successful
+@app.route('/user_dashboard', methods=['GET', 'POST'])
+@login_required
+def user_dashboard():
+    wl_form = WatchlistForm()
+
+    if request.method == "POST":
+        if wl_form.wl_submit.data and wl_form.validate():
+            new_watchlist = Watchlist(name=wl_form.name.data, user_id = current_user.id)
+            try:
+                db.session.add(new_watchlist)
+                db.session.commit()
+                return redirect('/user_dashboard')
+            except Exception as e:
+                print(f"Error: {e}")
+                return f"Error:{e}"
+    
+    else:
+        watchlists = Watchlist.query.filter_by(user_id = current_user.id).all()
+        return render_template('user_dashboard.html', wl_form = wl_form, watchlists = watchlists)
 
 # route for seasons page
 @app.route('/seasons')
@@ -371,6 +392,20 @@ def delete_reply(id:int):
     except Exception as e:
         return f"Error:{e}"
 
+
+# function for deleting a watchlist
+@app.route("/delete_wl/<int:id>")
+def delete_wl(id:int):
+    delete_wl = Watchlist.query.get_or_404(id)
+    try:
+        db.session.delete(delete_wl)
+        db.session.commit()
+        # came across an error regarding redirecting to the current page, fixed it below with a line of code from https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission
+        return redirect('/user_dashboard')
+    except Exception as e:
+        return f"Error:{e}"
+
+
 def get_avg_rating(year, circuit):
     race_ratings = Rating.query.filter_by(year=year, circuit=circuit).with_entities(Rating.ratingNum).all()
     # add nested for loop to add ratings together?
@@ -393,7 +428,7 @@ def get_avg_rating(year, circuit):
 
 
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
+    # with app.app_context():
+    #     db.create_all()
     app.run(debug=True)
 

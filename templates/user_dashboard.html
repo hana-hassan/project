@@ -20,13 +20,29 @@
             <h1>Welcome back, {{current_user.username}}!</h1>
         </div>
         <div class="watchlists">
-            <h1>Watch Lists</h1>
+            <h2>Watch Lists</h2>
             <button class="button create-wl" onclick="">+ Create New List</button>
+            <form method="POST" action="/user_dashboard">
+                {{wl_form.hidden_tag()}}
+                {{wl_form.name}}
+                {{wl_form.wl_submit}}
+            </form>
             <hr>
-            <h2>My Watch Lists</h2>
-            <button class="button wl-button" onclick="alert ('Hello!')">Watch List 1</button>
+            <h3>My Watch Lists</h3>
+            {% if watchlists | length < 1 %}
+                <p>No watchlists yet...</p>
+            {% else %}
+                {% for watchlist in watchlists %}
+                    <!--<button class="button wl-button">{{watchlist.name}}</button>-->
+                    <div class="wlist">
+                        <div class="wlist_contents">
+                            <h4>{{watchlist.name}}</h4>
+                            <button><a href="/delete_wl/{{watchlist.id}}">Delete</a></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
         </div>
-        <div></div>
     </div>
     <footer>
         <p>Here's the footer</p>
