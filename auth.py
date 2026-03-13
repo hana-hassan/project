@@ -331,7 +331,8 @@ def add_review(season, race):
         reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
         replies = Reply.query.all()
         web_info = get_website_info(year, circuit_name)
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply)
+        watchlists = Watchlist.query.filter_by(user_id = current_user.id).all()
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists)
     
 
 # delete a review

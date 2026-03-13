@@ -21,23 +21,42 @@
         </div>
         <div class="watchlists">
             <h2>Watch Lists</h2>
-            <button class="button create-wl" onclick="">+ Create New List</button>
-            <form method="POST" action="/user_dashboard">
-                {{wl_form.hidden_tag()}}
-                {{wl_form.name}}
-                {{wl_form.wl_submit}}
-            </form>
+            {% if watchlists | length > 4 %}
+                <p>Maximum number of watchlists reached! Please delete an existing watchlist before creating another</p>
+            {% else %}
+                <button class="button create-wl" onclick="makeWatchlist()">+ Create New List</button>
+                <div id="add_wl">
+                    <form method="POST" action="/user_dashboard">
+                        {{wl_form.hidden_tag()}}
+                        {{wl_form.name}}
+                        {{wl_form.wl_submit}}
+                    </form>
+                </div>
+                <!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
+                <script>
+                    function makeWatchlist() {
+                        const form = document.getElementById("add_wl");
+                        if (form.style.display === "none") {
+                            form.style.display = "flex";
+                        } else {
+                            form.style.display = "none";
+                        }
+                    }
+                </script>
+            {% endif %}
             <hr>
             <h3>My Watch Lists</h3>
             {% if watchlists | length < 1 %}
                 <p>No watchlists yet...</p>
             {% else %}
                 {% for watchlist in watchlists %}
-                    <!--<button class="button wl-button">{{watchlist.name}}</button>-->
                     <div class="wlist">
-                        <div class="wlist_contents">
+                        <div class="wlist_title">
                             <h4>{{watchlist.name}}</h4>
+                        </div>
+                        <div class="wlist_buttons">
                             <button><a href="/delete_wl/{{watchlist.id}}">Delete</a></button>
+                            <button><a href="">View</a></button>
                         </div>
                     </div>
                 {% endfor %}
