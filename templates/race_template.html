@@ -13,9 +13,10 @@
                 <li><a href="{{url_for('logout')}}">Log Out</a></li>
                 <li><a href="{{url_for('seasons')}}">Seasons</a></li>
                 <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
+                <li><a href="{{url_for('user_dashboard')}}">Profile</a></li>
             </ul>
     </div>
-    {% block body %}{% endblock %}
-     
+    {% block body %}
+    {% endblock %}
 </body>
 </html>

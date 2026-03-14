@@ -184,7 +184,12 @@ class WatchlistForm(FlaskForm):
 
     wl_submit = SubmitField("Create Watchlist")
 
-# first page to show up, maybe edit so that it's the login page instead?
+# creates submit button for watchlist contents
+class WatchlistContentsForm(FlaskForm):
+    content_submit = SubmitField("Add to watchlist")
+
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -244,6 +249,20 @@ def user_dashboard():
         watchlists = Watchlist.query.filter_by(user_id = current_user.id).all()
         return render_template('user_dashboard.html', wl_form = wl_form, watchlists = watchlists)
 
+
+#route for watchlist page
+@app.route('/watchlist/<int:id>', methods=["GET", "POST"])
+@login_required
+def watchlist(id:int):
+    if request.method == "POST":
+        return redirect(f'/watchlist/{id}')
+    else:
+        contents = WatchlistContent.query.filter_by(watchlist_id = id).all()
+        wlist = Watchlist.query.filter_by(id = id).first()
+        return render_template('watchlist.html', contents = contents, wlist = wlist)
+    # return render_template('watchlist.html')
+    
+
 # route for seasons page
 @app.route('/seasons')
 @login_required
@@ -265,6 +284,7 @@ def add_review(season, race):
     form1 = RatingForm()
     form2 = ReviewForm()
     form_reply = ReplyForm()
+    list_contents = WatchlistContentsForm()
 
     if request.method == "POST":
 
@@ -332,7 +352,10 @@ def add_review(season, race):
         replies = Reply.query.all()
         web_info = get_website_info(year, circuit_name)
         watchlists = Watchlist.query.filter_by(user_id = current_user.id).all()
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists)
+        listed = WatchlistContent.query.filter_by(year = year, circuit = circuit_name).all()
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
+                               personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
+                               listed = listed)
     
 
 # delete a review
@@ -405,6 +428,42 @@ def delete_wl(id:int):
         return redirect('/user_dashboard')
     except Exception as e:
         return f"Error:{e}"
+
+
+# function for adding a race to a watchlist
+@app.route("/all_seasons/<season>/<race>/add_race/<int:id>", methods=["GET", "POST"])
+def add_to_list(season, race, id:int):
+    list_contents = WatchlistContentsForm()
+    circuit_name = get_circuit_name(race)
+    year = int(season)
+
+    if request.method == "POST":
+        added_race = WatchlistContent(watchlist_id = id, year = year, circuit = circuit_name)
+        try:
+            db.session.add(added_race)
+            db.session.commit()
+            return redirect(f"/all_seasons/{season}/{race}")
+        except Exception as e:
+            print(f"Error: {e}")
+            return f"Error:{e}"
+    else:
+        return redirect(f"/all_seasons/{season}/{race}", list_contents = list_contents)
+
+
+# function for deleting a race from a watchlist
+@app.route("/delete_from_list/<int:id>")
+def delete_from_list(id:int):
+    del_race = WatchlistContent.query.get_or_404(id)
+
+    try:
+        db.session.delete(del_race)
+        db.session.commit()
+        # came across an error regarding redirecting to the current page, fixed it below with a line of code from https://stackoverflow.com/questions/41270855/flask-redirect-to-same-page-after-form-submission
+        return redirect(request.referrer)
+    except Exception as e:
+        return f"Error:{e}"
+
+
 
 
 def get_avg_rating(year, circuit):

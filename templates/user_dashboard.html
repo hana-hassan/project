@@ -13,6 +13,7 @@
             <li><a href="{{url_for('logout')}}">Log Out</a></li>
             <li><a href="{{url_for('seasons')}}">Seasons</a></li>
             <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
+            <li><a href="{{url_for('user_dashboard')}}">Profile</a></li>
         </ul>
     </div>
     <div class="page">
@@ -56,7 +57,7 @@
                         </div>
                         <div class="wlist_buttons">
                             <button><a href="/delete_wl/{{watchlist.id}}">Delete</a></button>
-                            <button><a href="">View</a></button>
+                            <button><a href="/watchlist/{{watchlist.id}}">View</a></button>
                         </div>
                     </div>
                 {% endfor %}

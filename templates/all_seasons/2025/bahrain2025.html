@@ -5,6 +5,32 @@
 {% endblock %}
 
 {% block body %}
+
+<!--following div block (and accompanying css) created by following w3schools tutorial: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal -->
+<div id="popup" class="popup">
+    <div class="popup_content">
+        <span class="exit">&times;</span>
+        <h2>Add to which watchlist?</h2>
+        {% for watchlist in watchlists %}
+            <div class="select_wl">
+                <h3><strong>{{watchlist.name}}</strong></h3>
+                {% if listed | length > 0 %}
+                    {% for l in listed %}
+                        {% if l.watchlist_id == watchlist.id %}
+                            <button><a href="/delete_from_list/{{l.id}}">Remove from watchlist</a></button>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <form method="POST" action="/all_seasons/2025/bahrain2025/add_race/{{watchlist.id}}">
+                        {{list_contents.hidden_tag()}}
+                        {{list_contents.content_submit}}
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
 <div class="title">
     <h1>{{web_info['meeting_official_name']}}</h1>
 </div>
@@ -31,6 +57,14 @@
                 {% endif %}
             </div>
             <h3>Overall Rating: {{ avg_rating }}</h3>
+            <div class="add_watchlists">
+                <h2>Watchlists:</h2>
+                {% if watchlists | length < 1 %}
+                    <p><italic>Create a watchlist to add this race to!</italic></p>
+                {% else %}
+                    <button id="add_to_wl">Add to watchlist...</button>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="review_section">
@@ -82,22 +116,44 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-                <!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
-                <script>
-                    function makeReply() {
-                        const tboxes = document.getElementsByClassName("add_reply");
-                        for (let i = 0; i < tboxes.length; i++){
-                            if (tboxes[i].style.display === "none") {
-                                tboxes[i].style.display = "block";
-                            } else {
-                                tboxes[i].style.display = "none";
-                            }
-                        }
-                    }
-                </script>
             {% endfor %}
         </div>
         {% endif %}
     </div>
 </div>
+
+<!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
+<script>
+    function makeReply() {
+        const tboxes = document.getElementsByClassName("add_reply");
+        for (let i = 0; i < tboxes.length; i++){
+            if (tboxes[i].style.display === "none") {
+                tboxes[i].style.display = "block";
+            } else {
+                tboxes[i].style.display = "none";
+            }
+        }
+    }
+    
+    <!-- js below from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal -->
+
+    let popup = document.getElementById("popup");
+
+    let wl_btn = document.getElementById("add_to_wl");
+
+    let span = document.getElementsByClassName("exit")[0];
+
+    wl_btn.onclick = function() { popup.style.display = "block"; }
+
+    span.onclick = function() { popup.style.display = "none"; }
+
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.display.style = "none";
+        }
+    }
+
+</script>
+
+
 {% endblock %}

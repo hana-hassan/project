@@ -13,8 +13,19 @@
         <h2>Add to which watchlist?</h2>
         {% for watchlist in watchlists %}
             <div class="select_wl">
-                <p><strong>{{watchlist.name}}</strong></p>
-                <button>Add</button>
+                <h3><strong>{{watchlist.name}}</strong></h3>
+                {% if listed | length > 0 %}
+                    {% for l in listed %}
+                        {% if l.watchlist_id == watchlist.id %}
+                            <button><a href="/delete_from_list/{{l.id}}">Remove from watchlist</a></button>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <form method="POST" action="/all_seasons/2025/aus2025/add_race/{{watchlist.id}}">
+                        {{list_contents.hidden_tag()}}
+                        {{list_contents.content_submit}}
+                    </form>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
@@ -26,12 +37,14 @@
 <div class="page_contents">
     <div class="top">
         <div class="general_info">
+            <h2>General Information:</h2>
             <p><strong>Location:</strong> {{web_info['location']}}</p>
             <p><strong>Circuit Type:</strong> {{web_info['circuit_type']}}</p>
             <p><strong>Started:</strong> {{web_info['date_start']}}</p>
             <p><strong>Ended:</strong> {{web_info['date_end']}}</p>
         </div>
         <div class="ratings">
+            <h2>Ratings:</h2>
             <div class="add_rating">
                 {% if personal_rating == None %}
                     <h3>Your Rating: --/5 </h3>
@@ -47,7 +60,7 @@
             </div>
             <h3>Overall Rating: {{ avg_rating }}</h3>
             <div class="add_watchlists">
-                <h3>Add To/Remove From Watchlists</h3>
+                <h2>Watchlists:</h2>
                 {% if watchlists | length < 1 %}
                     <p><italic>Create a watchlist to add this race to!</italic></p>
                 {% else %}

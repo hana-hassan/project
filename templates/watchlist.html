@@ -1,0 +1,31 @@
+{% extends 'wlist_template.html'%}
+
+{% block head %}
+<title>Watchlist</title>
+{% endblock %}
+
+{% block body %}
+    <div class="page">
+        <div class="top">
+            <h1>{{wlist.name}}</h1>
+        </div>
+        <div class="races">
+            <h2>Added Races</h2> 
+            {% if contents | length > 0 %}
+                {% for race in contents %}
+                    <div class="race">
+                        <div class="race_title">
+                            <h3>{{race.year}} {{race.circuit}} GP</h3>
+                        </div>
+                        <div class="race_buttons">
+                            <button><a href="/delete_from_list/{{race.id}}">Delete</a></button>
+                            <button><a href="">View</a></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
