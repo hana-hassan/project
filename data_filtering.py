@@ -205,22 +205,31 @@ def get_website_info (year, circuit):
     else:
         return info[0]
 
-def get_circuit_name (page_name):
 
-    circuits = {'aus' : 'Melbourne', 'china' : 'Shanghai', 'japan' : 'Suzuka', 'bahrain' : 'Sakhir',
-                'saudi' : 'Jeddah', 'miami' : 'Miami', 'imola' : 'Imola', 'monaco' : 'Monte Carlo',
-                'spain' : 'Catalunya', 'canada' : 'Montreal', 'austria' : 'Spielberg', 'britain' : 'Silverstone',
-                'belgium' : 'Spa-Francorchamps', 'hungary' : 'Hungaroring', 'dutch' : 'Zandvoort', 
-                'monza' : 'Monza', 'baku' : 'Baku', 'singapore' : 'Singapore', 'cota' : 'Austin',
-                'mexico' : 'Mexico City', 'brazil' : 'Interlagos', 'vegas' : 'Las Vegas', 'qatar' : 'Lusail',
-                'abu_dhabi' : 'Yas Marina Circuit'}
+circuits = {'aus' : 'Melbourne', 'china' : 'Shanghai', 'japan' : 'Suzuka', 'bahrain' : 'Sakhir',
+            'saudi' : 'Jeddah', 'miami' : 'Miami', 'imola' : 'Imola', 'monaco' : 'Monte Carlo',
+            'spain' : 'Catalunya', 'canada' : 'Montreal', 'austria' : 'Spielberg', 'britain' : 'Silverstone',
+            'belgium' : 'Spa-Francorchamps', 'hungary' : 'Hungaroring', 'dutch' : 'Zandvoort', 
+            'monza' : 'Monza', 'baku' : 'Baku', 'singapore' : 'Singapore', 'cota' : 'Austin',
+            'mexico' : 'Mexico City', 'brazil' : 'Interlagos', 'vegas' : 'Las Vegas', 'qatar' : 'Lusail',
+            'abu_dhabi' : 'Yas Marina Circuit'}
+
+def get_circuit_name (page_name):
     
     return circuits[page_name[:-4]]
 
 
+def get_page_name(year, circuit):
+
+    season = str(year)
+
+    for key in circuits.keys():
+        if circuits.get(key) == circuit:
+            return key+season
+
 # print(get_website_info("2025", "Sakhir"))
 
-
+# print(get_page_name(2025, "Melbourne"))
 
 
 

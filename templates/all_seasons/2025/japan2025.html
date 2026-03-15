@@ -15,13 +15,15 @@
         {% for watchlist in watchlists %}
             <div class="select_wl">
                 <h3><strong>{{watchlist.name}}</strong></h3>
-                {% if listed | length > 0 %}
+                <!--if the watchlist already contains this race, add a button to remove it-->
+                {% if watchlist.id in all_ids %}
                     {% for l in listed %}
-                        {% if l.watchlist_id == watchlist.id %}
+                        {% if l.watchlist_id == watchlist.id %} 
                             <button><a href="/delete_from_list/{{l.id}}">Remove from watchlist</a></button>
                         {% endif %}
                     {% endfor %}
                 {% else %}
+                    <!--button to add the race to a watchlist-->
                     <form method="POST" action="/all_seasons/2025/japan2025/add_race/{{watchlist.id}}">
                         {{list_contents.hidden_tag()}}
                         {{list_contents.content_submit}}
