@@ -3,98 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/seasons_style.css">
     <title>Seasons</title>
 </head>
 <body>
+    <div class="navbar">
+        <ul>
+            <li><a href="{{url_for('logout')}}">Log Out</a></li>
+            <li><a href="{{url_for('seasons')}}">Seasons</a></li>
+            <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
+            <li><a href="{{url_for('user_dashboard')}}">Profile</a></li>
+        </ul>
+    </div>
     <div class="page">
-        <h2>2026 Season</h2>
-        <div id="season_list">
+        <div class="top">
+            <h1>All Seasons</h1>
         </div>
-        <h2>2025 Season</h2>
-        <div id="season_list">
-            <ol>
-                <li><a href="/all_seasons/2025/aus2025">Australian GP 2025</a></li>
-                <li><a href="/all_seasons/2025/china2025">Chinese GP 2025</a></li>
-                <li><a href="/all_seasons/2025/japan2025">Japanese GP 2025</a></li>
-                <li><a href="/all_seasons/2025/bahrain2025">Bahrain GP 2025</a></li>
-                <li><a href="/all_seasons/2025/saudi2025">Saudi Arabian GP 2025</a></li>
-                <li><a href="/all_seasons/2025/miami2025">Miami GP 2025</a></li>
-                <li><a href="/all_seasons/2025/imola2025">Italy (Emilia-Romagna) GP 2025</a></li>
-                <li><a href="/all_seasons/2025/monaco2025">Monaco GP 2025</a></li>
-                <li><a href="/all_seasons/2025/spain2025">Spain GP 2025</a></li>
-                <li><a href="/all_seasons/2025/canada2025">Canada GP 2025</a></li>
-                <li><a href="/all_seasons/2025/austria2025">Austrian GP 2025</a></li>
-                <li><a href="/all_seasons/2025/britain2025">British GP 2025</a></li>
-                <li><a href="/all_seasons/2025/belgium2025">Belgian GP 2025</a></li>
-                <li><a href="/all_seasons/2025/hungary2025">Hungarian GP 2025</a></li>
-                <li><a href="/all_seasons/2025/dutch2025">Dutch GP 2025</a></li>
-                <li><a href="/all_seasons/2025/monza2025">Italy (Monza) GP 2025</a></li>
-                <li><a href="/all_seasons/2025/baku2025">Azerbaijan GP 2025</a></li>
-                <li><a href="/all_seasons/2025/singapore2025">Singapore GP 2025</a></li>
-                <li><a href="/all_seasons/2025/cota2025">United States GP 2025</a></li>
-                <li><a href="/all_seasons/2025/mexico2025">Mexico GP 2025</a></li>
-                <li><a href="/all_seasons/2025/brazil2025">Brazil GP 2025</a></li>
-                <li><a href="/all_seasons/2025/vegas2025">Las Vegas GP 2025</a></li>
-                <li><a href="/all_seasons/2025/qatar2025">Qatar GP 2025</a></li>
-                <li><a href="/all_seasons/2025/abu_dhabi2025">Abu Dhabi GP 2025</a></li>
-            </ol>
-        </div>
-        <h2>2024 Season</h2>
-        <div id="season_list">
-            <ol>
-                <li><a href="">Bahrain GP 2024</a></li>
-                <li><a href="">Saudi Arabian GP 2024</a></li>
-                <li><a href="">Australian GP 2024</a></li>
-                <li><a href="">Japanese GP 2024</a></li>
-                <li><a href="">Chinese GP 2024</a></li>
-                <li><a href="">Miami GP 2024</a></li>
-                <li><a href="">Italy (Emilia-Romagna) GP 2024</a></li>
-                <li><a href="">Monaco GP 2024</a></li>
-                <li><a href="">Canada GP 2024</a></li>
-                <li><a href="">Spain GP 2024</a></li>
-                <li><a href="">Austrain GP 2024</a></li>
-                <li><a href="">British GP 2024</a></li>
-                <li><a href="">Hungarian GP 2024</a></li>
-                <li><a href="">Belgian GP 2024</a></li>
-                <li><a href="">Dutch GP 2024</a></li>
-                <li><a href="">Italy (Monza) GP 2024</a></li>
-                <li><a href="">Azerbaijan GP 2024</a></li>
-                <li><a href="">Singapore GP 2024</a></li>
-                <li><a href="">United States GP 2024</a></li>
-                <li><a href="">Mexico GP 2024</a></li>
-                <li><a href="">Brazil GP 2024</a></li>
-                <li><a href="">Las Vegas GP 2024</a></li>
-                <li><a href="">Qatar GP 2024</a></li>
-                <li><a href="">Abu Dhabi GP 2024</a></li>
-            </ol>
-        </div>
-        <h2>2023 Season</h2>
-        <div id="season_list">
-            <ol>
-                <li><a href="">Bahrain GP 2023</a></li>
-                <li><a href="">Saudi Arabian GP 2023</a></li>
-                <li><a href="">Australian GP 2023</a></li>
-                <li><a href="">Azerbaijan GP 2023</a></li>
-                <li><a href="">Miami GP 2023</a></li>
-                <li><a href="">Monaco GP 2023</a></li>
-                <li><a href="">Spain GP 2023</a></li>
-                <li><a href="">Canada GP 2023</a></li>
-                <li><a href="">Austrian GP 2023</a></li>
-                <li><a href="">British GP 2023</a></li>
-                <li><a href="">Hungarian GP 2023</a></li>
-                <li><a href="">Belgian GP 2023</a></li>
-                <li><a href="">Dutch GP 2023</a></li>
-                <li><a href="">Italy (Monza) GP 2023</a></li>
-                <li><a href="">Singapore GP 2023</a></li>
-                <li><a href="">Japanese GP 2023</a></li>
-                <li><a href="">Qatar GP 2023</a></li>
-                <li><a href="">United States GP 2023</a></li>
-                <li><a href="">Mexico GP 2023</a></li>
-                <li><a href="">Brazil GP 2023</a></li>
-                <li><a href="">Las Vegas GP 2023</a></li>
-                <li><a href="">Abu Dhabi GP 2023</a></li>
-            </ol>
-        </div>
-    </div> 
+        <div id="main_section">
+            <h2>2026 Season</h2>
+            <div class="season_list">
+            </div>
+            <button onclick="showRaces('2025races')" class="season_btn" id="2025btn">➤ 2025 Season</button>
+            <div class="season_list" id="2025races">
+                <table>
+                    <tr>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/aus2025">Round 1: Australian GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/china2025">Round 2: Chinese GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/japan2025">Round 3: Japanese GP 2025</a></button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/bahrain2025">Round 4: Bahrain GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/saudi2025">Round 5: Saudi Arabian GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/miami2025">Round 6: Miami GP 2025</a></button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/imola2025">Round 7: Italy (Emilia-Romagna) GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/monaco2025">Round 8: Monaco GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/spain2025">Spain GP 2025</a></button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/canada2025">Canada GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/austria2025">Austrian GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/britain2025">British GP 2025</a></button></td>
+                    </tr>
+                    <tr>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/belgium2025">Belgian GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/hungary2025">Hungarian GP 2025</a></button></td>
+                        <td><button class="race_btn"><a href="/all_seasons/2025/dutch2025">Dutch GP 2025</a></button></td>
+                    </tr>
+                </table>
+                <!--
+                <ol>
+                    <li><a href="/all_seasons/2025/spain2025">Spain GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/canada2025">Canada GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/austria2025">Austrian GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/britain2025">British GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/belgium2025">Belgian GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/hungary2025">Hungarian GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/dutch2025">Dutch GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/monza2025">Italy (Monza) GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/baku2025">Azerbaijan GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/singapore2025">Singapore GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/cota2025">United States GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/mexico2025">Mexico GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/brazil2025">Brazil GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/vegas2025">Las Vegas GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/qatar2025">Qatar GP 2025</a></li>
+                    <li><a href="/all_seasons/2025/abu_dhabi2025">Abu Dhabi GP 2025</a></li>
+                </ol>-->
+            </div>
+            <h2>2024 Season</h2>
+            <div class="season_list">
+                <ol>
+                    <li><a href="">Bahrain GP 2024</a></li>
+                    <li><a href="">Saudi Arabian GP 2024</a></li>
+                    <li><a href="">Australian GP 2024</a></li>
+                    <li><a href="">Japanese GP 2024</a></li>
+                    <li><a href="">Chinese GP 2024</a></li>
+                    <li><a href="">Miami GP 2024</a></li>
+                    <li><a href="">Italy (Emilia-Romagna) GP 2024</a></li>
+                    <li><a href="">Monaco GP 2024</a></li>
+                    <li><a href="">Canada GP 2024</a></li>
+                    <li><a href="">Spain GP 2024</a></li>
+                    <li><a href="">Austrain GP 2024</a></li>
+                    <li><a href="">British GP 2024</a></li>
+                    <li><a href="">Hungarian GP 2024</a></li>
+                    <li><a href="">Belgian GP 2024</a></li>
+                    <li><a href="">Dutch GP 2024</a></li>
+                    <li><a href="">Italy (Monza) GP 2024</a></li>
+                    <li><a href="">Azerbaijan GP 2024</a></li>
+                    <li><a href="">Singapore GP 2024</a></li>
+                    <li><a href="">United States GP 2024</a></li>
+                    <li><a href="">Mexico GP 2024</a></li>
+                    <li><a href="">Brazil GP 2024</a></li>
+                    <li><a href="">Las Vegas GP 2024</a></li>
+                    <li><a href="">Qatar GP 2024</a></li>
+                    <li><a href="">Abu Dhabi GP 2024</a></li>
+                </ol>
+            </div>
+            <h2>2023 Season</h2>
+            <div class="season_list">
+                <ol>
+                    <li><a href="">Bahrain GP 2023</a></li>
+                    <li><a href="">Saudi Arabian GP 2023</a></li>
+                    <li><a href="">Australian GP 2023</a></li>
+                    <li><a href="">Azerbaijan GP 2023</a></li>
+                    <li><a href="">Miami GP 2023</a></li>
+                    <li><a href="">Monaco GP 2023</a></li>
+                    <li><a href="">Spain GP 2023</a></li>
+                    <li><a href="">Canada GP 2023</a></li>
+                    <li><a href="">Austrian GP 2023</a></li>
+                    <li><a href="">British GP 2023</a></li>
+                    <li><a href="">Hungarian GP 2023</a></li>
+                    <li><a href="">Belgian GP 2023</a></li>
+                    <li><a href="">Dutch GP 2023</a></li>
+                    <li><a href="">Italy (Monza) GP 2023</a></li>
+                    <li><a href="">Singapore GP 2023</a></li>
+                    <li><a href="">Japanese GP 2023</a></li>
+                    <li><a href="">Qatar GP 2023</a></li>
+                    <li><a href="">United States GP 2023</a></li>
+                    <li><a href="">Mexico GP 2023</a></li>
+                    <li><a href="">Brazil GP 2023</a></li>
+                    <li><a href="">Las Vegas GP 2023</a></li>
+                    <li><a href="">Abu Dhabi GP 2023</a></li>
+                </ol>
+            </div>
+        </div> 
+    </div>
+
+    <script>
+        function showRaces(id) {
+            let list = document.getElementById(id)
+
+            if (list.style.display === "none"){
+                list.style.display = "block"
+                document.getElementById("2025btn").innerHTML = "⮟ 2025 Season"
+            } else {
+                list.style.display = "none"
+                document.getElementById("2025btn").innerHTML = "➤ 2025 Season"
+            }
+        }
+    </script>
 </body>
 </html>
