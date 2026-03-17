@@ -102,9 +102,9 @@ h3 {
 }
 
 .season_list {
+    display: none;
     padding: 5px;
     background-color: rgb(23, 23, 27);
-    display: none;
     
 }
 

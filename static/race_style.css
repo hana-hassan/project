@@ -62,6 +62,30 @@ p {
     flex-direction: column;
 }
 
+.predict_btn {
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 30px;
+    width: 100%;
+    height:fit-content;
+    text-align: left;
+    background-color: azure;
+    color: black;
+    padding: 5px;
+    border: 3px solid azure;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.predictions {
+    border: 3px solid azure;
+    padding: 10px;
+    border-radius: 15px;
+    width: 100%;
+    margin-bottom: 20px;
+    display: none;
+}
+
 .top{
     border: 3px solid azure;
     padding: 10px;
