@@ -13,6 +13,12 @@ positions_base = 'https://api.openf1.org/v1/position'
 stints_base = 'https://api.openf1.org/v1/stints'
 grid_base = 'https://api.openf1.org/v1/starting_grid'
 result_base = 'https://api.openf1.org/v1/session_result'
+weather_base = 'https://api.openf1.org/v1/weather'
+
+pd.options.display.max_rows = 20
+
+# filtered f1 winners dataset for predictions section for webpages for 2026 races
+winners = pd.read_csv('f1_dataset_filtered.csv')
 
 
 # response = requests.get(sessions_url, params = params)
@@ -227,13 +233,113 @@ def get_page_name(year, circuit):
         if circuits.get(key) == circuit:
             return key+season
 
+
+def get_possible_winners(circuit):
+    filtered_wins = winners[winners["circuit"] == circuit]
+
+    win_counts = filtered_wins["winner_name"].value_counts()
+
+    winners_dict = win_counts.head(3).to_dict()
+
+    unique_ws = len(win_counts)
+
+    for x,y in winners_dict.items():
+        winners_dict[x] = round((y / unique_ws) * 100, 1)
+
+    return (winners_dict)
+
+
+# for some reason comes with an error when 'Shanghai' is passed through? please fix
+
+def is_wet_race(circuit):
+
+    race_25 = get_race("2025", circuit)
+    race_24 = get_race("2024", circuit)
+    race_23 = get_race("2023", circuit)
+
+    wet_races = []
+    race_num = 0
+    
+
+    if race_25.empty == False:
+
+        params = {
+            "session_key" : race_25['session_key']
+        }
+
+        url = requests.Request('GET', weather_base, params=params).prepare().url
+        response = requests.get(url)
+        results_25 = pd.DataFrame(response.json())
+
+        for x in list(results_25["rainfall"].to_dict().values()):
+            if x == 1:
+                wet_races.append(True)
+                break
+
+        race_num += 1
+
+
+    if race_24.empty == False:
+
+        params_2 = {
+            "session_key" : race_24['session_key']
+        }
+
+        url_2 = requests.Request('GET', weather_base, params=params_2).prepare().url
+        response_2 = requests.get(url_2)
+        results_24 = pd.DataFrame(response_2.json())
+
+        for x in list(results_24["rainfall"].to_dict().values()):
+            if x == 1:
+                wet_races.append(True)
+                break
+                
+        race_num += 1
+
+    
+    if race_23.empty == False:
+
+        params_3 = {
+            "session_key" : race_23['session_key']
+        }
+
+        url_3 = requests.Request('GET', weather_base, params=params_3).prepare().url
+        response_3 = requests.get(url_3)
+        results_23 = pd.DataFrame(response_3.json())
+
+        for x in list(results_23["rainfall"].to_dict().values()):
+            if x == 1:
+                wet_races.append(True)
+                break
+        
+        race_num += 1
+
+    
+    return len(wet_races), race_num
+
+
+
+# print(is_wet_race("Interlagos"))
+
 # print(get_website_info("2025", "Sakhir"))
 
 # print(get_page_name(2025, "Melbourne"))
 
+s_key = get_race("2026", "Melbourne")["session_key"]
 
+# params = {"session_key" : s_key}
 
+# url = requests.Request('GET', result_base, params=params).prepare().url
+# response = requests.get(url)
+# results = pd.DataFrame(response.json())
 
+# print(results)
+
+# response = urlopen('https://api.openf1.org/v1/meetings?year=2026')
+# data = json.loads(response.read().decode('utf-8'))
+# results = pd.DataFrame(data)
+
+# print(results["circuit_short_name"])
 
 
 

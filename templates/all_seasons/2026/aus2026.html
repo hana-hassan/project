@@ -40,6 +40,11 @@
 <div class="page_contents">
     <button onclick="showPredictions()" class="predict_btn" id="predict_btn">➤ Predictions</button>
     <div class="predictions" id="predictions_content">
+        {% for x,y in past_wins.items() %}
+            <p>{{x}} -> {{y}} %</p>
+        {% endfor %}
+
+        <p>It has rained during {{ wet_races[0] }} out of the last {{ wet_races[1] }} races</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in arcu placerat,
              aliquam risus ac, ullamcorper elit. Proin eget ligula tincidunt, bibendum justo nec, pellentesque dui. 
              Etiam in orci eu tellus elementum commodo. Vestibulum placerat finibus mi, in bibendum orci fringilla sit amet. 
