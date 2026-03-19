@@ -1,0 +1,354 @@
+circuit,winner_name,team,year
+Hungaroring,Fernando Alonso,Renault,2003
+Monza,Michael Schumacher,Ferrari,2003
+Suzuka,Rubens Barrichello,Ferrari,2003
+Melbourne,Michael Schumacher,Ferrari,2004
+Sahkir,Michael Schumacher,Ferrari,2004
+Catalunya,Michael Schumacher,Ferrari,2004
+Monte Carlo,Jarno Trulli,Renault,2004
+Montreal,Michael Schumacher,Ferrari,2004
+Silverstone,Michael Schumacher,Ferrari,2004
+Hungaroring,Michael Schumacher,Ferrari,2004
+Spa-Francorchamps,Kimi Raikkonen,McLaren Mercedes,2004
+Monza,Rubens Barrichello,Ferrari,2004
+Shanghai,Rubens Barrichello,Ferrari,2004
+Suzuka,Michael Schumacher,Ferrari,2004
+Interlagos,Juan Pablo Montoya,Williams BMW,2004
+Melbourne,Giancarlo Fisichella,Renault,2005
+Sahkir,Fernando Alonso,Renault,2005
+Catalunya,Kimi Raikkonen,McLaren Mercedes,2005
+Monte Carlo,Kimi Raikkonen,McLaren Mercedes,2005
+Montreal,Kimi Raikkonen,McLaren Mercedes,2005
+Silverstone,Juan Pablo Montoya,McLaren Mercedes,2005
+Hungaroring,Kimi Raikkonen,McLaren Mercedes,2005
+Monza,Juan Pablo Montoya,McLaren Mercedes,2005
+Spa-Francorchamps,Kimi Raikkonen,McLaren Mercedes,2005
+Interlagos,Juan Pablo Montoya,McLaren Mercedes,2005
+Suzuka,Kimi Raikkonen,McLaren Mercedes,2005
+Shanghai,Fernando Alonso,Renault,2005
+Sahkir,Fernando Alonso,Renault,2006
+Melbourne,Fernando Alonso,Renault,2006
+Catalunya,Fernando Alonso,Renault,2006
+Monte Carlo,Fernando Alonso,Renault,2006
+Silverstone,Fernando Alonso,Renault,2006
+Montreal,Fernando Alonso,Renault,2006
+Hungaroring,Jenson Button,Honda,2006
+Monza,Michael Schumacher,Ferrari,2006
+Shanghai,Michael Schumacher,Ferrari,2006
+Suzuka,Fernando Alonso,Renault,2006
+Interlagos,Felipe Massa,Ferrari,2006
+Melbourne,Kimi Raikkonen,Ferrari,2007
+Sahkir,Felipe Massa,Ferrari,2007
+Catalunya,Felipe Massa,Ferrari,2007
+Monte Carlo,Fernando Alonso,McLaren Mercedes,2007
+Montreal,Lewis Hamilton,McLaren Mercedes,2007
+Silverstone,Kimi Raikkonen,Ferrari,2007
+Hungaroring,Lewis Hamilton,McLaren Mercedes,2007
+Monza,Fernando Alonso,McLaren Mercedes,2007
+Spa-Francorchamps,Kimi Raikkonen,Ferrari,2007
+Shanghai,Kimi Raikkonen,Ferrari,2007
+Interlagos,Kimi Raikkonen,Ferrari,2007
+Melbourne,Lewis Hamilton,McLaren Mercedes,2008
+Sahkir,Felipe Massa,Ferrari,2008
+Catalunya,Kimi Raikkonen,Ferrari,2008
+Monte Carlo,Lewis Hamilton,McLaren Mercedes,2008
+Montreal,Robert Kubica,Sauber BMW,2008
+Silverstone,Lewis Hamilton,McLaren Mercedes,2008
+Hungaroring,Heikki Kovalainen,McLaren Mercedes,2008
+Catalunya,Felipe Massa,Ferrari,2008
+Spa-Francorchamps,Felipe Massa,Ferrari,2008
+Monza,Sebastian Vettel,STR Ferrari,2008
+Singapore,Fernando Alonso,Renault,2008
+Shanghai,Lewis Hamilton,McLaren Mercedes,2008
+Interlagos,Felipe Massa,Ferrari,2008
+Melbourne,Jenson Button,Brawn Mercedes,2009
+Shanghai,Sebastian Vettel,RBR Renault,2009
+Sahkir,Jenson Button,Brawn Mercedes,2009
+Catalunya,Jenson Button,Brawn Mercedes,2009
+Monte Carlo,Jenson Button,Brawn Mercedes,2009
+Silverstone,Sebastian Vettel,RBR Renault,2009
+Hungaroring,Lewis Hamilton,McLaren Mercedes,2009
+Spa-Francorchamps,Kimi Raikkonen,Ferrari,2009
+Monza,Rubens Barrichello,Brawn Mercedes,2009
+Singapore,Lewis Hamilton,McLaren Mercedes,2009
+Suzuka,Sebastian Vettel,RBR Renault,2009
+Interlagos,Mark Webber,RBR Renault,2009
+Yas Marina Circuit,Sebastian Vettel,RBR Renault,2009
+Sahkir,Fernando Alonso,Ferrari,2010
+Melbourne,Jenson Button,McLaren Mercedes,2010
+Shanghai,Jenson Button,McLaren Mercedes,2010
+Catalunya,Mark Webber,RBR Renault,2010
+Monte Carlo,Mark Webber,RBR Renault,2010
+Montreal,Lewis Hamilton,McLaren Mercedes,2010
+Silverstone,Mark Webber,RBR Renault,2010
+Hungaroring,Mark Webber,RBR Renault,2010
+Spa-Francorchamps,Lewis Hamilton,McLaren Mercedes,2010
+Monza,Fernando Alonso,Ferrari,2010
+Singapore,Fernando Alonso,Ferrari,2010
+Suzuka,Sebastian Vettel,RBR Renault,2010
+Interlagos,Sebastian Vettel,RBR Renault,2010
+Yas Marina Circuit,Sebastian Vettel,RBR Renault,2010
+Melbourne,Sebastian Vettel,Red Bull Racing Renault,2011
+Shanghai,Lewis Hamilton,McLaren Mercedes,2011
+Catalunya,Sebastian Vettel,Red Bull Racing Renault,2011
+Monte Carlo,Sebastian Vettel,Red Bull Racing Renault,2011
+Montreal,Jenson Button,McLaren Mercedes,2011
+Silverstone,Fernando Alonso,Ferrari,2011
+Hungaroring,Jenson Button,McLaren Mercedes,2011
+Spa-Francorchamps,Sebastian Vettel,Red Bull Racing Renault,2011
+Monza,Sebastian Vettel,Red Bull Racing Renault,2011
+Singapore,Sebastian Vettel,Red Bull Racing Renault,2011
+Suzuka,Jenson Button,McLaren Mercedes,2011
+Yas Marina Circuit,Lewis Hamilton,McLaren Mercedes,2011
+Interlagos,Mark Webber,Red Bull Racing Renault,2011
+Melbourne,Jenson Button,McLaren Mercedes,2012
+Shanghai,Nico Rosberg,Mercedes,2012
+Sahkir,Sebastian Vettel,Red Bull Racing Renault,2012
+Monte Carlo,Mark Webber,Red Bull Racing Renault,2012
+Montreal,Lewis Hamilton,McLaren Mercedes,2012
+Silverstone,Mark Webber,Red Bull Racing Renault,2012
+Hungaroring,Lewis Hamilton,McLaren Mercedes,2012
+Spa-Francorchamps,Jenson Button,McLaren Mercedes,2012
+Monza,Lewis Hamilton,McLaren Mercedes,2012
+Singapore,Sebastian Vettel,Red Bull Racing Renault,2012
+Suzuka,Sebastian Vettel,Red Bull Racing Renault,2012
+Yas Marina Circuit,Kimi Raikkonen,Lotus Renault,2012
+Austin,Lewis Hamilton,McLaren Mercedes,2012
+Interlagos,Jenson Button,McLaren Mercedes,2012
+Melbourne,Kimi Raikkonen,Lotus Renault,2013
+Shanghai,Fernando Alonso,Ferrari,2013
+Sahkir,Sebastian Vettel,Red Bull Racing Renault,2013
+Catalunya,Fernando Alonso,Ferrari,2013
+Monte Carlo,Nico Rosberg,Mercedes,2013
+Montreal,Sebastian Vettel,Red Bull Racing Renault,2013
+Silverstone,Nico Rosberg,Mercedes,2013
+Hungaroring,Lewis Hamilton,Mercedes,2013
+Spa-Francorchamps,Sebastian Vettel,Red Bull Racing Renault,2013
+Monza,Sebastian Vettel,Red Bull Racing Renault,2013
+Singapore,Sebastian Vettel,Red Bull Racing Renault,2013
+Suzuka,Sebastian Vettel,Red Bull Racing Renault,2013
+Yas Marina Circuit,Sebastian Vettel,Red Bull Racing Renault,2013
+Austin,Sebastian Vettel,Red Bull Racing Renault,2013
+Interlagos,Sebastian Vettel,Red Bull Racing Renault,2013
+Melbourne,Nico Rosberg,Mercedes,2014
+Sahkir,Lewis Hamilton,Mercedes,2014
+Shanghai,Lewis Hamilton,Mercedes,2014
+Catalunya,Lewis Hamilton,Mercedes,2014
+Monte Carlo,Nico Rosberg,Mercedes,2014
+Montreal,Daniel Ricciardo,Red Bull Racing Renault,2014
+Spielberg,Nico Rosberg,Mercedes,2014
+Silverstone,Lewis Hamilton,Mercedes,2014
+Hungaroring,Daniel Ricciardo,Red Bull Racing Renault,2014
+Spa-Francorchamps,Daniel Ricciardo,Red Bull Racing Renault,2014
+Monza,Lewis Hamilton,Mercedes,2014
+Singapore,Lewis Hamilton,Mercedes,2014
+Suzuka,Lewis Hamilton,Mercedes,2014
+Austin,Lewis Hamilton,Mercedes,2014
+Interlagos,Nico Rosberg,Mercedes,2014
+Yas Marina Circuit,Lewis Hamilton,Mercedes,2014
+Melbourne,Lewis Hamilton,Mercedes,2015
+Shanghai,Lewis Hamilton,Mercedes,2015
+Sahkir,Lewis Hamilton,Mercedes,2015
+Catalunya,Nico Rosberg,Mercedes,2015
+Monte Carlo,Nico Rosberg,Mercedes,2015
+Montreal,Lewis Hamilton,Mercedes,2015
+Spielberg,Nico Rosberg,Mercedes,2015
+Silverstone,Lewis Hamilton,Mercedes,2015
+Hungaroring,Sebastian Vettel,Ferrari,2015
+Spa-Francorchamps,Lewis Hamilton,Mercedes,2015
+Monza,Lewis Hamilton,Mercedes,2015
+Singapore,Sebastian Vettel,Ferrari,2015
+Suzuka,Lewis Hamilton,Mercedes,2015
+Austin,Lewis Hamilton,Mercedes,2015
+Mexico City,Nico Rosberg,Mercedes,2015
+Interlagos,Nico Rosberg,Mercedes,2015
+Yas Marina Circuit,Nico Rosberg,Mercedes,2015
+Melbourne,Nico Rosberg,Mercedes,2016
+Sahkir,Nico Rosberg,Mercedes,2016
+Shanghai,Nico Rosberg,Mercedes,2016
+Catalunya,Max Verstappen,Red Bull Racing TAG Heuer,2016
+Monte Carlo,Lewis Hamilton,Mercedes,2016
+Montreal,Lewis Hamilton,Mercedes,2016
+Baku,Nico Rosberg,Mercedes,2016
+Spielberg,Lewis Hamilton,Mercedes,2016
+Silverstone,Lewis Hamilton,Mercedes,2016
+Hungaroring,Lewis Hamilton,Mercedes,2016
+Spa-Francorchamps,Nico Rosberg,Mercedes,2016
+Monza,Nico Rosberg,Mercedes,2016
+Singapore,Nico Rosberg,Mercedes,2016
+Suzuka,Nico Rosberg,Mercedes,2016
+Austin,Lewis Hamilton,Mercedes,2016
+Mexico City,Lewis Hamilton,Mercedes,2016
+Interlagos,Lewis Hamilton,Mercedes,2016
+Yas Marina Circuit,Lewis Hamilton,Mercedes,2016
+Melbourne,Sebastian Vettel,Ferrari,2017
+Shanghai,Lewis Hamilton,Mercedes,2017
+Sahkir,Sebastian Vettel,Ferrari,2017
+Catalunya,Lewis Hamilton,Mercedes,2017
+Monte Carlo,Sebastian Vettel,Ferrari,2017
+Montreal,Lewis Hamilton,Mercedes,2017
+Baku,Daniel Ricciardo,Red Bull Racing TAG Heuer,2017
+Spielberg,Valtteri Bottas,Mercedes,2017
+Silverstone,Lewis Hamilton,Mercedes,2017
+Hungaroring,Sebastian Vettel,Ferrari,2017
+Spa-Francorchamps,Lewis Hamilton,Mercedes,2017
+Monza,Lewis Hamilton,Mercedes,2017
+Singapore,Lewis Hamilton,Mercedes,2017
+Suzuka,Lewis Hamilton,Mercedes,2017
+Austin,Lewis Hamilton,Mercedes,2017
+Mexico City,Max Verstappen,Red Bull Racing TAG Heuer,2017
+Interlagos,Sebastian Vettel,Ferrari,2017
+Yas Marina Circuit,Valtteri Bottas,Mercedes,2017
+Melbourne,Sebastian Vettel,Ferrari,2018
+Sahkir,Sebastian Vettel,Ferrari,2018
+Shanghai,Daniel Ricciardo,Red Bull Racing TAG Heuer,2018
+Baku,Lewis Hamilton,Mercedes,2018
+Catalunya,Lewis Hamilton,Mercedes,2018
+Monte Carlo,Daniel Ricciardo,Red Bull Racing TAG Heuer,2018
+Montreal,Sebastian Vettel,Ferrari,2018
+Spielberg,Max Verstappen,Red Bull Racing TAG Heuer,2018
+Silverstone,Sebastian Vettel,Ferrari,2018
+Hungaroring,Lewis Hamilton,Mercedes,2018
+Spa-Francorchamps,Sebastian Vettel,Ferrari,2018
+Monza,Lewis Hamilton,Mercedes,2018
+Singapore,Lewis Hamilton,Mercedes,2018
+Suzuka,Lewis Hamilton,Mercedes,2018
+Austin,Kimi Raikkonen,Ferrari,2018
+Mexico City,Max Verstappen,Red Bull Racing TAG Heuer,2018
+Interlagos,Lewis Hamilton,Mercedes,2018
+Yas Marina Circuit,Lewis Hamilton,Mercedes,2018
+Melbourne,Valtteri Bottas,Mercedes,2019
+Sahkir,Lewis Hamilton,Mercedes,2019
+Shanghai,Lewis Hamilton,Mercedes,2019
+Baku,Valtteri Bottas,Mercedes,2019
+Catalunya,Lewis Hamilton,Mercedes,2019
+Monte Carlo,Lewis Hamilton,Mercedes,2019
+Montreal,Lewis Hamilton,Mercedes,2019
+Spielberg,Max Verstappen,Red Bull Racing Honda,2019
+Silverstone,Lewis Hamilton,Mercedes,2019
+Hungaroring,Lewis Hamilton,Mercedes,2019
+Spa-Francorchamps,Charles Leclerc,Ferrari,2019
+Monza,Charles Leclerc,Ferrari,2019
+Singapore,Sebastian Vettel,Ferrari,2019
+Suzuka,Valtteri Bottas,Mercedes,2019
+Mexico City,Lewis Hamilton,Mercedes,2019
+Austin,Valtteri Bottas,Mercedes,2019
+Interlagos,Max Verstappen,Red Bull Racing Honda,2019
+Yas Marina Circuit,Lewis Hamilton,Mercedes,2019
+Spielberg,Valtteri Bottas,Mercedes,2020
+Spielberg,Lewis Hamilton,Mercedes,2020
+Hungaroring,Lewis Hamilton,Mercedes,2020
+Silverstone,Lewis Hamilton,Mercedes,2020
+Silverstone,Max Verstappen,Red Bull Racing Honda,2020
+Catalunya,Lewis Hamilton,Mercedes,2020
+Spa-Francorchamps,Lewis Hamilton,Mercedes,2020
+Monza,Pierre Gasly,AlphaTauri Honda,2020
+Sahkir,Lewis Hamilton,Mercedes,2020
+Sahkir,Sergio Perez,Racing Point BWT Mercedes,2020
+Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda,2020
+Sahkir,Lewis Hamilton,Mercedes,2021
+Monza,Max Verstappen,Red Bull Racing Honda,2021
+Catalunya,Lewis Hamilton,Mercedes,2021
+Monte Carlo,Max Verstappen,Red Bull Racing Honda,2021
+Baku,Sergio Perez,Red Bull Racing Honda,2021
+Spielberg,Max Verstappen,Red Bull Racing Honda,2021
+Spielberg,Max Verstappen,Red Bull Racing Honda,2021
+Silverstone,Lewis Hamilton,Mercedes,2021
+Hungaroring,Esteban Ocon,Alpine Renault,2021
+Spa-Francorchamps,Max Verstappen,Red Bull Racing Honda,2021
+Zandvoort,Max Verstappen,Red Bull Racing Honda,2021
+Monza,Daniel Ricciardo,McLaren Mercedes,2021
+Austin,Max Verstappen,Red Bull Racing Honda,2021
+Mexico City,Max Verstappen,Red Bull Racing Honda,2021
+Interlagos,Lewis Hamilton,Mercedes,2021
+Lusail,Lewis Hamilton,Mercedes,2021
+Jeddah,Lewis Hamilton,Mercedes,2021
+Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda,2021
+Sahkir,Charles Leclerc,Ferrari,2022
+Jeddah,Max Verstappen,Red Bull Racing RBPT,2022
+Melbourne,Charles Leclerc,Ferrari,2022
+Miami,Max Verstappen,Red Bull Racing RBPT,2022
+Catalunya,Max Verstappen,Red Bull Racing RBPT,2022
+Monte Carlo,Sergio Perez,Red Bull Racing RBPT,2022
+Baku,Max Verstappen,Red Bull Racing RBPT,2022
+Montreal,Max Verstappen,Red Bull Racing RBPT,2022
+Silverstone,Carlos Sainz,Ferrari,2022
+Spielberg,Charles Leclerc,Ferrari,2022
+Hungaroring,Max Verstappen,Red Bull Racing RBPT,2022
+Spa-Francorchamps,Max Verstappen,Red Bull Racing RBPT,2022
+Zandvoort,Max Verstappen,Red Bull Racing RBPT,2022
+Monza,Max Verstappen,Red Bull Racing RBPT,2022
+Singapore,Sergio Perez,Red Bull Racing RBPT,2022
+Suzuka,Max Verstappen,Red Bull Racing RBPT,2022
+Austin,Max Verstappen,Red Bull Racing RBPT,2022
+Mexico City,Max Verstappen,Red Bull Racing RBPT,2022
+Interlagos,George Russell,Mercedes,2022
+Yas Marina Circuit,Max Verstappen,Red Bull Racing RBPT,2022
+Sahkir,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Jeddah,Sergio Perez,Red Bull Racing Honda RBPT,2023
+Melbourne,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Baku,Sergio Perez,Red Bull Racing Honda RBPT,2023
+Miami,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Monte Carlo,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Catalunya,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Montreal,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Spielberg,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Silverstone,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Hungaroring,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Spa-Francorchamps,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Zandvoort,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Monza,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Singapore,Carlos Sainz,Ferrari,2023
+Suzuka,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Lusail,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Austin,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Mexico City,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Interlagos,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Austin,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda RBPT,2023
+Sahkir,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Jeddah,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Melbourne,Carlos Sainz,Ferrari,2024
+Suzuka,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Shanghai,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Miami,Lando Norris,McLaren Mercedes,2024
+Monte Carlo,Charles Leclerc,Ferrari,2024
+Montreal,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Catalunya,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Spielberg,George Russell,Mercedes,2024
+Silverstone,Lewis Hamilton,Mercedes,2024
+Hungaroring,Oscar Piastri,McLaren Mercedes,2024
+Spa-Francorchamps,Lewis Hamilton,Mercedes,2024
+Zandvoort,Lando Norris,McLaren Mercedes,2024
+Monza,Charles Leclerc,Ferrari,2024
+Baku,Oscar Piastri,McLaren Mercedes,2024
+Singapore,Lando Norris,McLaren Mercedes,2024
+Austin,Charles Leclerc,Ferrari,2024
+Mexico City,Carlos Sainz,Ferrari,2024
+Interlagos,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Las Vegas,George Russell,Mercedes,2024
+Lusail,Max Verstappen,Red Bull Racing Honda RBPT,2024
+Yas Marina Circuit,Lando Norris,McLaren Mercedes,2024
+Melbourne,Lando Norris,McLaren,2025
+Shanghai,Oscar Piastri,McLaren,2025
+Suzuka,Max Verstappen,Red Bull Racing,2025
+Sahkir,Oscar Piastri,McLaren,2025
+Jeddah,Oscar Piastri,McLaren,2025
+Miami,Oscar Piastri,McLaren,2025
+Monte Carlo,Lando Norris,McLaren,2025
+Catalunya,Oscar Piastri,McLaren,2025
+Montreal,George Russell,Mercedes,2025
+Spielberg,Lando Norris,McLaren,2025
+Silverstone,Lando Norris,McLaren,2025
+Spa-Francorchamps,Oscar Piastri,McLaren,2025
+Hungaroring,Lando Norris,McLaren,2025
+Zandvoort,Oscar Piastri,McLaren,2025
+Monza,Max Verstappen,Red Bull Racing,2025
+Baku,Max Verstappen,Red Bull Racing,2025
+Singapore,George Russell,Mercedes,2025
+Austin,Max Verstappen,Red Bull Racing,2025
+Mexico City,Lando Norris,McLaren,2025
+Interlagos,Lando Norris,McLaren,2025
+Las Vegas,Max Verstappen,Red Bull Racing,2025
+Lusail,Max Verstappen,Red Bull Racing,2025
+Yas Marina Circuit,Max Verstappen,Red Bull Racing,2025

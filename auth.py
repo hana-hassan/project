@@ -7,7 +7,7 @@ from wtforms import StringField, PasswordField, EmailField, SubmitField, RadioFi
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
 from dash_app import visualisations
-from data_filtering import get_website_info, get_circuit_name, get_page_name, get_possible_winners, is_wet_race
+from data_filtering import get_website_info, get_circuit_name, get_page_name, get_possible_winners, is_wet_race, get_team_wins, red_flag_prob, safety_car_prob
 
 app = Flask(__name__)
 
@@ -367,6 +367,9 @@ def add_page_contents(season, race):
         listed = WatchlistContent.query.filter_by(year = year, circuit = circuit_name).all()
         past_wins = get_possible_winners(circuit_name)
         wet_races = is_wet_race(circuit_name)
+        constructors = get_team_wins(circuit_name)
+        sc = safety_car_prob(circuit_name)
+        red_flag = red_flag_prob(circuit_name)
         all_ids = []
 
         for list in listed:
@@ -374,7 +377,7 @@ def add_page_contents(season, race):
         
         return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
                                personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
-                               listed = listed, all_ids = all_ids, past_wins = past_wins, wet_races = wet_races)
+                               listed = listed, all_ids = all_ids, past_wins = past_wins, wet_races = wet_races, constructors = constructors, sc = sc, red_flag = red_flag)
     
 
 # delete a review

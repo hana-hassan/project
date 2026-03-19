@@ -1,264 +1,264 @@
-date,grand_prix,circuit,winner_name,team,year
-24/08/2003,Hungary,Hungaroring,Fernando Alonso,Renault,2003
-20/03/2005,Malaysia,Sepang International Circuit,Fernando Alonso,Renault,2005
-03/04/2005,Sakhir,Sahkir,Fernando Alonso,Renault,2005
-24/04/2005,San Marino,Imola,Fernando Alonso,Renault,2005
-29/05/2005,Germany,Nürburgring,Fernando Alonso,Renault,2005
-03/07/2005,France,Circuit de Nevers Magny Cours,Fernando Alonso,Renault,2005
-24/07/2005,Germany,Hockenheimring,Fernando Alonso,Renault,2005
-16/10/2005,China,Shanghai,Fernando Alonso,Renault,2005
-12/03/2006,Sakhir,Sahkir,Fernando Alonso,Renault,2006
-02/04/2006,Australia,Melbourne,Fernando Alonso,Renault,2006
-14/05/2006,Spain,Catalunya,Fernando Alonso,Renault,2006
-28/05/2006,Monaco,Monte Carlo,Fernando Alonso,Renault,2006
-11/06/2006,Great Britain,Silverstone,Fernando Alonso,Renault,2006
-25/06/2006,Canada,Montreal,Fernando Alonso,Renault,2006
-08/10/2006,Japan,Suzuka,Fernando Alonso,Renault,2006
-08/04/2007,Malaysia,Sepang International Circuit,Fernando Alonso,McLaren Mercedes,2007
-27/05/2007,Monaco,Monte Carlo,Fernando Alonso,McLaren Mercedes,2007
-10/06/2007,Canada,Montreal,Lewis Hamilton,McLaren Mercedes,2007
-17/06/2007,United States,Indianapolis Motor Speedway,Lewis Hamilton,McLaren Mercedes,2007
-22/07/2007,Germany,Nürburgring,Fernando Alonso,McLaren Mercedes,2007
-05/08/2007,Hungary,Hungaroring,Lewis Hamilton,McLaren Mercedes,2007
-09/09/2007,Italy,Monza,Fernando Alonso,McLaren Mercedes,2007
-30/09/2007,Japan,Fuji Speedway,Lewis Hamilton,McLaren Mercedes,2007
-16/03/2008,Australia,Melbourne,Lewis Hamilton,McLaren Mercedes,2008
-25/05/2008,Monaco,Monte Carlo,Lewis Hamilton,McLaren Mercedes,2008
-06/07/2008,Great Britain,Silverstone,Lewis Hamilton,McLaren Mercedes,2008
-20/07/2008,Germany,Hockenheimring,Lewis Hamilton,McLaren Mercedes,2008
-28/09/2008,Singapore,Singapore,Fernando Alonso,Renault,2008
-12/10/2008,Japan,Fuji Speedway,Fernando Alonso,Renault,2008
-19/10/2008,China,Shanghai,Lewis Hamilton,McLaren Mercedes,2008
-26/07/2009,Hungary,Hungaroring,Lewis Hamilton,McLaren Mercedes,2009
-27/09/2009,Singapore,Singapore,Lewis Hamilton,McLaren Mercedes,2009
-14/03/2010,Sakhir,Sahkir,Fernando Alonso,Ferrari,2010
-30/05/2010,Turkiye,Istanbul Park,Lewis Hamilton,McLaren Mercedes,2010
-13/06/2010,Canada,Montreal,Lewis Hamilton,McLaren Mercedes,2010
-25/07/2010,Germany,Hockenheimring,Fernando Alonso,Ferrari,2010
-29/08/2010,Belgium,Spa-Francorchamps,Lewis Hamilton,McLaren Mercedes,2010
-12/09/2010,Italy,Monza,Fernando Alonso,Ferrari,2010
-26/09/2010,Singapore,Singapore,Fernando Alonso,Ferrari,2010
-24/10/2010,South Korea,Korea International Circuit,Fernando Alonso,Ferrari,2010
-17/04/2011,China,Shanghai,Lewis Hamilton,McLaren Mercedes,2011
-10/07/2011,Great Britain,Silverstone,Fernando Alonso,Ferrari,2011
-24/07/2011,Germany,Nürburgring,Lewis Hamilton,McLaren Mercedes,2011
-13/11/2011,Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,McLaren Mercedes,2011
-25/03/2012,Malaysia,Sepang International Circuit,Fernando Alonso,Ferrari,2012
-10/06/2012,Canada,Montreal,Lewis Hamilton,McLaren Mercedes,2012
-24/06/2012,Spain,Valencia Street Circuit,Fernando Alonso,Ferrari,2012
-22/07/2012,Germany,Hockenheimring,Fernando Alonso,Ferrari,2012
-29/07/2012,Hungary,Hungaroring,Lewis Hamilton,McLaren Mercedes,2012
-09/09/2012,Italy,Monza,Lewis Hamilton,McLaren Mercedes,2012
-18/11/2012,United States,Austin,Lewis Hamilton,McLaren Mercedes,2012
-14/04/2013,China,Shanghai,Fernando Alonso,Ferrari,2013
-12/05/2013,Spain,Catalunya,Fernando Alonso,Ferrari,2013
-28/07/2013,Hungary,Hungaroring,Lewis Hamilton,Mercedes,2013
-30/03/2014,Malaysia,Sepang International Circuit,Lewis Hamilton,Mercedes,2014
-06/04/2014,Sakhir,Sahkir,Lewis Hamilton,Mercedes,2014
-20/04/2014,China,Shanghai,Lewis Hamilton,Mercedes,2014
-11/05/2014,Spain,Catalunya,Lewis Hamilton,Mercedes,2014
-06/07/2014,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2014
-07/09/2014,Italy,Monza,Lewis Hamilton,Mercedes,2014
-21/09/2014,Singapore,Singapore,Lewis Hamilton,Mercedes,2014
-05/10/2014,Japan,Suzuka,Lewis Hamilton,Mercedes,2014
-21/10/2014,Russia,Sochi Autodrom,Lewis Hamilton,Mercedes,2014
-02/11/2014,United States,Austin,Lewis Hamilton,Mercedes,2014
-23/11/2014,Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,Mercedes,2014
-15/03/2015,Australia,Melbourne,Lewis Hamilton,Mercedes,2015
-12/04/2015,China,Shanghai,Lewis Hamilton,Mercedes,2015
-19/04/2015,Sakhir,Sahkir,Lewis Hamilton,Mercedes,2015
-07/06/2015,Canada,Montreal,Lewis Hamilton,Mercedes,2015
-05/07/2015,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2015
-23/08/2015,Belgium,Spa-Francorchamps,Lewis Hamilton,Mercedes,2015
-06/09/2015,Italy,Monza,Lewis Hamilton,Mercedes,2015
-27/09/2015,Japan,Suzuka,Lewis Hamilton,Mercedes,2015
-11/10/2015,Russia,Sochi Autodrom,Lewis Hamilton,Mercedes,2015
-25/10/2015,United States,Austin,Lewis Hamilton,Mercedes,2015
-15/05/2016,Spain,Catalunya,Max Verstappen,Red Bull Racing TAG Heuer,2016
-29/05/2016,Monaco,Monte Carlo,Lewis Hamilton,Mercedes,2016
-12/06/2016,Canada,Montreal,Lewis Hamilton,Mercedes,2016
-03/07/2016,Austria,Spielberg,Lewis Hamilton,Mercedes,2016
-10/07/2016,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2016
-24/07/2016,Hungary,Hungaroring,Lewis Hamilton,Mercedes,2016
-31/07/2016,Germany,Hockenheimring,Lewis Hamilton,Mercedes,2016
-23/10/2016,United States,Austin,Lewis Hamilton,Mercedes,2016
-30/10/2016,Mexico,Mexico City,Lewis Hamilton,Mercedes,2016
-13/11/2016,Brazil,Interlagos,Lewis Hamilton,Mercedes,2016
-27/11/2016,Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,Mercedes,2016
-09/04/2017,China,Shanghai,Lewis Hamilton,Mercedes,2017
-30/04/2017,Russia,Sochi Autodrom,Valtteri Bottas,Mercedes,2017
-14/05/2017,Spain,Catalunya,Lewis Hamilton,Mercedes,2017
-11/06/2017,Canada,Montreal,Lewis Hamilton,Mercedes,2017
-09/07/2017,Austria,Spielberg,Valtteri Bottas,Mercedes,2017
-16/07/2017,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2017
-27/08/2017,Belgium,Spa-Francorchamps,Lewis Hamilton,Mercedes,2017
-03/09/2017,Italy,Monza,Lewis Hamilton,Mercedes,2017
-17/09/2017,Singapore,Singapore,Lewis Hamilton,Mercedes,2017
-01/10/2017,Malaysia,Sepang International Circuit,Max Verstappen,Red Bull Racing TAG Heuer,2017
-08/10/2017,Japan,Suzuka,Lewis Hamilton,Mercedes,2017
-22/10/2017,United States,Austin,Lewis Hamilton,Mercedes,2017
-29/10/2017,Mexico,Mexico City,Max Verstappen,Red Bull Racing TAG Heuer,2017
-26/11/2017,Abu Dhabi,Yas Marina Circuit,Valtteri Bottas,Mercedes,2017
-29/04/2018,Azerbaijan,Baku,Lewis Hamilton,Mercedes,2018
-13/05/2018,Spain,Catalunya,Lewis Hamilton,Mercedes,2018
-24/06/2018,France,Circuit Paul Ricard,Lewis Hamilton,Mercedes,2018
-01/07/2018,Austria,Spielberg,Max Verstappen,Red Bull Racing TAG Heuer,2018
-22/07/2018,Germany,Hockenheimring,Lewis Hamilton,Mercedes,2018
-29/07/2018,Hungary,Hungaroring,Lewis Hamilton,Mercedes,2018
-02/09/2018,Italy,Monza,Lewis Hamilton,Mercedes,2018
-16/09/2018,Singapore,Singapore,Lewis Hamilton,Mercedes,2018
-30/09/2018,Russia,Sochi Autodrom,Lewis Hamilton,Mercedes,2018
-07/10/2018,Japan,Suzuka,Lewis Hamilton,Mercedes,2018
-28/10/2018,Mexico,Mexico City,Max Verstappen,Red Bull Racing TAG Heuer,2018
-11/11/2018,Brazil,Interlagos,Lewis Hamilton,Mercedes,2018
-25/11/2018,Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,Mercedes,2018
-17/03/2019,Australia,Melbourne,Valtteri Bottas,Mercedes,2019
-31/03/2019,Sakhir,Sahkir,Lewis Hamilton,Mercedes,2019
-14/04/2019,China,Shanghai,Lewis Hamilton,Mercedes,2019
-28/04/2019,Azerbaijan,Baku,Valtteri Bottas,Mercedes,2019
-12/05/2019,Spain,Catalunya,Lewis Hamilton,Mercedes,2019
-26/05/2019,Monaco,Monte Carlo,Lewis Hamilton,Mercedes,2019
-09/06/2019,Canada,Montreal,Lewis Hamilton,Mercedes,2019
-23/06/2019,France,Circuit Paul Ricard,Lewis Hamilton,Mercedes,2019
-30/06/2019,Austria,Spielberg,Max Verstappen,Red Bull Racing Honda,2019
-14/07/2019,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2019
-28/07/2019,Germany,Hockenheimring,Max Verstappen,Red Bull Racing Honda,2019
-04/08/2019,Hungary,Hungaroring,Lewis Hamilton,Mercedes,2019
-01/09/2019,Belgium,Spa-Francorchamps,Charles Leclerc,Ferrari,2019
-08/09/2019,Italy,Monza,Charles Leclerc,Ferrari,2019
-29/09/2019,Russia,Sochi Autodrom,Lewis Hamilton,Mercedes,2019
-13/10/2019,Japan,Suzuka,Valtteri Bottas,Mercedes,2019
-27/10/2019,Mexico,Mexico City,Lewis Hamilton,Mercedes,2019
-03/11/2019,United States,Austin,Valtteri Bottas,Mercedes,2019
-17/11/2019,Brazil,Interlagos,Max Verstappen,Red Bull Racing Honda,2019
-01/12/2019,Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,Mercedes,2019
-05/07/2020,Austria,Spielberg,Valtteri Bottas,Mercedes,2020
-12/07/2020,Styria,Red Bull Ring,Lewis Hamilton,Mercedes,2020
-19/07/2020,Hungary,Hungaroring,Lewis Hamilton,Mercedes,2020
-02/08/2020,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2020
-09/08/2020,Great Britain,Silverstone,Max Verstappen,Red Bull Racing Honda,2020
-16/08/2020,Spain,Catalunya,Lewis Hamilton,Mercedes,2020
-30/08/2020,Belgium,Spa-Francorchamps,Lewis Hamilton,Mercedes,2020
-06/09/2020,Italy,Monza,Pierre Gasly,AlphaTauri Honda,2020
-13/09/2020,Italy,Autodromo Internazionale del Mugello,Lewis Hamilton,Mercedes,2020
-27/09/2020,Russia,Sochi Autodrom,Valtteri Bottas,Mercedes,2020
-11/10/2020,Germany,Nürburgring,Lewis Hamilton,Mercedes,2020
-25/10/2020,Portugal,Algarve International Circuit,Lewis Hamilton,Mercedes,2020
-01/11/2020,Italy,Autodromo Internazionale Enzo e Dino Ferrari,Lewis Hamilton,Mercedes,2020
-15/11/2020,Turkiye,Istanbul Park,Lewis Hamilton,Mercedes,2020
-29/11/2020,Sakhir,Sahkir,Lewis Hamilton,Mercedes,2020
-06/12/2020,Sakhir,Sahkir,Sergio Perez,Racing Point BWT Mercedes,2020
-13/12/2020,Abu Dhabi,Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda,2020
-28/03/2021,Sakhir,Sahkir,Lewis Hamilton,Mercedes,2021
-18/04/2021,Italy,Monza,Max Verstappen,Red Bull Racing Honda,2021
-02/05/2021,Portugal,Algarve International Circuit,Lewis Hamilton,Mercedes,2021
-09/05/2021,Spain,Catalunya,Lewis Hamilton,Mercedes,2021
-23/05/2021,Monaco,Monte Carlo,Max Verstappen,Red Bull Racing Honda,2021
-06/06/2021,Azerbaijan,Baku,Sergio Perez,Red Bull Racing Honda,2021
-20/06/2021,France,Circuit Paul Ricard,Max Verstappen,Red Bull Racing Honda,2021
-27/06/2021,Styria,Red Bull Ring,Max Verstappen,Red Bull Racing Honda,2021
-04/07/2021,Austria,Spielberg,Max Verstappen,Red Bull Racing Honda,2021
-18/07/2021,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2021
-01/08/2021,Hungary,Hungaroring,Esteban Ocon,Alpine Renault,2021
-29/08/2021,Belgium,Spa-Francorchamps,Max Verstappen,Red Bull Racing Honda,2021
-05/09/2021,Netherlands,Zandvoort,Max Verstappen,Red Bull Racing Honda,2021
-26/09/2021,Russia,Sochi Autodrom,Lewis Hamilton,Mercedes,2021
-10/10/2021,Turkiye,Istanbul Park,Valtteri Bottas,Mercedes,2021
-24/10/2021,United States,Austin,Max Verstappen,Red Bull Racing Honda,2021
-07/11/2021,Mexico,Mexico City,Max Verstappen,Red Bull Racing Honda,2021
-14/11/2021,Brazil,Interlagos,Lewis Hamilton,Mercedes,2021
-21/11/2021,Qatar,Lusail,Lewis Hamilton,Mercedes,2021
-05/12/2021,Saudi Arabia,Jeddah,Lewis Hamilton,Mercedes,2021
-12/12/2021,Abu Dhabi,Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda,2021
-20/03/2022,Sakhir,Sahkir,Charles Leclerc,Ferrari,2022
-27/03/2022,Saudi Arabia,Jeddah,Max Verstappen,Red Bull Racing RBPT,2022
-10/04/2022,Australia,Melbourne,Charles Leclerc,Ferrari,2022
-24/04/2022,Italy,Autodromo Internazionale Enzo e Dino Ferrari,Max Verstappen,Red Bull Racing RBPT,2022
-08/05/2022,United States,Miami,Max Verstappen,Red Bull Racing RBPT,2022
-22/05/2022,Spain,Catalunya,Max Verstappen,Red Bull Racing RBPT,2022
-29/05/2022,Monaco,Monte Carlo,Sergio Perez,Red Bull Racing RBPT,2022
-12/06/2022,Azerbaijan,Baku,Max Verstappen,Red Bull Racing RBPT,2022
-19/06/2022,Canada,Montreal,Max Verstappen,Red Bull Racing RBPT,2022
-03/07/2022,Great Britain,Silverstone,Carlos Sainz,Ferrari,2022
-10/07/2022,Austria,Spielberg,Charles Leclerc,Ferrari,2022
-24/07/2022,France,Circuit Paul Ricard,Max Verstappen,Red Bull Racing RBPT,2022
-31/07/2022,Hungary,Hungaroring,Max Verstappen,Red Bull Racing RBPT,2022
-28/08/2022,Belgium,Spa-Francorchamps,Max Verstappen,Red Bull Racing RBPT,2022
-04/09/2022,Netherlands,Zandvoort,Max Verstappen,Red Bull Racing RBPT,2022
-11/09/2022,Italy,Monza,Max Verstappen,Red Bull Racing RBPT,2022
-02/10/2022,Singapore,Singapore,Sergio Perez,Red Bull Racing RBPT,2022
-09/10/2022,Japan,Suzuka,Max Verstappen,Red Bull Racing RBPT,2022
-23/10/2022,United States,Austin,Max Verstappen,Red Bull Racing RBPT,2022
-30/10/2022,Mexico,Mexico City,Max Verstappen,Red Bull Racing RBPT,2022
-13/11/2022,Brazil,Interlagos,George Russell,Mercedes,2022
-20/11/2022,Abu Dhabi,Yas Marina Circuit,Max Verstappen,Red Bull Racing RBPT,2022
-05/03/2023,Sakhir,Sahkir,Max Verstappen,Red Bull Racing Honda RBPT,2023
-19/03/2023,Saudi Arabia,Jeddah,Sergio Perez,Red Bull Racing Honda RBPT,2023
-02/04/2023,Australia,Melbourne,Max Verstappen,Red Bull Racing Honda RBPT,2023
-30/04/2023,Azerbaijan,Baku,Sergio Perez,Red Bull Racing Honda RBPT,2023
-07/05/2023,United States,Miami,Max Verstappen,Red Bull Racing Honda RBPT,2023
-28/05/2023,Monaco,Monte Carlo,Max Verstappen,Red Bull Racing Honda RBPT,2023
-04/06/2023,Spain,Catalunya,Max Verstappen,Red Bull Racing Honda RBPT,2023
-18/06/2023,Canada,Montreal,Max Verstappen,Red Bull Racing Honda RBPT,2023
-02/07/2023,Austria,Spielberg,Max Verstappen,Red Bull Racing Honda RBPT,2023
-09/07/2023,Great Britain,Silverstone,Max Verstappen,Red Bull Racing Honda RBPT,2023
-23/07/2023,Hungary,Hungaroring,Max Verstappen,Red Bull Racing Honda RBPT,2023
-30/07/2023,Belgium,Spa-Francorchamps,Max Verstappen,Red Bull Racing Honda RBPT,2023
-27/08/2023,Netherlands,Zandvoort,Max Verstappen,Red Bull Racing Honda RBPT,2023
-03/09/2023,Italy,Monza,Max Verstappen,Red Bull Racing Honda RBPT,2023
-17/09/2023,Singapore,Singapore,Carlos Sainz,Ferrari,2023
-24/09/2023,Japan,Suzuka,Max Verstappen,Red Bull Racing Honda RBPT,2023
-08/10/2023,Qatar,Lusail,Max Verstappen,Red Bull Racing Honda RBPT,2023
-22/10/2023,United States,Austin,Max Verstappen,Red Bull Racing Honda RBPT,2023
-29/10/2023,Mexico,Mexico City,Max Verstappen,Red Bull Racing Honda RBPT,2023
-05/11/2023,Brazil,Interlagos,Max Verstappen,Red Bull Racing Honda RBPT,2023
-18/11/2023,United States,Austin,Max Verstappen,Red Bull Racing Honda RBPT,2023
-26/11/2023,Abu Dhabi,Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda RBPT,2023
-02/03/2024,Sakhir,Sahkir,Max Verstappen,Red Bull Racing Honda RBPT,2024
-09/03/2024,Saudi Arabia,Jeddah,Max Verstappen,Red Bull Racing Honda RBPT,2024
-24/03/2024,Australia,Melbourne,Carlos Sainz,Ferrari,2024
-07/04/2024,Japan,Suzuka,Max Verstappen,Red Bull Racing Honda RBPT,2024
-21/04/2024,China,Shanghai,Max Verstappen,Red Bull Racing Honda RBPT,2024
-05/05/2024,United States,Miami,Lando Norris,McLaren Mercedes,2024
-19/05/2024,Italy,Autodromo Internazionale Enzo e Dino Ferrari,Max Verstappen,Red Bull Racing Honda RBPT,2024
-26/05/2024,Monaco,Monte Carlo,Charles Leclerc,Ferrari,2024
-09/06/2024,Canada,Montreal,Max Verstappen,Red Bull Racing Honda RBPT,2024
-23/06/2024,Spain,Catalunya,Max Verstappen,Red Bull Racing Honda RBPT,2024
-30/06/2024,Austria,Spielberg,George Russell,Mercedes,2024
-07/07/2024,Great Britain,Silverstone,Lewis Hamilton,Mercedes,2024
-21/07/2024,Hungary,Hungaroring,Oscar Piastri,McLaren Mercedes,2024
-28/07/2024,Belgium,Spa-Francorchamps,Lewis Hamilton,Mercedes,2024
-25/08/2024,Netherlands,Zandvoort,Lando Norris,McLaren Mercedes,2024
-01/09/2024,Italy,Monza,Charles Leclerc,Ferrari,2024
-15/09/2024,Azerbaijan,Baku,Oscar Piastri,McLaren Mercedes,2024
-22/09/2024,Singapore,Singapore,Lando Norris,McLaren Mercedes,2024
-20/10/2024,United States,Austin,Charles Leclerc,Ferrari,2024
-27/10/2024,Mexico,Mexico City,Carlos Sainz,Ferrari,2024
-03/11/2024,Brazil,Interlagos,Max Verstappen,Red Bull Racing Honda RBPT,2024
-23/11/2024,United States,Las Vegas,George Russell,Mercedes,2024
-01/12/2024,Qatar,Lusail,Max Verstappen,Red Bull Racing Honda RBPT,2024
-08/12/2024,Abu Dhabi,Yas Marina Circuit,Lando Norris,McLaren Mercedes,2024
-16/03/2025,Australia,Melbourne,Lando Norris,McLaren,2025
-23/03/2025,China,Shanghai,Oscar Piastri,McLaren,2025
-06/04/2025,Japan,Suzuka,Max Verstappen,Red Bull Racing,2025
-13/04/2025,Sakhir,Sahkir,Oscar Piastri,McLaren,2025
-20/04/2025,Saudi Arabia,Jeddah,Oscar Piastri,McLaren,2025
-04/05/2025,United States,Miami,Oscar Piastri,McLaren,2025
-18/05/2025,Italy,Autodromo Internazionale Enzo e Dino Ferrari,Max Verstappen,Red Bull Racing,2025
-25/05/2025,Monaco,Monte Carlo,Lando Norris,McLaren,2025
-01/06/2025,Spain,Catalunya,Oscar Piastri,McLaren,2025
-15/06/2025,Canada,Montreal,George Russell,Mercedes,2025
-29/06/2025,Austria,Spielberg,Lando Norris,McLaren,2025
-06/07/2025,Great Britain,Silverstone,Lando Norris,McLaren,2025
-27/07/2025,Belgium,Spa-Francorchamps,Oscar Piastri,McLaren,2025
-03/08/2025,Hungary,Hungaroring,Lando Norris,McLaren,2025
-,Netherlands,Zandvoort,Oscar Piastri,McLaren,2025
-,Italy,Monza,Max Verstappen,Red Bull Racing,2025
-,Azerbaijan,Baku,Max Verstappen,Red Bull Racing,2025
-,Singapore,Singapore,George Russell,Mercedes,2025
-,United States,Austin,Max Verstappen,Red Bull Racing,2025
-,Mexico,Mexico City,Lando Norris,McLaren,2025
-,Brazil,Interlagos,Lando Norris,McLaren,2025
-,United States,Las Vegas,Max Verstappen,Red Bull Racing,2025
-,Qatar,Lusail,Max Verstappen,Red Bull Racing,2025
-,Abu Dhabi,Yas Marina Circuit,Max Verstappen,Red Bull Racing,2025
+grand_prix,circuit,winner_name,year
+Hungary,Hungaroring,Fernando Alonso,2003
+Malaysia,Sepang International Circuit,Fernando Alonso,2005
+Sakhir,Sahkir,Fernando Alonso,2005
+San Marino,Imola,Fernando Alonso,2005
+Germany,Nürburgring,Fernando Alonso,2005
+France,Circuit de Nevers Magny Cours,Fernando Alonso,2005
+Germany,Hockenheimring,Fernando Alonso,2005
+China,Shanghai,Fernando Alonso,2005
+Sakhir,Sahkir,Fernando Alonso,2006
+Australia,Melbourne,Fernando Alonso,2006
+Spain,Catalunya,Fernando Alonso,2006
+Monaco,Monte Carlo,Fernando Alonso,2006
+Great Britain,Silverstone,Fernando Alonso,2006
+Canada,Montreal,Fernando Alonso,2006
+Japan,Suzuka,Fernando Alonso,2006
+Malaysia,Sepang International Circuit,Fernando Alonso,2007
+Monaco,Monte Carlo,Fernando Alonso,2007
+Canada,Montreal,Lewis Hamilton,2007
+United States,Indianapolis Motor Speedway,Lewis Hamilton,2007
+Germany,Nürburgring,Fernando Alonso,2007
+Hungary,Hungaroring,Lewis Hamilton,2007
+Italy,Monza,Fernando Alonso,2007
+Japan,Fuji Speedway,Lewis Hamilton,2007
+Australia,Melbourne,Lewis Hamilton,2008
+Monaco,Monte Carlo,Lewis Hamilton,2008
+Great Britain,Silverstone,Lewis Hamilton,2008
+Germany,Hockenheimring,Lewis Hamilton,2008
+Singapore,Singapore,Fernando Alonso,2008
+Japan,Fuji Speedway,Fernando Alonso,2008
+China,Shanghai,Lewis Hamilton,2008
+Hungary,Hungaroring,Lewis Hamilton,2009
+Singapore,Singapore,Lewis Hamilton,2009
+Sakhir,Sahkir,Fernando Alonso,2010
+Turkiye,Istanbul Park,Lewis Hamilton,2010
+Canada,Montreal,Lewis Hamilton,2010
+Germany,Hockenheimring,Fernando Alonso,2010
+Belgium,Spa-Francorchamps,Lewis Hamilton,2010
+Italy,Monza,Fernando Alonso,2010
+Singapore,Singapore,Fernando Alonso,2010
+South Korea,Korea International Circuit,Fernando Alonso,2010
+China,Shanghai,Lewis Hamilton,2011
+Great Britain,Silverstone,Fernando Alonso,2011
+Germany,Nürburgring,Lewis Hamilton,2011
+Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,2011
+Malaysia,Sepang International Circuit,Fernando Alonso,2012
+Canada,Montreal,Lewis Hamilton,2012
+Spain,Valencia Street Circuit,Fernando Alonso,2012
+Germany,Hockenheimring,Fernando Alonso,2012
+Hungary,Hungaroring,Lewis Hamilton,2012
+Italy,Monza,Lewis Hamilton,2012
+United States,Austin,Lewis Hamilton,2012
+China,Shanghai,Fernando Alonso,2013
+Spain,Catalunya,Fernando Alonso,2013
+Hungary,Hungaroring,Lewis Hamilton,2013
+Malaysia,Sepang International Circuit,Lewis Hamilton,2014
+Sakhir,Sahkir,Lewis Hamilton,2014
+China,Shanghai,Lewis Hamilton,2014
+Spain,Catalunya,Lewis Hamilton,2014
+Great Britain,Silverstone,Lewis Hamilton,2014
+Italy,Monza,Lewis Hamilton,2014
+Singapore,Singapore,Lewis Hamilton,2014
+Japan,Suzuka,Lewis Hamilton,2014
+Russia,Sochi Autodrom,Lewis Hamilton,2014
+United States,Austin,Lewis Hamilton,2014
+Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,2014
+Australia,Melbourne,Lewis Hamilton,2015
+China,Shanghai,Lewis Hamilton,2015
+Sakhir,Sahkir,Lewis Hamilton,2015
+Canada,Montreal,Lewis Hamilton,2015
+Great Britain,Silverstone,Lewis Hamilton,2015
+Belgium,Spa-Francorchamps,Lewis Hamilton,2015
+Italy,Monza,Lewis Hamilton,2015
+Japan,Suzuka,Lewis Hamilton,2015
+Russia,Sochi Autodrom,Lewis Hamilton,2015
+United States,Austin,Lewis Hamilton,2015
+Spain,Catalunya,Max Verstappen,2016
+Monaco,Monte Carlo,Lewis Hamilton,2016
+Canada,Montreal,Lewis Hamilton,2016
+Austria,Spielberg,Lewis Hamilton,2016
+Great Britain,Silverstone,Lewis Hamilton,2016
+Hungary,Hungaroring,Lewis Hamilton,2016
+Germany,Hockenheimring,Lewis Hamilton,2016
+United States,Austin,Lewis Hamilton,2016
+Mexico,Mexico City,Lewis Hamilton,2016
+Brazil,Interlagos,Lewis Hamilton,2016
+Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,2016
+China,Shanghai,Lewis Hamilton,2017
+Russia,Sochi Autodrom,Valtteri Bottas,2017
+Spain,Catalunya,Lewis Hamilton,2017
+Canada,Montreal,Lewis Hamilton,2017
+Austria,Spielberg,Valtteri Bottas,2017
+Great Britain,Silverstone,Lewis Hamilton,2017
+Belgium,Spa-Francorchamps,Lewis Hamilton,2017
+Italy,Monza,Lewis Hamilton,2017
+Singapore,Singapore,Lewis Hamilton,2017
+Malaysia,Sepang International Circuit,Max Verstappen,2017
+Japan,Suzuka,Lewis Hamilton,2017
+United States,Austin,Lewis Hamilton,2017
+Mexico,Mexico City,Max Verstappen,2017
+Abu Dhabi,Yas Marina Circuit,Valtteri Bottas,2017
+Azerbaijan,Baku,Lewis Hamilton,2018
+Spain,Catalunya,Lewis Hamilton,2018
+France,Circuit Paul Ricard,Lewis Hamilton,2018
+Austria,Spielberg,Max Verstappen,2018
+Germany,Hockenheimring,Lewis Hamilton,2018
+Hungary,Hungaroring,Lewis Hamilton,2018
+Italy,Monza,Lewis Hamilton,2018
+Singapore,Singapore,Lewis Hamilton,2018
+Russia,Sochi Autodrom,Lewis Hamilton,2018
+Japan,Suzuka,Lewis Hamilton,2018
+Mexico,Mexico City,Max Verstappen,2018
+Brazil,Interlagos,Lewis Hamilton,2018
+Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,2018
+Australia,Melbourne,Valtteri Bottas,2019
+Sakhir,Sahkir,Lewis Hamilton,2019
+China,Shanghai,Lewis Hamilton,2019
+Azerbaijan,Baku,Valtteri Bottas,2019
+Spain,Catalunya,Lewis Hamilton,2019
+Monaco,Monte Carlo,Lewis Hamilton,2019
+Canada,Montreal,Lewis Hamilton,2019
+France,Circuit Paul Ricard,Lewis Hamilton,2019
+Austria,Spielberg,Max Verstappen,2019
+Great Britain,Silverstone,Lewis Hamilton,2019
+Germany,Hockenheimring,Max Verstappen,2019
+Hungary,Hungaroring,Lewis Hamilton,2019
+Belgium,Spa-Francorchamps,Charles Leclerc,2019
+Italy,Monza,Charles Leclerc,2019
+Russia,Sochi Autodrom,Lewis Hamilton,2019
+Japan,Suzuka,Valtteri Bottas,2019
+Mexico,Mexico City,Lewis Hamilton,2019
+United States,Austin,Valtteri Bottas,2019
+Brazil,Interlagos,Max Verstappen,2019
+Abu Dhabi,Yas Marina Circuit,Lewis Hamilton,2019
+Austria,Spielberg,Valtteri Bottas,2020
+Styria,Red Bull Ring,Lewis Hamilton,2020
+Hungary,Hungaroring,Lewis Hamilton,2020
+Great Britain,Silverstone,Lewis Hamilton,2020
+Great Britain,Silverstone,Max Verstappen,2020
+Spain,Catalunya,Lewis Hamilton,2020
+Belgium,Spa-Francorchamps,Lewis Hamilton,2020
+Italy,Monza,Pierre Gasly,2020
+Italy,Autodromo Internazionale del Mugello,Lewis Hamilton,2020
+Russia,Sochi Autodrom,Valtteri Bottas,2020
+Germany,Nürburgring,Lewis Hamilton,2020
+Portugal,Algarve International Circuit,Lewis Hamilton,2020
+Italy,Autodromo Internazionale Enzo e Dino Ferrari,Lewis Hamilton,2020
+Turkiye,Istanbul Park,Lewis Hamilton,2020
+Sakhir,Sahkir,Lewis Hamilton,2020
+Sakhir,Sahkir,Sergio Perez,2020
+Abu Dhabi,Yas Marina Circuit,Max Verstappen,2020
+Sakhir,Sahkir,Lewis Hamilton,2021
+Italy,Monza,Max Verstappen,2021
+Portugal,Algarve International Circuit,Lewis Hamilton,2021
+Spain,Catalunya,Lewis Hamilton,2021
+Monaco,Monte Carlo,Max Verstappen,2021
+Azerbaijan,Baku,Sergio Perez,2021
+France,Circuit Paul Ricard,Max Verstappen,2021
+Styria,Red Bull Ring,Max Verstappen,2021
+Austria,Spielberg,Max Verstappen,2021
+Great Britain,Silverstone,Lewis Hamilton,2021
+Hungary,Hungaroring,Esteban Ocon,2021
+Belgium,Spa-Francorchamps,Max Verstappen,2021
+Netherlands,Zandvoort,Max Verstappen,2021
+Russia,Sochi Autodrom,Lewis Hamilton,2021
+Turkiye,Istanbul Park,Valtteri Bottas,2021
+United States,Austin,Max Verstappen,2021
+Mexico,Mexico City,Max Verstappen,2021
+Brazil,Interlagos,Lewis Hamilton,2021
+Qatar,Lusail,Lewis Hamilton,2021
+Saudi Arabia,Jeddah,Lewis Hamilton,2021
+Abu Dhabi,Yas Marina Circuit,Max Verstappen,2021
+Sakhir,Sahkir,Charles Leclerc,2022
+Saudi Arabia,Jeddah,Max Verstappen,2022
+Australia,Melbourne,Charles Leclerc,2022
+Italy,Autodromo Internazionale Enzo e Dino Ferrari,Max Verstappen,2022
+United States,Miami,Max Verstappen,2022
+Spain,Catalunya,Max Verstappen,2022
+Monaco,Monte Carlo,Sergio Perez,2022
+Azerbaijan,Baku,Max Verstappen,2022
+Canada,Montreal,Max Verstappen,2022
+Great Britain,Silverstone,Carlos Sainz,2022
+Austria,Spielberg,Charles Leclerc,2022
+France,Circuit Paul Ricard,Max Verstappen,2022
+Hungary,Hungaroring,Max Verstappen,2022
+Belgium,Spa-Francorchamps,Max Verstappen,2022
+Netherlands,Zandvoort,Max Verstappen,2022
+Italy,Monza,Max Verstappen,2022
+Singapore,Singapore,Sergio Perez,2022
+Japan,Suzuka,Max Verstappen,2022
+United States,Austin,Max Verstappen,2022
+Mexico,Mexico City,Max Verstappen,2022
+Brazil,Interlagos,George Russell,2022
+Abu Dhabi,Yas Marina Circuit,Max Verstappen,2022
+Sakhir,Sahkir,Max Verstappen,2023
+Saudi Arabia,Jeddah,Sergio Perez,2023
+Australia,Melbourne,Max Verstappen,2023
+Azerbaijan,Baku,Sergio Perez,2023
+United States,Miami,Max Verstappen,2023
+Monaco,Monte Carlo,Max Verstappen,2023
+Spain,Catalunya,Max Verstappen,2023
+Canada,Montreal,Max Verstappen,2023
+Austria,Spielberg,Max Verstappen,2023
+Great Britain,Silverstone,Max Verstappen,2023
+Hungary,Hungaroring,Max Verstappen,2023
+Belgium,Spa-Francorchamps,Max Verstappen,2023
+Netherlands,Zandvoort,Max Verstappen,2023
+Italy,Monza,Max Verstappen,2023
+Singapore,Singapore,Carlos Sainz,2023
+Japan,Suzuka,Max Verstappen,2023
+Qatar,Lusail,Max Verstappen,2023
+United States,Austin,Max Verstappen,2023
+Mexico,Mexico City,Max Verstappen,2023
+Brazil,Interlagos,Max Verstappen,2023
+United States,Austin,Max Verstappen,2023
+Abu Dhabi,Yas Marina Circuit,Max Verstappen,2023
+Sakhir,Sahkir,Max Verstappen,2024
+Saudi Arabia,Jeddah,Max Verstappen,2024
+Australia,Melbourne,Carlos Sainz,2024
+Japan,Suzuka,Max Verstappen,2024
+China,Shanghai,Max Verstappen,2024
+United States,Miami,Lando Norris,2024
+Italy,Autodromo Internazionale Enzo e Dino Ferrari,Max Verstappen,2024
+Monaco,Monte Carlo,Charles Leclerc,2024
+Canada,Montreal,Max Verstappen,2024
+Spain,Catalunya,Max Verstappen,2024
+Austria,Spielberg,George Russell,2024
+Great Britain,Silverstone,Lewis Hamilton,2024
+Hungary,Hungaroring,Oscar Piastri,2024
+Belgium,Spa-Francorchamps,Lewis Hamilton,2024
+Netherlands,Zandvoort,Lando Norris,2024
+Italy,Monza,Charles Leclerc,2024
+Azerbaijan,Baku,Oscar Piastri,2024
+Singapore,Singapore,Lando Norris,2024
+United States,Austin,Charles Leclerc,2024
+Mexico,Mexico City,Carlos Sainz,2024
+Brazil,Interlagos,Max Verstappen,2024
+United States,Las Vegas,George Russell,2024
+Qatar,Lusail,Max Verstappen,2024
+Abu Dhabi,Yas Marina Circuit,Lando Norris,2024
+Australia,Melbourne,Lando Norris,2025
+China,Shanghai,Oscar Piastri,2025
+Japan,Suzuka,Max Verstappen,2025
+Sakhir,Sahkir,Oscar Piastri,2025
+Saudi Arabia,Jeddah,Oscar Piastri,2025
+United States,Miami,Oscar Piastri,2025
+Italy,Autodromo Internazionale Enzo e Dino Ferrari,Max Verstappen,2025
+Monaco,Monte Carlo,Lando Norris,2025
+Spain,Catalunya,Oscar Piastri,2025
+Canada,Montreal,George Russell,2025
+Austria,Spielberg,Lando Norris,2025
+Great Britain,Silverstone,Lando Norris,2025
+Belgium,Spa-Francorchamps,Oscar Piastri,2025
+Hungary,Hungaroring,Lando Norris,2025
+Netherlands,Zandvoort,Oscar Piastri,2025
+Italy,Monza,Max Verstappen,2025
+Azerbaijan,Baku,Max Verstappen,2025
+Singapore,Singapore,George Russell,2025
+United States,Austin,Max Verstappen,2025
+Mexico,Mexico City,Lando Norris,2025
+Brazil,Interlagos,Lando Norris,2025
+United States,Las Vegas,Max Verstappen,2025
+Qatar,Lusail,Max Verstappen,2025
+Abu Dhabi,Yas Marina Circuit,Max Verstappen,2025

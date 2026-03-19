@@ -40,16 +40,20 @@
 <div class="page_contents">
     <button onclick="showPredictions()" class="predict_btn" id="predict_btn">➤ Predictions</button>
     <div class="predictions" id="predictions_content">
+        <h3>Most successful drivers at this circuit: </h3>
         {% for x,y in past_wins.items() %}
-            <p>{{x}} -> {{y}} %</p>
+            <p>{{x}} -> {{y}} wins</p>
         {% endfor %}
-
-        <p>It has rained during {{ wet_races[0] }} out of the last {{ wet_races[1] }} races</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in arcu placerat,
-             aliquam risus ac, ullamcorper elit. Proin eget ligula tincidunt, bibendum justo nec, pellentesque dui. 
-             Etiam in orci eu tellus elementum commodo. Vestibulum placerat finibus mi, in bibendum orci fringilla sit amet. 
-             Donec sit amet ligula vestibulum, vestibulum quam non, condimentum ipsum. Nulla nec lobortis metus. Nam vestibulum 
-             viverra dolor, et sollicitudin mauris maximus vitae.</p>
+        <h3>Most successful constructors at this circuit: </h3>
+        {% for x,y in constructors.items() %}
+            <p>{{x}} -> {{y}} wins </p>
+        {% endfor %}
+        <h3>Wet Races: </h3>
+        <p> It has rained during {{ wet_races[0] }} of the last {{ wet_races[1] }} races</p>
+        <h3>Safety Cars: </h3>
+        <p>A safety car was deployed during {{ sc[0] }} of the last {{ sc[1] }} races</p>
+        <h3>Red Flags: </h3>
+        <p>The red flag was waved during {{ red_flag[0] }} of the last {{ red_flag[1] }} races</p>
     </div>
     <div class="top">
         <div class="general_info">

@@ -14,16 +14,17 @@ stints_base = 'https://api.openf1.org/v1/stints'
 grid_base = 'https://api.openf1.org/v1/starting_grid'
 result_base = 'https://api.openf1.org/v1/session_result'
 weather_base = 'https://api.openf1.org/v1/weather'
+control_base = 'https://api.openf1.org/v1/race_control'
 
-pd.options.display.max_rows = 20
+# pd.options.display.max_rows = 20
 
-# filtered f1 winners dataset for predictions section for webpages for 2026 races
+# used one main dataset to create two filtered ones for the predictions section for webpages for 2026 races
+# filtered f1 wins dataset no. 1 (used to retrieve the wins of drivers since 2003 in the current 2026 grid)
 winners = pd.read_csv('f1_dataset_filtered.csv')
 
+# filtered f1 wins dataset no. 1 (used to retrieve the constructor wins from 2006-2025 at all tracks in the 2026 calendar)
+constructor_wins = pd.read_csv('constructor_winners.csv')
 
-# response = requests.get(sessions_url, params = params)
-# data = json.loads(response.json())
-# df = pd.DataFrame(data)
 
 def get_race(year, circuit):
 
@@ -234,6 +235,9 @@ def get_page_name(year, circuit):
             return key+season
 
 
+# FOLLOWING FUNCTIONS ARE USED FOR 2026 RACE PREDICTIONS
+
+# returns the 3 most successful drivers at the track based on past wins
 def get_possible_winners(circuit):
     filtered_wins = winners[winners["circuit"] == circuit]
 
@@ -243,14 +247,31 @@ def get_possible_winners(circuit):
 
     unique_ws = len(win_counts)
 
-    for x,y in winners_dict.items():
-        winners_dict[x] = round((y / unique_ws) * 100, 1)
+    # for x,y in winners_dict.items():
+    #     winners_dict[x] = round((y / unique_ws) * 100, 1)
 
     return (winners_dict)
 
 
-# for some reason comes with an error when 'Shanghai' is passed through? please fix
+#create function that returns most successful teams/constructors
+def get_team_wins(circuit):
+    filtered_wins = constructor_wins[constructor_wins["circuit"] == circuit]
 
+    team_win_counts = filtered_wins["team"].value_counts()
+
+    winners_dict = team_win_counts.head(3).to_dict()
+
+    unique_ws = len(team_win_counts)
+
+    # for x,y in winners_dict.items():
+    #     winners_dict[x] = round((y / unique_ws) * 100, 1)
+
+    return (winners_dict)
+
+
+
+# for some reason comes with an error when 'Shanghai' is passed through? please fix
+# returns the probability of the race being a wet race based on the last three races
 def is_wet_race(circuit):
 
     race_25 = get_race("2025", circuit)
@@ -314,12 +335,140 @@ def is_wet_race(circuit):
         
         race_num += 1
 
-    
+    chance = round((len(wet_races) / race_num * 100), 1)
+
+
     return len(wet_races), race_num
 
 
+# returns the probability of a safety car being deployed based on the last three races
+def safety_car_prob(circuit):
 
-# print(is_wet_race("Interlagos"))
+    race_25 = get_race("2025", circuit)
+    race_24 = get_race("2024", circuit)
+    race_23 = get_race("2023", circuit)
+
+    sc_count = 0
+    race_num = 0
+    
+
+    if race_25.empty == False:
+
+        params = {
+            "session_key" : race_25['session_key']
+        }
+
+        url = requests.Request('GET', control_base, params=params).prepare().url
+        response = requests.get(url)
+        results_25 = pd.DataFrame(response.json())
+
+        if results_25[results_25["category"] == "SafetyCar"].empty == False:
+            sc_count += 1
+
+        race_num += 1
+
+
+    if race_24.empty == False:
+
+        params_2 = {
+            "session_key" : race_24['session_key']
+        }
+
+        url_2 = requests.Request('GET', control_base, params=params_2).prepare().url
+        response_2 = requests.get(url_2)
+        results_24 = pd.DataFrame(response_2.json())
+
+        if results_24[results_24["category"] == "SafetyCar"].empty == False:
+            sc_count += 1
+                
+        race_num += 1
+
+    
+    if race_23.empty == False:
+
+        params_3 = {
+            "session_key" : race_23['session_key']
+        }
+
+        url_3 = requests.Request('GET', control_base, params=params_3).prepare().url
+        response_3 = requests.get(url_3)
+        results_23 = pd.DataFrame(response_3.json())
+
+        if results_23[results_23["category"] == "SafetyCar"].empty == False:
+            sc_count += 1
+        
+        race_num += 1
+
+    chance = round((sc_count / race_num * 100), 1)
+    
+    return sc_count, race_num
+    
+
+# returns the probability of a red flag based on the last three races
+
+def red_flag_prob(circuit):
+    race_25 = get_race("2025", circuit)
+    race_24 = get_race("2024", circuit)
+    race_23 = get_race("2023", circuit)
+
+    flag_count = 0
+    race_num = 0
+
+
+    if race_25.empty == False:
+
+        params = {
+            "session_key" : race_25['session_key']
+        }
+
+        url = requests.Request('GET', control_base, params=params).prepare().url
+        response = requests.get(url)
+        results_25 = pd.DataFrame(response.json())
+
+        if results_25[results_25["flag"] == "RED"].empty == False:
+            flag_count += 1
+
+        race_num += 1
+
+    if race_24.empty == False:
+
+        params_2 = {
+            "session_key" : race_24['session_key']
+        }
+
+        url_2 = requests.Request('GET', control_base, params=params_2).prepare().url
+        response_2 = requests.get(url_2)
+        results_24 = pd.DataFrame(response_2.json())
+
+        if results_24[results_24["flag"] == "RED"].empty == False:
+            flag_count += 1
+                
+        race_num += 1
+
+    
+    if race_23.empty == False:
+
+        params_3 = {
+            "session_key" : race_23['session_key']
+        }
+
+        url_3 = requests.Request('GET', control_base, params=params_3).prepare().url
+        response_3 = requests.get(url_3)
+        results_23 = pd.DataFrame(response_3.json())
+
+        if results_23[results_23["flag"] == "RED"].empty == False:
+            flag_count += 1
+        
+        race_num += 1
+
+    chance = round((flag_count / race_num * 100), 1)
+
+    return flag_count, race_num
+
+
+# print(safety_car_prob("Miami"))
+
+print(safety_car_prob("Interlagos"))
 
 # print(get_website_info("2025", "Sakhir"))
 
