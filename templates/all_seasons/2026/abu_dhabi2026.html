@@ -1,0 +1,188 @@
+{% extends 'race_template.html'%}
+
+{% block head %}
+<title>Abu Dhabi 2026 GP</title>
+{% endblock %}
+
+{% block body %}
+
+<!--following div block (and accompanying css) created by following w3schools tutorial: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal -->
+<div id="popup" class="popup">
+    <div class="popup_content">
+        <span class="exit">&times;</span>
+        <h2>Add to which watchlist?</h2>
+        <!--loops through all watchlists-->
+        {% for watchlist in watchlists %}
+            <div class="select_wl">
+                <h3><strong>{{watchlist.name}}</strong></h3>
+                <!--if the watchlist already contains this race, add a button to remove it-->
+                {% if watchlist.id in all_ids %}
+                    {% for l in listed %}
+                        {% if l.watchlist_id == watchlist.id %} 
+                            <button><a href="/delete_from_list/{{l.id}}">Remove from watchlist</a></button>
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    <!--button to add the race to a watchlist-->
+                    <form method="POST" action="/all_seasons/2026/abu_dhabi2026/add_race/{{watchlist.id}}">
+                        {{list_contents.hidden_tag()}}
+                        {{list_contents.content_submit}}
+                    </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="title">
+    <h1>{{web_info['meeting_official_name']}}</h1>
+</div>
+<div class="page_contents">
+    <button onclick="showPredictions()" class="predict_btn" id="predict_btn">➤ Predictions</button>
+    <div class="predictions" id="predictions_content">
+        <h3>Most successful drivers at this circuit: </h3>
+        {% for x,y in past_wins.items() %}
+            <p>{{x}} -> {{y}} wins</p>
+        {% endfor %}
+        <h3>Most successful constructors at this circuit: </h3>
+        {% for x,y in constructors.items() %}
+            <p>{{x}} -> {{y}} wins </p>
+        {% endfor %}
+        <h3>Wet Races: </h3>
+        <p> It has rained during {{ wet_races[0] }} of the last {{ wet_races[1] }} races</p>
+        <h3>Safety Cars: </h3>
+        <p>A safety car was deployed during {{ sc[0] }} of the last {{ sc[1] }} races</p>
+        <h3>Red Flags: </h3>
+        <p>The red flag was waved during {{ red_flag[0] }} of the last {{ red_flag[1] }} races</p>
+    </div>
+    <div class="top">
+        <div class="general_info">
+            <h2>General Information:</h2>
+            <p><strong>Location:</strong> {{web_info['location']}}</p>
+            <p><strong>Circuit Type:</strong> {{web_info['circuit_type']}}</p>
+            <p><strong>Started:</strong> {{web_info['date_start']}}</p>
+            <p><strong>Ended:</strong> {{web_info['date_end']}}</p>
+        </div>
+        <div class="ratings">
+            <h2>Ratings:</h2>
+            <div class="add_rating">
+                {% if personal_rating == None %}
+                    <h3>Your Rating: --/5 </h3>
+                    <form method="POST" action="/all_seasons/2026/abu_dhabi2026" class="choose_rating">
+                        {{form1.hidden_tag()}}
+                        {{form1.rating}}<br>
+                        {{form1.rating_submit}}
+                    </form>
+                {% else %}
+                    <h3>Your Rating: {{personal_rating.ratingNum}}/5 </h3>
+                    <button><a href="/delete_rating/{{personal_rating.id}}">Delete Rating</a></button>
+                {% endif %}
+            </div>
+            <h3>Overall Rating: {{ avg_rating }}</h3>
+            <div class="add_watchlists">
+                <h2>Watchlists:</h2>
+                {% if watchlists | length < 1 %}
+                    <p><italic>Create a watchlist to add this race to!</italic></p>
+                {% else %}
+                    <button id="add_to_wl">Add to watchlist...</button>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="review_section">
+        <h2>Reviews</h2>
+        <!--Users can only post one review per race-->
+        {% if personal_review == None %}
+        <div class="add_review">
+            <form method="POST" action="/all_seasons/2026/abu_dhabi2026">
+                {{form2.hidden_tag()}}
+                {{form2.content}}
+                {{form2.review_submit}}
+            </form>
+        </div>
+        {% else %}
+        <h3>You have already posted a review<h3>
+        {% endif %}
+        {% if reviews | length < 1%}
+        <h3>No reviews yet...</h3>
+        {% else %}
+        <div class="all_reviews">
+            {% for review in reviews %}
+                <div class="created_reviews">
+                    <h4>Review by {{review.username}}</h4>
+                    <p>{{review.content}}</p>
+                    {% if current_user.id == review.user_id %}
+                        <button><a href="/delete/{{review.id}}">Delete</a></button>
+                    {% endif %}
+                    <button onclick="makeReply()">Reply</button>
+                </div>
+                <div id="add_reply" class="add_reply">
+                    <form method="POST" action="/post_reply/{{review.id}}">
+                        {{form_reply.hidden_tag()}}
+                        {{form_reply.content}}
+                        {{form_reply.reply_submit}}
+                     </form>
+                </div>
+                {% for reply in replies %}
+                    {% if review.id == reply.review_id %}
+                        <div class="all_replies">
+                            <div class="created_replies">
+                                <h4>Reply by {{reply.username}}</h4>
+                                <p>{{reply.content}}</p>
+                                {% if current_user.id == reply.user_id %}
+                                    <button><a href="/delete_reply/{{reply.id}}">Delete</a></button>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
+                <script>
+                    function makeReply() {
+                        const tboxes = document.getElementsByClassName("add_reply");
+                        for (let i = 0; i < tboxes.length; i++){
+                            if (tboxes[i].style.display === "none") {
+                                tboxes[i].style.display = "block";
+                            } else {
+                                tboxes[i].style.display = "none";
+                            }
+                        }
+                    }
+                    
+                    // js below from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal 
+
+                    let popup = document.getElementById("popup");
+
+                    let wl_btn = document.getElementById("add_to_wl");
+
+                    let span = document.getElementsByClassName("exit")[0];
+
+                    wl_btn.onclick = function() { popup.style.display = "block"; }
+
+                    span.onclick = function() { popup.style.display = "none"; }
+
+                    window.onclick = function(event) {
+                        if (event.target == popup) {
+                            popup.display.style = "none";
+                        }
+                    }
+
+                    function showPredictions() {
+                        let p = document.getElementById("predictions_content")
+
+                        if (p.style.display === "none"){
+                            p.style.display = "block"
+                            document.getElementById("predict_btn").innerHTML = "⮟ Predictions"
+                        } else {
+                            p.style.display = "none"
+                            document.getElementById("predict_btn").innerHTML = "➤ Predictions"
+                        }
+                    }
+
+                </script>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

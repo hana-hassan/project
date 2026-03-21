@@ -365,20 +365,39 @@ def add_page_contents(season, race):
         web_info = get_website_info(year, circuit_name)
         watchlists = Watchlist.query.filter_by(user_id = current_user.id).all()
         listed = WatchlistContent.query.filter_by(year = year, circuit = circuit_name).all()
-        past_wins = get_possible_winners(circuit_name)
-        wet_races = is_wet_race(circuit_name)
-        constructors = get_team_wins(circuit_name)
-        sc = safety_car_prob(circuit_name)
-        red_flag = red_flag_prob(circuit_name)
         all_ids = []
 
         for list in listed:
             all_ids.append(list.watchlist_id)
-        
-        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
-                               personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
-                               listed = listed, all_ids = all_ids, past_wins = past_wins, wet_races = wet_races, constructors = constructors, sc = sc, red_flag = red_flag)
-    
+
+        if (year == 2026):
+            past_wins = get_possible_winners(circuit_name)
+            constructors = get_team_wins(circuit_name)
+            got_stats = True
+            wet_races = is_wet_race(circuit_name)
+            sc = safety_car_prob(circuit_name)
+            red_flag = red_flag_prob(circuit_name)
+            print(wet_races)
+            print(red_flag)
+            print(sc)
+            # try:
+            #     wet_races = is_wet_race(circuit_name)
+            #     sc = safety_car_prob(circuit_name)
+            #     red_flag = red_flag_prob(circuit_name)
+            # except:
+            #     wet_races = "0"
+            #     sc = "0"
+            #     red_flag = "0"
+            #     got_stats = False
+
+            return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
+                                personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
+                                listed = listed, all_ids = all_ids, past_wins = past_wins, constructors = constructors, wet_races = wet_races, sc = sc, red_flag = red_flag, gs = got_stats)
+        else:
+            return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
+                            personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
+                            listed = listed, all_ids = all_ids)
+
 
 # delete a review
 #@app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])

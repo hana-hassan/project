@@ -37,7 +37,12 @@ def get_race(year, circuit):
 
     race_url = requests.Request('GET', sessions_base, params=params).prepare().url
     response_race = requests.get(race_url)
-    race = pd.DataFrame(response_race.json())
+    race_dict = response_race.json()
+    if (race_dict == {'detail': 'No results found.'}):
+        return pd.DataFrame({})
+
+    race = pd.DataFrame(race_dict)
+    # race = pd.DataFrame(response_race.json())
 
     # session key is a global variable to make filtering the other DataFrames easier
     # global selected_session_key 
@@ -219,7 +224,7 @@ circuits = {'aus' : 'Melbourne', 'china' : 'Shanghai', 'japan' : 'Suzuka', 'bahr
             'belgium' : 'Spa-Francorchamps', 'hungary' : 'Hungaroring', 'dutch' : 'Zandvoort', 
             'monza' : 'Monza', 'baku' : 'Baku', 'singapore' : 'Singapore', 'cota' : 'Austin',
             'mexico' : 'Mexico City', 'brazil' : 'Interlagos', 'vegas' : 'Las Vegas', 'qatar' : 'Lusail',
-            'abu_dhabi' : 'Yas Marina Circuit'}
+            'abu_dhabi' : 'Yas Marina Circuit', 'madrid' : 'Madring'}
 
 def get_circuit_name (page_name):
     
@@ -269,14 +274,27 @@ def get_team_wins(circuit):
     return (winners_dict)
 
 
+def get_session_keys(circuit):
+    return 0
 
 # for some reason comes with an error when 'Shanghai' is passed through? please fix
 # returns the probability of the race being a wet race based on the last three races
 def is_wet_race(circuit):
 
-    race_25 = get_race("2025", circuit)
-    race_24 = get_race("2024", circuit)
-    race_23 = get_race("2023", circuit)
+    try:
+        race_25 = get_race("2025", circuit)
+    except:
+        race_25 = pd.DataFrame({})
+
+    try:
+        race_24 = get_race("2024", circuit)
+    except:
+        race_24 = pd.DataFrame({})
+
+    try:
+        race_23 = get_race("2023", circuit)
+    except:
+        race_23 = pd.DataFrame({})
 
     wet_races = []
     race_num = 0
@@ -338,7 +356,7 @@ def is_wet_race(circuit):
     chance = round((len(wet_races) / race_num * 100), 1)
 
 
-    return len(wet_races), race_num
+    return [len(wet_races), race_num]
 
 
 # returns the probability of a safety car being deployed based on the last three races
@@ -401,7 +419,7 @@ def safety_car_prob(circuit):
 
     chance = round((sc_count / race_num * 100), 1)
     
-    return sc_count, race_num
+    return [sc_count, race_num]
     
 
 # returns the probability of a red flag based on the last three races
@@ -463,14 +481,35 @@ def red_flag_prob(circuit):
 
     chance = round((flag_count / race_num * 100), 1)
 
-    return flag_count, race_num
+    return [flag_count, race_num]
 
 
-# print(safety_car_prob("Miami"))
 
-print(safety_car_prob("Interlagos"))
+# print(get_race("2023","Shanghai"))
+print(is_wet_race("Shanghai"))
 
-# print(get_website_info("2025", "Sakhir"))
+# params = {
+#     'year': "2023", 
+#     'circuit_short_name' : "Shanghai", 
+#     'session_type' : 'Race',
+#     'session_name' : 'Race'
+# }
+
+# race_url = requests.Request('GET', sessions_base, params=params).prepare().url
+# response_race = requests.get(race_url)
+# dict = response_race.json()
+# # race = pd.DataFrame([dict])
+
+# if (dict == {'detail': 'No results found.'}):
+#     print((pd.DataFrame({})).empty)
+# else:
+#     print(pd.DataFrame(dict))
+
+# response = urlopen('https://api.openf1.org/v1/sessions?circuit_short_name=Shanghai&session_name=Race&session_name=Race&year=2023')
+# data = json.loads(response.read().decode('utf-8'))
+# print(pd.DataFrame(data))
+
+# print(get_race("2023", "Shanghai"))
 
 # print(get_page_name(2025, "Melbourne"))
 
@@ -489,6 +528,8 @@ s_key = get_race("2026", "Melbourne")["session_key"]
 # results = pd.DataFrame(data)
 
 # print(results["circuit_short_name"])
+
+
 
 
 

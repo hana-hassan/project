@@ -130,38 +130,32 @@ def init_app(url_path):
     Input('years','value'), 
     Input('circuits', 'value'),
     Input('drivers', 'value'),
-    #Input('drivers_sector', 'value'),
     )
 
-# def init_callbacks(app):
-#     @app.callback(
-#         Output('lap_times', 'figure'),
-#         Input('years','value'),
-#         Input('circuits', 'value')
-#     )
 
 def update_graphs(selected_year, selected_circuit, selected_driver):
-    if selected_year:
-        if selected_circuit:
+    # if selected_year:
+    #     if selected_circuit:
 
-            #filter dataset so only specific race pops up
-            df_year = df[df["year"] == selected_year]
-            filtered_df = df_year[df_year["circuit_short_name"] == selected_circuit]
+    #         #filter dataset so only specific race pops up
+    #         df_year = df[df["year"] == selected_year]
+    #         filtered_df = df_year[df_year["circuit_short_name"] == selected_circuit]
 
-            if df_year.empty:
-                print("No Sessions available")
+    #         if df_year.empty:
+    #             print("No Sessions available")
     
-    params = {
-        'year' : selected_year,
-        'circuit_short_name' : selected_circuit,
-        'session_type' : 'Race'
-    }
+    # params = {
+    #     'year' : selected_year,
+    #     'circuit_short_name' : selected_circuit,
+    #     'session_type' : 'Race'
+    # }
 
     
-    url_race = requests.Request('GET', base_url_sessions, params=params).prepare().url
-    response_race = requests.get(url_race)
-    race = pd.DataFrame(response_race.json())
+    # url_race = requests.Request('GET', base_url_sessions, params=params).prepare().url
+    # response_race = requests.get(url_race)
+    # race = pd.DataFrame(response_race.json())
 
+    race = get_race(selected_year, selected_circuit)
 
     s_key = race["session_key"]
 

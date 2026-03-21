@@ -83,7 +83,7 @@ p {
     border-radius: 15px;
     width: 100%;
     margin-bottom: 20px;
-    display: none;
+    display: block;
 }
 
 .top{
