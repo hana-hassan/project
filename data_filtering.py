@@ -25,6 +25,9 @@ winners = pd.read_csv('f1_dataset_filtered.csv')
 # filtered f1 wins dataset no. 1 (used to retrieve the constructor wins from 2006-2025 at all tracks in the 2026 calendar)
 constructor_wins = pd.read_csv('constructor_winners.csv')
 
+# attempt to make a csv file to hold "stats" for races since retrieving info from the API at all times is not reliable
+races = pd.read_csv('races_stats.csv')
+
 
 def get_race(year, circuit):
 
@@ -275,235 +278,139 @@ def get_team_wins(circuit):
 
 
 def get_session_keys(circuit):
+    years = ["2023", "2024", "2025"]
+    keys = []
+    seasons_dict = {}
+
+
+    for year in years:
+
+        if get_race(year, circuit).empty:
+            continue
+        else:
+            key = get_race(year,circuit)["session_key"].to_list()
+            keys.append(key[0])
+            seasons_dict[key[0]] = int(year)
+            
+
+    # return keys,seasons_dict
     return 0
 
-# for some reason comes with an error when 'Shanghai' is passed through? please fix
+
 # returns the probability of the race being a wet race based on the last three races
 def is_wet_race(circuit):
 
-    try:
-        race_25 = get_race("2025", circuit)
-    except:
-        race_25 = pd.DataFrame({})
+    filtered_races = races[races["circuit"] == circuit]
 
-    try:
-        race_24 = get_race("2024", circuit)
-    except:
-        race_24 = pd.DataFrame({})
+    total_races = len(filtered_races)
 
-    try:
-        race_23 = get_race("2023", circuit)
-    except:
-        race_23 = pd.DataFrame({})
+    wet_races = filtered_races[filtered_races["wet_race"] == True]
 
-    wet_races = []
-    race_num = 0
-    
+    return len(wet_races), total_races
 
-    if race_25.empty == False:
+    # keys = get_session_keys(circuit)[0]
+    # seasons_dict = get_session_keys(circuit)[1]
+    # wet_races = []
+    # # race_num = len(keys)
 
-        params = {
-            "session_key" : race_25['session_key']
-        }
+    # for key in keys:
 
-        url = requests.Request('GET', weather_base, params=params).prepare().url
-        response = requests.get(url)
-        results_25 = pd.DataFrame(response.json())
+    #     params = {
+    #         "session_key" : key
+    #     }
 
-        for x in list(results_25["rainfall"].to_dict().values()):
-            if x == 1:
-                wet_races.append(True)
-                break
+    #     url = requests.Request('GET', stints_base, params=params).prepare().url
+    #     response = requests.get(url)
+    #     results = pd.DataFrame(response.json())
 
-        race_num += 1
+    #     for x in list(results["compound"]):
+    #         if x == "WET" or x == "INTERMEDIATE":
+    #             races.loc[(races["circuit"] == circuit) & (races['year'] == seasons_dict.get(key)), "wet_race"] = True
+    #             wet_races.append(True)
+    #             break
 
-
-    if race_24.empty == False:
-
-        params_2 = {
-            "session_key" : race_24['session_key']
-        }
-
-        url_2 = requests.Request('GET', weather_base, params=params_2).prepare().url
-        response_2 = requests.get(url_2)
-        results_24 = pd.DataFrame(response_2.json())
-
-        for x in list(results_24["rainfall"].to_dict().values()):
-            if x == 1:
-                wet_races.append(True)
-                break
-                
-        race_num += 1
-
-    
-    if race_23.empty == False:
-
-        params_3 = {
-            "session_key" : race_23['session_key']
-        }
-
-        url_3 = requests.Request('GET', weather_base, params=params_3).prepare().url
-        response_3 = requests.get(url_3)
-        results_23 = pd.DataFrame(response_3.json())
-
-        for x in list(results_23["rainfall"].to_dict().values()):
-            if x == 1:
-                wet_races.append(True)
-                break
         
-        race_num += 1
+    # # return [len(wet_races), race_num]
+    # return 0
 
-    chance = round((len(wet_races) / race_num * 100), 1)
 
 
-    return [len(wet_races), race_num]
-
+# print(is_wet_race("Interlagos"))
 
 # returns the probability of a safety car being deployed based on the last three races
-def safety_car_prob(circuit):
+def is_safety_car(circuit):
 
-    race_25 = get_race("2025", circuit)
-    race_24 = get_race("2024", circuit)
-    race_23 = get_race("2023", circuit)
+    filtered_races = races[races["circuit"] == circuit]
 
-    sc_count = 0
-    race_num = 0
-    
+    total_races = len(filtered_races)
 
-    if race_25.empty == False:
+    sc_count = len(filtered_races[filtered_races["safety_car"] == True])
 
-        params = {
-            "session_key" : race_25['session_key']
-        }
+    return sc_count, total_races
 
-        url = requests.Request('GET', control_base, params=params).prepare().url
-        response = requests.get(url)
-        results_25 = pd.DataFrame(response.json())
+    # keys = get_session_keys(circuit)[0]
+    # seasons_dict = get_session_keys(circuit)[1]
+    # sc_count = 0
+    # race_num = len(keys)
 
-        if results_25[results_25["category"] == "SafetyCar"].empty == False:
-            sc_count += 1
+    # for key in keys:
+    #     params = {
+    #         "session_key" : key
+    #     }
 
-        race_num += 1
+    #     url = requests.Request('GET', control_base, params=params).prepare().url
+    #     response = requests.get(url)
+    #     results = pd.DataFrame(response.json())
 
-
-    if race_24.empty == False:
-
-        params_2 = {
-            "session_key" : race_24['session_key']
-        }
-
-        url_2 = requests.Request('GET', control_base, params=params_2).prepare().url
-        response_2 = requests.get(url_2)
-        results_24 = pd.DataFrame(response_2.json())
-
-        if results_24[results_24["category"] == "SafetyCar"].empty == False:
-            sc_count += 1
-                
-        race_num += 1
+    #     if results[results["category"] == "SafetyCar"].empty == False:
+    #         races.loc[(races["circuit"] == circuit) & (races['year'] == seasons_dict.get(key)), "safety_car"] = True
+    #         sc_count += 1
 
     
-    if race_23.empty == False:
+    # return [sc_count, race_num]
 
-        params_3 = {
-            "session_key" : race_23['session_key']
-        }
-
-        url_3 = requests.Request('GET', control_base, params=params_3).prepare().url
-        response_3 = requests.get(url_3)
-        results_23 = pd.DataFrame(response_3.json())
-
-        if results_23[results_23["category"] == "SafetyCar"].empty == False:
-            sc_count += 1
-        
-        race_num += 1
-
-    chance = round((sc_count / race_num * 100), 1)
-    
-    return [sc_count, race_num]
+# print(safety_car_prob("Madring"))
     
 
 # returns the probability of a red flag based on the last three races
 
-def red_flag_prob(circuit):
-    race_25 = get_race("2025", circuit)
-    race_24 = get_race("2024", circuit)
-    race_23 = get_race("2023", circuit)
+def is_red_flag(circuit):
 
-    flag_count = 0
-    race_num = 0
+    filtered_races = races[races["circuit"] == circuit]
 
+    total_races = len(filtered_races)
 
-    if race_25.empty == False:
+    flag_count = len(filtered_races[filtered_races["red_flag"] == True])
 
-        params = {
-            "session_key" : race_25['session_key']
-        }
+    return flag_count, total_races
 
-        url = requests.Request('GET', control_base, params=params).prepare().url
-        response = requests.get(url)
-        results_25 = pd.DataFrame(response.json())
+    # keys = get_session_keys(circuit)[0]
+    # seasons_dict = get_session_keys(circuit)[1]
+    # flag_count = 0
+    # race_num = len(keys)
 
-        if results_25[results_25["flag"] == "RED"].empty == False:
-            flag_count += 1
-
-        race_num += 1
-
-    if race_24.empty == False:
-
-        params_2 = {
-            "session_key" : race_24['session_key']
-        }
-
-        url_2 = requests.Request('GET', control_base, params=params_2).prepare().url
-        response_2 = requests.get(url_2)
-        results_24 = pd.DataFrame(response_2.json())
-
-        if results_24[results_24["flag"] == "RED"].empty == False:
-            flag_count += 1
-                
-        race_num += 1
-
-    
-    if race_23.empty == False:
-
-        params_3 = {
-            "session_key" : race_23['session_key']
-        }
-
-        url_3 = requests.Request('GET', control_base, params=params_3).prepare().url
-        response_3 = requests.get(url_3)
-        results_23 = pd.DataFrame(response_3.json())
-
-        if results_23[results_23["flag"] == "RED"].empty == False:
-            flag_count += 1
+    # for key in keys:
         
-        race_num += 1
+    #     params = {
+    #         "session_key" : key
+    #     }
 
-    chance = round((flag_count / race_num * 100), 1)
+    #     url = requests.Request('GET', control_base, params=params).prepare().url
+    #     response = requests.get(url)
+    #     results_25 = pd.DataFrame(response.json())
 
-    return [flag_count, race_num]
+    #     if results_25[results_25["flag"] == "RED"].empty == False:
+    #         races.loc[(races["circuit"] == circuit) & (races['year'] == seasons_dict.get(key)), "red_flag"] = True
+    #         flag_count += 1
 
 
+    # # chance = round((flag_count / race_num * 100), 1)
 
-# print(get_race("2023","Shanghai"))
-print(is_wet_race("Shanghai"))
+    # return [flag_count, race_num]
 
-# params = {
-#     'year': "2023", 
-#     'circuit_short_name' : "Shanghai", 
-#     'session_type' : 'Race',
-#     'session_name' : 'Race'
-# }
-
-# race_url = requests.Request('GET', sessions_base, params=params).prepare().url
-# response_race = requests.get(race_url)
-# dict = response_race.json()
-# # race = pd.DataFrame([dict])
-
-# if (dict == {'detail': 'No results found.'}):
-#     print((pd.DataFrame({})).empty)
-# else:
-#     print(pd.DataFrame(dict))
+# print(is_wet_race("Interlagos"))
+# print(is_safety_car("Interlagos"))
+# print(is_red_flag("Interlagos"))
 
 # response = urlopen('https://api.openf1.org/v1/sessions?circuit_short_name=Shanghai&session_name=Race&session_name=Race&year=2023')
 # data = json.loads(response.read().decode('utf-8'))
@@ -513,7 +420,7 @@ print(is_wet_race("Shanghai"))
 
 # print(get_page_name(2025, "Melbourne"))
 
-s_key = get_race("2026", "Melbourne")["session_key"]
+# s_key = get_race("2026", "Melbourne")["session_key"]
 
 # params = {"session_key" : s_key}
 

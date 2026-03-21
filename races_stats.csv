@@ -1,0 +1,71 @@
+circuit,winner_name,team,year,wet_race,red_flag,safety_car
+Sahkir,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Jeddah,Sergio Perez,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Melbourne,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,TRUE,TRUE
+Baku,Sergio Perez,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Miami,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Monte Carlo,Max Verstappen,Red Bull Racing Honda RBPT,2023,TRUE,FALSE,FALSE
+Catalunya,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Montreal,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Spielberg,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Silverstone,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Hungaroring,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Spa-Francorchamps,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Zandvoort,Max Verstappen,Red Bull Racing Honda RBPT,2023,TRUE,TRUE,TRUE
+Monza,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Singapore,Carlos Sainz,Ferrari,2023,FALSE,FALSE,TRUE
+Suzuka,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Lusail,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Austin,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Mexico City,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,TRUE,TRUE
+Interlagos,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,TRUE,TRUE
+Las Vegas,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,TRUE
+Yas Marina Circuit,Max Verstappen,Red Bull Racing Honda RBPT,2023,FALSE,FALSE,FALSE
+Sahkir,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,FALSE,FALSE
+Jeddah,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,FALSE,TRUE
+Melbourne,Carlos Sainz,Ferrari,2024,FALSE,FALSE,TRUE
+Suzuka,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,TRUE,FALSE
+Shanghai,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,FALSE,TRUE
+Miami,Lando Norris,McLaren Mercedes,2024,FALSE,FALSE,FALSE
+Imola,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,FALSE,FALSE
+Monte Carlo,Charles Leclerc,Ferrari,2024,FALSE,TRUE,FALSE
+Montreal,Max Verstappen,Red Bull Racing Honda RBPT,2024,TRUE,FALSE,TRUE
+Catalunya,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,FALSE,FALSE
+Spielberg,George Russell,Mercedes,2024,FALSE,FALSE,TRUE
+Silverstone,Lewis Hamilton,Mercedes,2024,TRUE,FALSE,FALSE
+Hungaroring,Oscar Piastri,McLaren Mercedes,2024,FALSE,FALSE,FALSE
+Spa-Francorchamps,Lewis Hamilton,Mercedes,2024,FALSE,FALSE,FALSE
+Zandvoort,Lando Norris,McLaren Mercedes,2024,FALSE,FALSE,FALSE
+Monza,Charles Leclerc,Ferrari,2024,FALSE,FALSE,FALSE
+Baku,Oscar Piastri,McLaren Mercedes,2024,FALSE,FALSE,TRUE
+Singapore,Lando Norris,McLaren Mercedes,2024,FALSE,FALSE,FALSE
+Austin,Charles Leclerc,Ferrari,2024,FALSE,FALSE,TRUE
+Mexico City,Carlos Sainz,Ferrari,2024,FALSE,FALSE,TRUE
+Interlagos,Max Verstappen,Red Bull Racing Honda RBPT,2024,TRUE,TRUE,TRUE
+Las Vegas,George Russell,Mercedes,2024,FALSE,FALSE,FALSE
+Lusail,Max Verstappen,Red Bull Racing Honda RBPT,2024,FALSE,FALSE,TRUE
+Yas Marina Circuit,Lando Norris,McLaren Mercedes,2024,FALSE,FALSE,TRUE
+Melbourne,Lando Norris,McLaren,2025,TRUE,FALSE,TRUE
+Shanghai,Oscar Piastri,McLaren,2025,FALSE,FALSE,FALSE
+Suzuka,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,FALSE
+Sahkir,Oscar Piastri,McLaren,2025,FALSE,FALSE,FALSE
+Jeddah,Oscar Piastri,McLaren,2025,FALSE,FALSE,TRUE
+Miami,Oscar Piastri,McLaren,2025,FALSE,FALSE,FALSE
+Imola,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,TRUE
+Monte Carlo,Lando Norris,McLaren,2025,FALSE,FALSE,TRUE
+Catalunya,Oscar Piastri,McLaren,2025,FALSE,FALSE,TRUE
+Montreal,George Russell,Mercedes,2025,FALSE,FALSE,TRUE
+Spielberg,Lando Norris,McLaren,2025,FALSE,FALSE,TRUE
+Silverstone,Lando Norris,McLaren,2025,TRUE,FALSE,TRUE
+Spa-Francorchamps,Oscar Piastri,McLaren,2025,TRUE,TRUE,FALSE
+Hungaroring,Lando Norris,McLaren,2025,FALSE,FALSE,FALSE
+Zandvoort,Oscar Piastri,McLaren,2025,FALSE,FALSE,TRUE
+Monza,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,FALSE
+Baku,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,TRUE
+Singapore,George Russell,Mercedes,2025,FALSE,FALSE,FALSE
+Austin,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,TRUE
+Mexico City,Lando Norris,McLaren,2025,FALSE,FALSE,TRUE
+Interlagos,Lando Norris,McLaren,2025,FALSE,FALSE,TRUE
+Las Vegas,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,TRUE
+Lusail,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,TRUE
+Yas Marina Circuit,Max Verstappen,Red Bull Racing,2025,FALSE,FALSE,FALSE

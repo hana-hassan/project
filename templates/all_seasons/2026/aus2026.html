@@ -38,8 +38,8 @@
     <h1>{{web_info['meeting_official_name']}}</h1>
 </div>
 <div class="page_contents">
-    <button onclick="showPredictions()" class="predict_btn" id="predict_btn">➤ Predictions</button>
-    <div class="predictions" id="predictions_content">
+    <button onclick="showStats()" class="stats_btn" id="stats_btn">➤ Past Race Stats</button>
+    <div class="stats" id="stats_content">
         <h3>Most successful drivers at this circuit: </h3>
         {% for x,y in past_wins.items() %}
             <p>{{x}} -> {{y}} wins</p>
@@ -49,11 +49,11 @@
             <p>{{x}} -> {{y}} wins </p>
         {% endfor %}
         <h3>Wet Races: </h3>
-        <p> It has rained during {{ wet_races[0] }} of the last {{ wet_races[1] }} races</p>
+        <p>It has rained significantly during {{ wet_races[0] }} of the last {{ wet_races[1] }} races</p>
         <h3>Safety Cars: </h3>
         <p>A safety car was deployed during {{ sc[0] }} of the last {{ sc[1] }} races</p>
         <h3>Red Flags: </h3>
-        <p>The red flag was waved during {{ red_flag[0] }} of the last {{ red_flag[1] }} races</p>
+        <p>A red flag was waved during {{ red_flag[0] }} of the last {{ red_flag[1] }} races</p>
     </div>
     <div class="top">
         <div class="general_info">
@@ -138,53 +138,54 @@
                         </div>
                     {% endif %}
                 {% endfor %}
-                <!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
-                <script>
-                    function makeReply() {
-                        const tboxes = document.getElementsByClassName("add_reply");
-                        for (let i = 0; i < tboxes.length; i++){
-                            if (tboxes[i].style.display === "none") {
-                                tboxes[i].style.display = "block";
-                            } else {
-                                tboxes[i].style.display = "none";
-                            }
-                        }
-                    }
-                    
-                    // js below from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal 
-
-                    let popup = document.getElementById("popup");
-
-                    let wl_btn = document.getElementById("add_to_wl");
-
-                    let span = document.getElementsByClassName("exit")[0];
-
-                    wl_btn.onclick = function() { popup.style.display = "block"; }
-
-                    span.onclick = function() { popup.style.display = "none"; }
-
-                    window.onclick = function(event) {
-                        if (event.target == popup) {
-                            popup.display.style = "none";
-                        }
-                    }
-
-                    function showPredictions() {
-                        let p = document.getElementById("predictions_content")
-
-                        if (p.style.display === "none"){
-                            p.style.display = "block"
-                            document.getElementById("predict_btn").innerHTML = "⮟ Predictions"
-                        } else {
-                            p.style.display = "none"
-                            document.getElementById("predict_btn").innerHTML = "➤ Predictions"
-                        }
-                    }
-
-                </script>
             {% endfor %}
         </div>
         {% endif %}
     </div>
 </div>
+
+<!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
+<script>
+    function makeReply() {
+        const tboxes = document.getElementsByClassName("add_reply");
+        for (let i = 0; i < tboxes.length; i++){
+            if (tboxes[i].style.display === "none") {
+                tboxes[i].style.display = "block";
+            } else {
+                tboxes[i].style.display = "none";
+            }
+        }
+    }
+    
+    // js below from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal 
+
+    let popup = document.getElementById("popup");
+
+    let wl_btn = document.getElementById("add_to_wl");
+
+    let span = document.getElementsByClassName("exit")[0];
+
+    wl_btn.onclick = function() { popup.style.display = "block"; }
+
+    span.onclick = function() { popup.style.display = "none"; }
+
+    window.onclick = function(event) {
+        if (event.target == popup) {
+            popup.display.style = "none";
+        }
+    }
+
+    function showStats() {
+        let p = document.getElementById("stats_content")
+
+        if (p.style.display === "none"){
+            p.style.display = "block"
+            document.getElementById("stats_btn").innerHTML = "⮟ Past Race Stats"
+        } else {
+            p.style.display = "none"
+            document.getElementById("stats_btn").innerHTML = "➤ Past Race Stats"
+        }
+    }
+
+</script>
 {% endblock %}

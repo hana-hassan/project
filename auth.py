@@ -7,7 +7,7 @@ from wtforms import StringField, PasswordField, EmailField, SubmitField, RadioFi
 from wtforms.validators import InputRequired, Length, ValidationError, Email
 from flask_bcrypt import Bcrypt
 from dash_app import visualisations
-from data_filtering import get_website_info, get_circuit_name, get_page_name, get_possible_winners, is_wet_race, get_team_wins, red_flag_prob, safety_car_prob
+from data_filtering import get_website_info, get_circuit_name, get_page_name, get_possible_winners, is_wet_race, get_team_wins, is_red_flag, is_safety_car
 
 app = Flask(__name__)
 
@@ -363,6 +363,11 @@ def add_page_contents(season, race):
         reviews = Review.query.filter_by(year=year, circuit=circuit_name).all()
         replies = Reply.query.all()
         web_info = get_website_info(year, circuit_name)
+        past_wins = get_possible_winners(circuit_name)
+        constructors = get_team_wins(circuit_name)
+        wet_races = is_wet_race(circuit_name)
+        sc = is_safety_car(circuit_name)
+        red_flag = is_red_flag(circuit_name)
         watchlists = Watchlist.query.filter_by(user_id = current_user.id).all()
         listed = WatchlistContent.query.filter_by(year = year, circuit = circuit_name).all()
         all_ids = []
@@ -370,33 +375,20 @@ def add_page_contents(season, race):
         for list in listed:
             all_ids.append(list.watchlist_id)
 
-        if (year == 2026):
-            past_wins = get_possible_winners(circuit_name)
-            constructors = get_team_wins(circuit_name)
-            got_stats = True
-            wet_races = is_wet_race(circuit_name)
-            sc = safety_car_prob(circuit_name)
-            red_flag = red_flag_prob(circuit_name)
-            print(wet_races)
-            print(red_flag)
-            print(sc)
-            # try:
-            #     wet_races = is_wet_race(circuit_name)
-            #     sc = safety_car_prob(circuit_name)
-            #     red_flag = red_flag_prob(circuit_name)
-            # except:
-            #     wet_races = "0"
-            #     sc = "0"
-            #     red_flag = "0"
-            #     got_stats = False
+        # if (year == 2026):
+        #     # past_wins = get_possible_winners(circuit_name)
+        #     # constructors = get_team_wins(circuit_name)
+        #     # wet_races = is_wet_race(circuit_name)
+        #     # sc = is_safety_car(circuit_name)
+        #     # red_flag = is_red_flag(circuit_name)
 
-            return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
-                                personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
-                                listed = listed, all_ids = all_ids, past_wins = past_wins, constructors = constructors, wet_races = wet_races, sc = sc, red_flag = red_flag, gs = got_stats)
-        else:
-            return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
-                            personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
-                            listed = listed, all_ids = all_ids)
+        #     return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
+        #                         personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
+        #                         listed = listed, all_ids = all_ids, past_wins = past_wins, constructors = constructors, wet_races = wet_races, sc = sc, red_flag=red_flag)
+        # else:
+        return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
+                        personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
+                        listed = listed, all_ids = all_ids, past_wins = past_wins, constructors = constructors, wet_races = wet_races, sc = sc, red_flag=red_flag)
 
 
 # delete a review
