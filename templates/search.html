@@ -3,11 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/search_style.css">
     <title>Search Results</title>
+    <link rel="stylesheet" href="/static/search_style.css">
 </head>
 <body>
-    
+    <div class="navbar">
+        <ul>
+            <li><a href="{{url_for('logout')}}">Log Out</a></li>
+            <li><a href="{{url_for('seasons')}}">Seasons</a></li>
+            <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
+            <li><a href="{{url_for('user_dashboard')}}">Profile</a></li>
+        </ul>
+        <div id="search_section">
+            <form method="POST" action="{{url_for('search')}}" id="search_bar">
+                {{ s_form.hidden_tag() }}
+                <input type="search" id="searched" name="searched" placeholder="Search">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    <div class="page">
+        <div class="top">
+            <h1>Search results for:</h1>
+            <h3>{{searched}}</h3>
+            <form method="POST" action="/search/filter/{{ races }}">
+                {{ ft_form.dr_winner }}
+                {{ ft_form.filter_submit }}
+            </form>
+        </div>
+        <div id="results_container">
+            {% for race in races %}
+                <div class="result">
+                    <h3 class="result_title">{{ race.country }} GP {{ race.year }}</h3>
+                    <div class="result_button">
+                        <button><a href='/view_race/{{ race.year }}/{{ race.circuit }}'>View</a></button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
     
 </body>
 </html>

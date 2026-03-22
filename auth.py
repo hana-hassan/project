@@ -3,8 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 #import sqlalchemy as sa
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, EmailField, SubmitField, RadioField, TextAreaField
-from wtforms.validators import InputRequired, Length, ValidationError, Email
+from wtforms import StringField, PasswordField, EmailField, SubmitField, RadioField, TextAreaField, SelectField
+from wtforms.validators import InputRequired, Length, ValidationError, Email, DataRequired
 from flask_bcrypt import Bcrypt
 from dash_app import visualisations
 from data_filtering import get_website_info, get_circuit_name, get_page_name, get_possible_winners, is_wet_race, get_team_wins, is_red_flag, is_safety_car
@@ -123,6 +123,18 @@ class WatchlistContent(db.Model):
     circuit = db.Column(db.String(20))
 
 
+# class for 'race' table
+class Race(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    country = db.Column(db.String(20))
+    circuit = db.Column(db.String(20))
+    winner_name = db.Column(db.String(30))
+    team = db.Column(db.String(40))
+    wet_race = db.Column(db.Boolean)
+    red_flag = db.Column(db.Boolean)
+    safety_car = db.Column(db.Boolean)
+    year = db.Column(db.Integer)
+
 # Register form
 
 class SignupForm(FlaskForm):
@@ -188,7 +200,20 @@ class WatchlistForm(FlaskForm):
 class WatchlistContentsForm(FlaskForm):
     content_submit = SubmitField("Add to watchlist")
 
+# creates a form to retrieve searched text
+class SearchForm(FlaskForm):
+    searched = StringField("Searched", validators=[DataRequired()])
+    search_submit = SubmitField("Submit")
 
+# form for filter dropdowns
+class FilterForm(FlaskForm):
+    dr_winner = SelectField("Filter by race winner", choices=[("Ver", "Max Verstappen"), ("Per", "Sergio Perez"), ("Sai", "Carlos Sainz"), ("Nor", "Lando Norris"), 
+                                                             ("Lec", "Charles Leclerc"), ("Rus", "George Russell"), ("Ham", "Lewis Hamilton"), ("Pia", "Oscar Piastri")])
+    filter_submit = SubmitField("Apply Filter")
+
+
+# START OF ROUTES
+# home page route
 
 @app.route('/')
 def home():
@@ -261,6 +286,46 @@ def watchlist(id:int):
         wlist = Watchlist.query.filter_by(id = id).first()
         return render_template('watchlist.html', contents = contents, wlist = wlist)
     # return render_template('watchlist.html')
+
+
+#created by following this tutorial: https://www.youtube.com/watch?v=kmtZTo-_gJY
+
+# pass form to other pages
+@app.context_processor
+def base():
+    s_form = SearchForm()
+    return dict(s_form = s_form)
+
+
+# handles search results
+@app.route('/search', methods=["POST"])
+def search():
+    s_form = SearchForm()
+    ft_form = FilterForm()
+    races = Race.query
+    # dr_winners = races.with_entities(Race.winner_name).all()
+    if s_form.validate_on_submit():
+        # gets data from form
+        race_searched = s_form.searched.data
+
+        # for filter = create variable for data and filter results immediately
+        # (may need to add 'All' option in form)
+        # create if..else to check whether all was selected or not
+
+        # searches database for data that matches search
+        races = races.filter(Race.country.like('%' + race_searched + '%'))
+        races = races.order_by(Race.year).all()
+        return render_template("search.html", s_form=s_form, searched = race_searched, races=races, ft_form = ft_form)
+
+
+# @app.route('/search/filter/<races>', methods=["POST"])
+# def filter_results(races:list):
+#     s_form = SearchForm()
+#     ft_form = FilterForm() 
+
+#     for race in races:
+#         print(race)
+#     return render_template("search.html", s_form=s_form, ft_form = ft_form)
 
 
 # function to redirect users to the page of the race that they have added to their watchlist

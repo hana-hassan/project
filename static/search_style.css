@@ -19,3 +19,144 @@ h2 {
 h3 {
     font-size: 25px;
 }
+
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+.navbar {
+    background-color: #280659;
+    overflow: hidden;
+    width: 100%;
+}
+
+.navbar ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    min-width: 40%;
+}
+
+.navbar ul li{
+    float: right;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 20px;
+    display: block;
+    padding: 14px;
+}
+
+.navbar ul li:hover{
+    background-color: #4a1ba8;
+}
+
+
+
+.navbar input[type="search"]{
+    float: left;
+    width: 300px;
+    margin: 5px 0px 0px 5px;
+    display: block;
+    padding: 14px;
+    font-size:15px;
+    border-radius: 7px;
+    border: none;
+    font-family: monospace;
+}
+
+.navbar button{
+    float: left;
+    padding: 14px;
+    margin: 5px 0px 0px 3px;
+    border-radius: 7px;
+    border: none;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.navbar button:hover{
+    color: aliceblue;
+    background-color: black;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*Banner part*/
+
+.top{
+    padding: 20px 0px 20px 40px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+#results_container{
+    border-radius: 5px;
+    background-color: rgb(23, 23, 27);
+    border: 3px solid rgb(23, 23, 27);
+    min-width: 95%;
+    padding: 15px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(31, 31, 40);
+    color:rgb(255, 255, 255);
+    margin-bottom: 5px;
+    padding: 0px 10px 0px 10px;
+    min-width: 100%;
+    border: 3px solid azure;
+    border-radius: 5px;
+    width: 100%;
+    height: 150px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.result_title {
+    width: 70%;
+}
+
+.result_button {
+    margin: 0 auto;
+    float: right;
+    padding: 20px 10px 20px 10px;
+}
+
+.result_button button {
+    min-height: 40px;
+    width: 120px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+    float: right;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 18px;
+    margin-right: 15px;
+}
+
+.result_button button:hover {
+    background-color: #4717a7;
+    color: white;
+}
+
+.result_button a {
+    text-decoration: none;
+    color: black;
+}
+
+.result_button button:hover a {
+    color: white;
+}

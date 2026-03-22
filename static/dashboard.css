@@ -31,12 +31,14 @@ h3 {
 .navbar {
     background-color: #280659;
     overflow: hidden;
+    width: 100%;
 }
 
 .navbar ul{
     list-style-type: none;
     padding: 0;
     margin: 0;
+    min-width: 40%;
 }
 
 .navbar ul li{
@@ -53,6 +55,37 @@ h3 {
 
 .navbar ul li:hover{
     background-color: #4a1ba8;
+}
+
+
+
+.navbar input[type="search"]{
+    float: left;
+    width: 300px;
+    margin: 5px 0px 0px 5px;
+    display: block;
+    padding: 14px;
+    font-size:15px;
+    border-radius: 7px;
+    border: none;
+    font-family: monospace;
+}
+
+.navbar button{
+    float: left;
+    padding: 14px;
+    margin: 5px 0px 0px 3px;
+    border-radius: 7px;
+    border: none;
+    font-family: monospace;
+    font-size: 15px;
+}
+
+.navbar button:hover{
+    color: aliceblue;
+    background-color: black;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 /*Banner part*/
