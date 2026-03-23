@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search</title>
-    <link rel="stylesheet" href="/static/search_style.css">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="/static/results_style.css">
 </head>
 <body>
     <div class="navbar">
@@ -17,23 +17,29 @@
         </ul>
     </div>
     <div class="page">
-        <div class="content">
-            <h1>Search for races</h1>
-            <p><strong>NOTE: </strong> To get the best results, search for races by entering the <italic>country</italic> in which the race occurs.</p>
+        <div class="top">
+            <h1>Search results for:</h1>
+            <!-- Shows the search of the user -->
+            <h3>{{searched}}</h3>
+            <hr>
+            <!-- search bar form -->
             <form method="POST" action="{{url_for('search_results')}}" id="search_bar">
                 {{ s_form.hidden_tag() }}
                 <div id="search_container">
+                    <!-- interactable heading that hides/shows the filter dropdowns -->
                     <h3 onclick="showFilters()" id="filter_link">➤ Filters: </h3>
+                    <!-- filter dowpdowns -->
                     <div id="filters">
                         <label for="winners">Winning Driver: </label>
                         {{ s_form.dr_winner }}
-                        <label for="winners">Winning Team: </label>
+                        <label for="team">Winning Team: </label>
                         {{ s_form.team_winner }}
-                        <label for="winners">Race Conditions: </label>
+                        <label for="condition">Race Conditions: </label>
                         {{ s_form.conditions }}
                         <label for="condition">Season: </label>
                         {{ s_form.years }}
                     </div>
+                    <!-- search bar -->
                     <div id="search_bar">
                         <input type="search" id="searched" name="searched" placeholder="Search">
                         <button type="submit">Submit</button>
@@ -41,8 +47,30 @@
                 </div>
             </form>
         </div>
+        <!-- shows all races that match the searched text -->
+        <div id="results_container">
+            <!-- if there are no races that match the search-->
+            {% if races | length < 1 %}
+                <h2>No results</h2>
+            {% endif %}
+            {% for race in races %}
+                <div class="result">
+                    <h3 class="result_title">
+                        {% if race.country == "United States" %}
+                            {{ race.circuit }} GP {{ race.year }}
+                        {% elif race.country == "Italy" %}
+                            {{ race.circuit }} GP {{ race.year }}
+                        {% else %}
+                            {{ race.country }} GP {{ race.year }}
+                        {% endif %}
+                    </h3>
+                    <div class="result_button">
+                        <button><a href='/view_race/{{ race.year }}/{{ race.circuit }}'>View</a></button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-
 
     <script>
         function showFilters() {
@@ -57,6 +85,6 @@
             }
         }
     </script>
-
+    
 </body>
 </html>

@@ -13,14 +13,8 @@
             <li><a href="{{url_for('seasons')}}">Seasons</a></li>
             <li><a href="{{url_for('/visualisations/')}}">Visualisations</a></li>
             <li><a href="{{url_for('user_dashboard')}}">Profile</a></li>
+            <li><a href="{{url_for('search')}}">Search</a></li>
         </ul>
-        <div id="search_section">
-            <form method="POST" action="{{url_for('search')}}" id="search_bar">
-                {{ s_form.hidden_tag() }}
-                <input type="search" id="search" name="searched" placeholder="Search">
-                <button type="submit">Submit</button>
-            </form>
-        </div>
     </div>
     <div class="page">
         <div class="top">

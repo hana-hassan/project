@@ -1,7 +1,7 @@
 {% extends 'race_template.html'%}
 
 {% block head %}
-<title>Austria 2024 GP</title>
+<title>Monza 2023 GP</title>
 {% endblock %}
 
 {% block body %}
@@ -23,7 +23,7 @@
                     {% endfor %}
                 {% else %}
                     <!--button to add the race to a watchlist-->
-                    <form method="POST" action="/all_seasons/2024/austria2024/add_race/{{watchlist.id}}">
+                    <form method="POST" action="/all_seasons/2023/monza2023/add_race/{{watchlist.id}}">
                         {{list_contents.hidden_tag()}}
                         {{list_contents.content_submit}}
                     </form>
@@ -48,7 +48,7 @@
             <div class="add_rating">
                 {% if personal_rating == None %}
                     <h3>Your Rating: --/5 </h3>
-                    <form method="POST" action="/all_seasons/2024/austria2024" class="choose_rating">
+                    <form method="POST" action="/all_seasons/2023/monza2023" class="choose_rating">
                         {{form1.hidden_tag()}}
                         {{form1.rating}}<br>
                         {{form1.rating_submit}}
@@ -74,7 +74,7 @@
         <!--Users can only post one review per race-->
         {% if personal_review == None %}
         <div class="add_review">
-            <form method="POST" action="/all_seasons/2024/austria2024">
+            <form method="POST" action="/all_seasons/2023/monza2023">
                 {{form2.hidden_tag()}}
                 {{form2.content}}
                 {{form2.review_submit}}

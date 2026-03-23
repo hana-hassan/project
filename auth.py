@@ -200,16 +200,17 @@ class WatchlistForm(FlaskForm):
 class WatchlistContentsForm(FlaskForm):
     content_submit = SubmitField("Add to watchlist")
 
-# creates a form to retrieve searched text
+# creates a form to retrieve searched text / filter results
 class SearchForm(FlaskForm):
     searched = StringField("Searched", validators=[DataRequired()])
+    dr_winner = SelectField("Filter by race winner", choices=[("All", "All"), ("Max Verstappen", "Max Verstappen"), ("Sergio Perez", "Sergio Perez"), ("Carlos Sainz", "Carlos Sainz"), ("Lando Norris", "Lando Norris"), 
+                                                             ("Charles Leclerc", "Charles Leclerc"), ("George Russell", "George Russell"), ("Lewis Hamilton", "Lewis Hamilton"), ("Oscar Piastri", "Oscar Piastri")])
+    team_winner = SelectField("Filter by winning team", choices=[("All", "All"), ("Red Bull Racing Honda RBPT", "Red Bull Racing Honda RBPT"), 
+                                                                 ("Ferrari", "Ferrari"), ("Mercedes", "Mercedes"), ("McLaren Mercedes", "McLaren Mercedes"), ("McLaren", "McLaren"), ("Red Bull Racing", "Red Bull Racing")])
+    conditions = SelectField("Filter by race conditions", choices=[("All", "All"), ("Wet/Mixed", "Wet/Mixed"), ("Dry", "Dry")])
+    years = SelectField("Filter by race conditions", choices=[("All", "All"), ("2023", "2023"), ("2024", "2024"), ("2025", "2025"), ("2026", "2026")])
     search_submit = SubmitField("Submit")
 
-# form for filter dropdowns
-class FilterForm(FlaskForm):
-    dr_winner = SelectField("Filter by race winner", choices=[("Ver", "Max Verstappen"), ("Per", "Sergio Perez"), ("Sai", "Carlos Sainz"), ("Nor", "Lando Norris"), 
-                                                             ("Lec", "Charles Leclerc"), ("Rus", "George Russell"), ("Ham", "Lewis Hamilton"), ("Pia", "Oscar Piastri")])
-    filter_submit = SubmitField("Apply Filter")
 
 
 # START OF ROUTES
@@ -297,35 +298,47 @@ def base():
     return dict(s_form = s_form)
 
 
-# handles search results
-@app.route('/search', methods=["POST"])
+@app.route('/search')
 def search():
+    return render_template("search.html")
+
+
+# handles search results
+@app.route('/search_results', methods=["POST"])
+def search_results():
     s_form = SearchForm()
-    ft_form = FilterForm()
     races = Race.query
-    # dr_winners = races.with_entities(Race.winner_name).all()
     if s_form.validate_on_submit():
+        
         # gets data from form
         race_searched = s_form.searched.data
+        winner_dr = s_form.dr_winner.data
+        win_team = s_form.team_winner.data
+        condition = s_form.conditions.data
+        year = s_form.years.data
 
-        # for filter = create variable for data and filter results immediately
-        # (may need to add 'All' option in form)
-        # create if..else to check whether all was selected or not
 
         # searches database for data that matches search
         races = races.filter(Race.country.like('%' + race_searched + '%'))
+
+        # check if any filters have been chosen - if that is the case, filter the list of races accordingly
+        if (winner_dr != "All"):
+            races = races.filter(Race.winner_name == winner_dr)
+
+        if (win_team != "All"):
+            races = races.filter(Race.team == win_team)
+
+        if (condition == "Wet/Mixed"):
+            races = races.filter(Race.wet_race == 1)
+        elif (condition == "Dry"):
+            races = races.filter(Race.wet_race == 0)
+
+        if (year != "All"):
+            races = races.filter(Race.year == int(year))
+
         races = races.order_by(Race.year).all()
-        return render_template("search.html", s_form=s_form, searched = race_searched, races=races, ft_form = ft_form)
+        return render_template("search_results.html", s_form=s_form, searched = race_searched, races=races, winner = winner_dr, team = win_team, condition = condition, year=year)
 
-
-# @app.route('/search/filter/<races>', methods=["POST"])
-# def filter_results(races:list):
-#     s_form = SearchForm()
-#     ft_form = FilterForm() 
-
-#     for race in races:
-#         print(race)
-#     return render_template("search.html", s_form=s_form, ft_form = ft_form)
 
 
 # function to redirect users to the page of the race that they have added to their watchlist
