@@ -26,21 +26,32 @@ h1 {
     flex-direction: column;
 }
 
-#links{
+#content_btns {
+    display: flex;
+    flex-direction: row;
+}
+
+.links{
     padding: 10px 20px 10px 20px;
     margin-bottom: 10px; 
     border-radius: 5px;
     border-color: white;
+    margin-right: 20px;
+    width: 200px;
 }
 
 a {
     text-decoration: none;
     color: black;
     font-family: monospace;
-    font-size: large;
+    font-size: 25px;
+    font-weight: 600;
 }
 
 button:hover {
     background-color: #4f179e;
+}
+
+button:hover a {
     color: white;
 }

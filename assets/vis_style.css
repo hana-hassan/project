@@ -4,10 +4,10 @@
 
 body{
     margin: 0;
+    padding: 0;
     background-color: #180632;
     color: white;
     font-family: monospace;
-    padding: 10px
 }
 
 h1 {
@@ -16,6 +16,40 @@ h1 {
 
 h2 {
     font-size: x-large;
+}
+
+.navbar_container{
+    padding: 0;
+    width: 100%;
+}
+
+.navbar {
+    background-color: #280659;
+    overflow: hidden;
+    width: 100%;
+}
+
+.navbar ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    min-width: 40%;
+}
+
+.navbar ul li{
+    float: right;
+}
+
+.navbar ul li a{
+    text-decoration: none;
+    color: aliceblue;
+    font-size: 20px;
+    display: block;
+    padding: 14px;
+}
+
+.navbar ul li:hover{
+    background-color: #4a1ba8;
 }
 
 .row{

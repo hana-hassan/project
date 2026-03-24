@@ -27,16 +27,33 @@ df2 = pd.DataFrame(data2)
 
 
 def init_app(url_path):
-    #app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
     app = Dash(server=g.cur_app, url_base_pathname=url_path)
 
     app.layout = dbc.Container([
+
+        dbc.Row([
+            dbc.Col([
+                html.Div( className="navbar", children=[
+                    html.Ul(
+                        children=[
+                            html.Li(children=[html.A("Logout", href="/logout")]),
+                            html.Li(children=[html.A("Seasons", href="/seasons")]),
+                            html.Li(children=[html.A("Visualisations", href="/visualisations")]),
+                            html.Li(children=[html.A("Profile", href="/user_dashboard")]),
+                            html.Li(children=[html.A("Search", href="/search")]),
+                        ]
+                    )
+                ]),
+            ])
+        ], style={'padding' : 0}),
+
+
         dbc.Row([
             dbc.Col([
                 html.H1('F1 Data Visualisations')
             ])
-        ]),
+        ], style={'padding' : 20}),
 
         # row for dropdowns - here the user selects a year and circuit so that all other visualisation can display the appropriate data
         dbc.Row([
@@ -52,7 +69,7 @@ def init_app(url_path):
                              value="Spa-Francorchamps",
                              placeholder="Select a circuit")
             ])
-        ]),
+        ], style={'padding' : 20}),
 
         #section for lap time data vis
 
@@ -68,7 +85,7 @@ def init_app(url_path):
                     ])
                 ])
             ])
-        ]),
+        ], style={'padding' : 10}),
 
         # section/div for the stints data vis
 
@@ -86,7 +103,7 @@ def init_app(url_path):
                     ])
                 ])
             ])
-        ]),
+        ], style={'padding' : 10}),
 
         # section for the sector times data vis
 
@@ -101,7 +118,7 @@ def init_app(url_path):
                     ])
                 ])
             ])
-        ]),
+        ], style={'padding' : 10}),
 
         # section for the positions data vis
         dbc.Row([
@@ -115,7 +132,7 @@ def init_app(url_path):
                     ])
                 ])
             ])
-        ])
+        ], style={'padding' : 10})
     ])
 
     #init_callbacks(app)
