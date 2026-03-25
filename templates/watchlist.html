@@ -11,12 +11,14 @@
         </div>
         <div class="races">
             <h2>Added Races</h2> 
+            <!--display the races added if the watchlist is not empty-->
             {% if contents | length > 0 %}
                 {% for race in contents %}
                     <div class="race">
                         <div class="race_title">
                             <h3>{{race.year}} {{race.circuit}} GP</h3>
                         </div>
+                        <!--buttons to delete race from the watchlist or to view the race's dedicated page-->
                         <div class="race_buttons">
                             <button><a href="/delete_from_list/{{race.id}}">Delete</a></button>
                             <button><a href="/view_race/{{race.year}}/{{race.circuit}}">View</a></button>

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/dashboard.css">
 </head>
 <body>
+    <!--navbar with links to all other pages-->
     <div class="navbar">
         <ul>
             <li><a href="{{url_for('logout')}}">Log Out</a></li>
@@ -16,17 +17,22 @@
             <li><a href="{{url_for('search')}}">Search</a></li>
         </ul>
     </div>
+    <!--div to hold all page contents-->
     <div class="page">
+        <!--displays greeting to user-->
         <div class="top">
             <h1>Welcome back, {{current_user.username}}!</h1>
         </div>
+        <!--watchlists section-->
         <div class="watchlists">
             <h2>Watch Lists</h2>
+            <!--limits the number of watchlists the user can make for management purposes-->
             {% if watchlists | length > 4 %}
                 <p>Maximum number of watchlists reached! Please delete an existing watchlist before creating another</p>
             {% else %}
+                <!--button that shows/hides watchlist form-->
                 <button class="button create-wl" onclick="makeWatchlist()">+ Create New List</button>
-                <div id="add_wl">
+                <div id="add_wl" style="display: none;">
                     <form method="POST" action="/user_dashboard">
                         {{wl_form.hidden_tag()}}
                         {{wl_form.name}}
@@ -55,6 +61,7 @@
                         <div class="wlist_title">
                             <h4>{{watchlist.name}}</h4>
                         </div>
+                        <!--div for buttons to give them the same styling-->
                         <div class="wlist_buttons">
                             <button><a href="/delete_wl/{{watchlist.id}}">Delete</a></button>
                             <button><a href="/watchlist/{{watchlist.id}}">View</a></button>
@@ -64,8 +71,5 @@
             {% endif %}
         </div>
     </div>
-    <footer>
-        <p>Here's the footer</p>
-    </footer>
 </body>
 </html>

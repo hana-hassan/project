@@ -20,10 +20,13 @@
         <div class="top">
             <h1>All Seasons</h1>
         </div>
+        <!--holds all tables for 2023-26 seasons-->
         <div id="main_section">
-            <button onclick="showRaces('2026races', '2026btn')" class="season_btn" id="2026btn">➤ 2026 Season</button>
-            <div class="season_list" id="2026races">
-                                <table>
+            <!--button that hides/shows 2026 season table-->
+            <button onclick="showRaces('2026races', '2026btn')" class="season_btn" id="2026btn">⮟ 2026 Season</button>
+            <div class="season_list" id="2026races" style="display: none;">
+                <!--table holds links to all 2026 races-->
+                <table>
                     <tr>
                         <td><button class="race_btn"><a href="/all_seasons/2026/aus2026">Round 1: Australian GP 2026</a></button></td>
                         <td><button class="race_btn"><a href="/all_seasons/2026/china2026">Round 2: Chinese GP 2026</a></button></td>
@@ -64,8 +67,10 @@
                     </tr>
                 </table>
             </div>
-            <button onclick="showRaces('2025races', '2025btn')" class="season_btn" id="2025btn">➤ 2025 Season</button>
-            <div class="season_list" id="2025races">
+            <!--button that hides/shows 2025 season table-->
+            <button onclick="showRaces('2025races', '2025btn')" class="season_btn" id="2025btn">⮟ 2025 Season</button>
+            <div class="season_list" id="2025races" style="display: none;">
+                <!--table holds links to all 2025 races-->
                 <table>
                     <tr>
                         <td><button class="race_btn"><a href="/all_seasons/2025/aus2025">Round 1: Australian GP 2025</a></button></td>
@@ -109,8 +114,10 @@
                     </tr>
                 </table>
             </div>
-            <button onclick="showRaces('2024races', '2024btn')" class="season_btn" id="2024btn">➤ 2024 Season</button>
-            <div class="season_list" id="2024races">
+            <!--button that hides/shows 2024 season table-->
+            <button onclick="showRaces('2024races', '2024btn')" class="season_btn" id="2024btn">⮟ 2024 Season</button>
+            <div class="season_list" id="2024races" style="display: none;">
+                <!--table holds links to all 2024 races-->
                 <table>
                     <tr>
                         <td><button class="race_btn"><a href="/all_seasons/2024/bahrain2024">Round 1: Bahrain GP 2024</a></button></td>
@@ -154,8 +161,10 @@
                     </tr>
                 </table>
             </div>
-            <button onclick="showRaces('2023races', '2023btn')" class="season_btn" id="2023btn">➤ 2023 Season</button>
-            <div class="season_list" id="2023races">
+            <!--button that hides/shows 2023 season table-->
+            <button onclick="showRaces('2023races', '2023btn')" class="season_btn" id="2023btn">⮟ 2023 Season</button>
+            <div class="season_list" id="2023races" style="display: none;">
+                <!--table holds links to all 2023 races-->
                 <table>
                     <tr>
                         <td><button class="race_btn"><a href="/all_seasons/2023/bahrain2023">Round 1: Bahrain GP 2023</a></button></td>
@@ -200,33 +209,35 @@
         </div> 
     </div>
 
+    <!-- jscript section for all button functions -->
     <script>
         function showRaces(id, btn_id) {
             let list = document.getElementById(id)
-
+            // if the div is hidden, change its display to 'block'
             if (list.style.display === "none"){
                 list.style.display = "block"
-                //change so that the innerhtml for each season button gets changed
+                //change the innerhtml for each season button
+                if (btn_id == "2026btn"){
+                    document.getElementById(btn_id).innerHTML = "⮝ 2026 Season"
+                } else if (btn_id == "2025btn") {
+                    document.getElementById(btn_id).innerHTML = "⮝ 2025 Season"
+                } else if (btn_id == "2024btn") {
+                    document.getElementById(btn_id).innerHTML = "⮝ 2024 Season"
+                } else if (btn_id == "2023btn"){
+                    document.getElementById(btn_id).innerHTML = "⮝ 2023 Season"
+                }
+            // if the display = 'block', change it back to 'none'
+            } else {
+                list.style.display = "none"
+                
                 if (btn_id == "2026btn"){
                     document.getElementById(btn_id).innerHTML = "⮟ 2026 Season"
                 } else if (btn_id == "2025btn") {
                     document.getElementById(btn_id).innerHTML = "⮟ 2025 Season"
                 } else if (btn_id == "2024btn") {
                     document.getElementById(btn_id).innerHTML = "⮟ 2024 Season"
-                } else if (btn_id == "2023btn"){
-                    document.getElementById(btn_id).innerHTML = "⮟ 2023 Season"
-                }
-            } else {
-                list.style.display = "none"
-                
-                if (btn_id == "2026btn"){
-                    document.getElementById(btn_id).innerHTML = "➤ 2026 Season"
-                } else if (btn_id == "2025btn") {
-                    document.getElementById(btn_id).innerHTML = "➤ 2025 Season"
-                } else if (btn_id == "2024btn") {
-                    document.getElementById(btn_id).innerHTML = "➤ 2024 Season"
                 } else {
-                    document.getElementById(btn_id).innerHTML = "➤ 2023 Season"
+                    document.getElementById(btn_id).innerHTML = "⮟ 2023 Season"
                 }
             }
         }

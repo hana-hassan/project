@@ -16,7 +16,6 @@ result_base = 'https://api.openf1.org/v1/session_result'
 weather_base = 'https://api.openf1.org/v1/weather'
 control_base = 'https://api.openf1.org/v1/race_control'
 
-# pd.options.display.max_rows = 20
 
 # used one main dataset to create two filtered ones for the predictions section for webpages for 2026 races
 # filtered f1 wins dataset no. 1 (used to retrieve the wins of drivers since 2003 in the current 2026 grid)
@@ -45,11 +44,6 @@ def get_race(year, circuit):
         return pd.DataFrame({})
 
     race = pd.DataFrame(race_dict)
-    # race = pd.DataFrame(response_race.json())
-
-    # session key is a global variable to make filtering the other DataFrames easier
-    # global selected_session_key 
-    # selected_session_key = race["session_key"].values[0]
 
     race['date_start'] = pd.to_datetime(race["date_start"], errors='coerce').dt.strftime("%d-%m-%Y %H:%M:%S")
 
@@ -170,7 +164,6 @@ def get_starting_grid(session_key):
     response = requests.get(url)
     grid = pd.DataFrame(response.json())
 
-    #return grid[["driver_number", "position"]]
     return grid
 
 
@@ -190,26 +183,19 @@ def get_results(session_key, quali_key):
 
     results_df = pd.merge(results, grid_df, on="driver_number")
 
-    # results_df.drop(results_df[results_df["dnf"] == True], inplace=True)
-    # results_df.drop(results_df[results_df["dns"] == True], inplace=True)
-    # results_df.drop(results_df[results_df["dsq"] == True], inplace=True)
-
     results_df.dropna(subset=["final_position"], inplace=True)
 
     results_df["pos_difference"] = results_df["position"] - results_df["final_position"]
 
     return results_df[["driver_number", "position", "final_position", "pos_difference"]]
-    #return results
 
 
 def get_website_info (year, circuit):
 
     race = get_race(year, circuit)
     name = race["circuit_short_name"]
-    #race_dict = race.to_dict("records")
 
     meeting = get_meeting(name, year)
-    #meeting_dict = meeting.to_dict("records")
 
     merged = pd.merge(race, meeting, on="circuit_short_name")
 
@@ -255,9 +241,6 @@ def get_possible_winners(circuit):
 
     unique_ws = len(win_counts)
 
-    # for x,y in winners_dict.items():
-    #     winners_dict[x] = round((y / unique_ws) * 100, 1)
-
     return (winners_dict)
 
 
@@ -270,9 +253,6 @@ def get_team_wins(circuit):
     winners_dict = team_win_counts.head(3).to_dict()
 
     unique_ws = len(team_win_counts)
-
-    # for x,y in winners_dict.items():
-    #     winners_dict[x] = round((y / unique_ws) * 100, 1)
 
     return (winners_dict)
 
@@ -293,7 +273,6 @@ def get_session_keys(circuit):
             seasons_dict[key[0]] = int(year)
             
 
-    # return keys,seasons_dict
     return 0
 
 
@@ -308,34 +287,6 @@ def is_wet_race(circuit):
 
     return len(wet_races), total_races
 
-    # keys = get_session_keys(circuit)[0]
-    # seasons_dict = get_session_keys(circuit)[1]
-    # wet_races = []
-    # # race_num = len(keys)
-
-    # for key in keys:
-
-    #     params = {
-    #         "session_key" : key
-    #     }
-
-    #     url = requests.Request('GET', stints_base, params=params).prepare().url
-    #     response = requests.get(url)
-    #     results = pd.DataFrame(response.json())
-
-    #     for x in list(results["compound"]):
-    #         if x == "WET" or x == "INTERMEDIATE":
-    #             races.loc[(races["circuit"] == circuit) & (races['year'] == seasons_dict.get(key)), "wet_race"] = True
-    #             wet_races.append(True)
-    #             break
-
-        
-    # # return [len(wet_races), race_num]
-    # return 0
-
-
-
-# print(is_wet_race("Interlagos"))
 
 # returns the probability of a safety car being deployed based on the last three races
 def is_safety_car(circuit):
@@ -348,28 +299,6 @@ def is_safety_car(circuit):
 
     return sc_count, total_races
 
-    # keys = get_session_keys(circuit)[0]
-    # seasons_dict = get_session_keys(circuit)[1]
-    # sc_count = 0
-    # race_num = len(keys)
-
-    # for key in keys:
-    #     params = {
-    #         "session_key" : key
-    #     }
-
-    #     url = requests.Request('GET', control_base, params=params).prepare().url
-    #     response = requests.get(url)
-    #     results = pd.DataFrame(response.json())
-
-    #     if results[results["category"] == "SafetyCar"].empty == False:
-    #         races.loc[(races["circuit"] == circuit) & (races['year'] == seasons_dict.get(key)), "safety_car"] = True
-    #         sc_count += 1
-
-    
-    # return [sc_count, race_num]
-
-# print(safety_car_prob("Madring"))
     
 
 # returns the probability of a red flag based on the last three races
@@ -383,58 +312,6 @@ def is_red_flag(circuit):
     flag_count = len(filtered_races[filtered_races["red_flag"] == True])
 
     return flag_count, total_races
-
-    # keys = get_session_keys(circuit)[0]
-    # seasons_dict = get_session_keys(circuit)[1]
-    # flag_count = 0
-    # race_num = len(keys)
-
-    # for key in keys:
-        
-    #     params = {
-    #         "session_key" : key
-    #     }
-
-    #     url = requests.Request('GET', control_base, params=params).prepare().url
-    #     response = requests.get(url)
-    #     results_25 = pd.DataFrame(response.json())
-
-    #     if results_25[results_25["flag"] == "RED"].empty == False:
-    #         races.loc[(races["circuit"] == circuit) & (races['year'] == seasons_dict.get(key)), "red_flag"] = True
-    #         flag_count += 1
-
-
-    # # chance = round((flag_count / race_num * 100), 1)
-
-    # return [flag_count, race_num]
-
-# print(is_wet_race("Interlagos"))
-# print(is_safety_car("Interlagos"))
-# print(is_red_flag("Interlagos"))
-
-# response = urlopen('https://api.openf1.org/v1/sessions?circuit_short_name=Shanghai&session_name=Race&session_name=Race&year=2023')
-# data = json.loads(response.read().decode('utf-8'))
-# print(pd.DataFrame(data))
-
-# print(get_race("2023", "Shanghai"))
-
-# print(get_page_name(2025, "Melbourne"))
-
-# s_key = get_race("2026", "Melbourne")["session_key"]
-
-# params = {"session_key" : s_key}
-
-# url = requests.Request('GET', result_base, params=params).prepare().url
-# response = requests.get(url)
-# results = pd.DataFrame(response.json())
-
-# print(results)
-
-# response = urlopen('https://api.openf1.org/v1/meetings?year=2026')
-# data = json.loads(response.read().decode('utf-8'))
-# results = pd.DataFrame(data)
-
-# print(results["circuit_short_name"])
 
 
 

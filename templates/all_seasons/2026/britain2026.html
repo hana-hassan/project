@@ -38,7 +38,7 @@
     <h1>{{web_info['meeting_official_name']}}</h1>
 </div>
 <div class="page_contents">
-    <button onclick="showStats()" class="stats_btn" id="stats_btn">➤ Past Race Stats</button>
+    <button onclick="showStats()" class="stats_btn" id="stats_btn">⮝ Past Race Stats</button>
     <div class="stats" id="stats_content">
         <h3>Most successful drivers at this circuit: </h3>
         {% for x,y in past_wins.items() %}
@@ -178,10 +178,10 @@
 
         if (p.style.display === "none"){
             p.style.display = "block"
-            document.getElementById("stats_btn").innerHTML = "⮟ Past Race Stats"
+            document.getElementById("stats_btn").innerHTML = "⮝ Past Race Stats"
         } else {
             p.style.display = "none"
-            document.getElementById("stats_btn").innerHTML = "➤ Past Race Stats"
+            document.getElementById("stats_btn").innerHTML = "⮟ Past Race Stats"
         }
     }
 

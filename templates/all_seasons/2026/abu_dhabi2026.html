@@ -38,7 +38,8 @@
     <h1>{{web_info['meeting_official_name']}}</h1>
 </div>
 <div class="page_contents">
-    <button onclick="showStats()" class="stats_btn" id="stats_btn">➤ Past Race Stats</button>
+    <!-- button shows/hides past race statistics-->
+    <button onclick="showStats()" class="stats_btn" id="stats_btn">⮝ Past Race Stats</button>
     <div class="stats" id="stats_content">
         <h3>Most successful drivers at this circuit: </h3>
         {% for x,y in past_wins.items() %}
@@ -56,18 +57,20 @@
         <p>A red flag was waved during {{ red_flag[0] }} of the last {{ red_flag[1] }} races</p>
     </div>
     <div class="top">
+        <!--div for general information about the race-->
         <div class="general_info">
             <h2>General Information:</h2>
             <p><strong>Location:</strong> {{web_info['location']}}</p>
             <p><strong>Circuit Type:</strong> {{web_info['circuit_type']}}</p>
-            <p><strong>Started:</strong> {{web_info['date_start']}}</p>
-            <p><strong>Ended:</strong> {{web_info['date_end']}}</p>
+            <p><strong>Start:</strong> {{web_info['date_start']}}</p>
+            <p><strong>End:</strong> {{web_info['date_end']}}</p>
         </div>
         <div class="ratings">
             <h2>Ratings:</h2>
             <div class="add_rating">
                 {% if personal_rating == None %}
                     <h3>Your Rating: --/5 </h3>
+                    <!--when the rating is added, the page refreshes-->
                     <form method="POST" action="/all_seasons/2026/abu_dhabi2026" class="choose_rating">
                         {{form1.hidden_tag()}}
                         {{form1.rating}}<br>
@@ -75,10 +78,13 @@
                     </form>
                 {% else %}
                     <h3>Your Rating: {{personal_rating.ratingNum}}/5 </h3>
+                    <!--button sends rating id to function that removes it from the table -->
                     <button><a href="/delete_rating/{{personal_rating.id}}">Delete Rating</a></button>
                 {% endif %}
             </div>
+            <!--displays mean of all ratings given to this race-->
             <h3>Overall Rating: {{ avg_rating }}</h3>
+            <!--holds button that shows the popup that allows user to add the race to any of their watchlists-->
             <div class="add_watchlists">
                 <h2>Watchlists:</h2>
                 {% if watchlists | length < 1 %}
@@ -106,14 +112,17 @@
         {% if reviews | length < 1%}
         <h3>No reviews yet...</h3>
         {% else %}
+        <!--div to hold all created reviews and replies-->
         <div class="all_reviews">
             {% for review in reviews %}
                 <div class="created_reviews">
                     <h4>Review by {{review.username}}</h4>
                     <p>{{review.content}}</p>
+                    <!--only the creator of the review can delete it-->
                     {% if current_user.id == review.user_id %}
                         <button><a href="/delete/{{review.id}}">Delete</a></button>
                     {% endif %}
+                    <!-- shows/hides reply form-->
                     <button onclick="makeReply()">Reply</button>
                 </div>
                 <div id="add_reply" class="add_reply">
@@ -123,12 +132,14 @@
                         {{form_reply.reply_submit}}
                      </form>
                 </div>
+                <!--displays all replies to a review-->
                 {% for reply in replies %}
                     {% if review.id == reply.review_id %}
                         <div class="all_replies">
                             <div class="created_replies">
                                 <h4>Reply by {{reply.username}}</h4>
                                 <p>{{reply.content}}</p>
+                                <!--only the creator of the reply can delete it-->
                                 {% if current_user.id == reply.user_id %}
                                     <button><a href="/delete_reply/{{reply.id}}">Delete</a></button>
                                 {% endif %}
@@ -144,6 +155,7 @@
 
 <!--<script> section below from w3schools: https://www.w3schools.com/howto/howto_js_toggle_hide_show.asp -->
 <script>
+    // changes the display style of reply form
     function makeReply() {
         const tboxes = document.getElementsByClassName("add_reply");
         for (let i = 0; i < tboxes.length; i++){
@@ -156,7 +168,7 @@
     }
     
     // js below from w3schools: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_modal 
-
+    // js that shows/hides watchlist popup
     let popup = document.getElementById("popup");
 
     let wl_btn = document.getElementById("add_to_wl");
@@ -178,10 +190,10 @@
 
         if (p.style.display === "none"){
             p.style.display = "block"
-            document.getElementById("stats_btn").innerHTML = "⮟ Past Race Stats"
+            document.getElementById("stats_btn").innerHTML = "⮝ Past Race Stats"
         } else {
             p.style.display = "none"
-            document.getElementById("stats_btn").innerHTML = "➤ Past Race Stats"
+            document.getElementById("stats_btn").innerHTML = "⮟ Past Race Stats"
         }
     }
 

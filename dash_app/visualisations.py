@@ -135,7 +135,6 @@ def init_app(url_path):
         ], style={'padding' : 10})
     ])
 
-    #init_callbacks(app)
     return app.server
  
 @callback(
@@ -151,26 +150,6 @@ def init_app(url_path):
 
 
 def update_graphs(selected_year, selected_circuit, selected_driver):
-    # if selected_year:
-    #     if selected_circuit:
-
-    #         #filter dataset so only specific race pops up
-    #         df_year = df[df["year"] == selected_year]
-    #         filtered_df = df_year[df_year["circuit_short_name"] == selected_circuit]
-
-    #         if df_year.empty:
-    #             print("No Sessions available")
-    
-    # params = {
-    #     'year' : selected_year,
-    #     'circuit_short_name' : selected_circuit,
-    #     'session_type' : 'Race'
-    # }
-
-    
-    # url_race = requests.Request('GET', base_url_sessions, params=params).prepare().url
-    # response_race = requests.get(url_race)
-    # race = pd.DataFrame(response_race.json())
 
     race = get_race(selected_year, selected_circuit)
 
@@ -362,43 +341,3 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
 
 
     return fig_hist, fig, fig_results, fig2, fig_sectors
-
-# @callback(
-#     Output('positions_graph', 'figure'),
-#     Input('drivers', 'value'),
-#     Input('year', 'value'),
-#     Input('circuit', 'value')
-# )
-
-# def update_positions_graph(selected_driver, selected_year, selected_circuit):
-#     if selected_year:
-#         if selected_circuit:
-
-#             race = get_race(selected_year, selected_circuit)
-
-#             if race.empty:
-#                 print("race not available")
-
-#             s_key = race["session_key"]
-
-#             driver_df = get_drivers(s_key)
-
-#             driver_num = driver_df.loc[driver_df["full_name"] == selected_driver, "driver_number"]
-    
-#             if selected_driver:
-
-#                 positions_df = get_position(driver_num, s_key)
-
-#                 if positions_df.empty:
-#                     print("No positions data available for this driver")
-            
-#                 fig1 = px.scatter(positions_df, x="date", y="position", color="position")
-
-#                 return fig1
-
-# def init_callbacks(app):
-#     @app.callback(
-#         Output('lap_times', 'figure'),
-#         Input('years','value'),
-#         Input('circuits', 'value')
-#     )(update_lap_graph) 

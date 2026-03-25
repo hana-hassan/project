@@ -16,23 +16,14 @@ with app.app_context():
 
     app = visualisations.init_app("/visualisations/")
 
-# FYI THIS FIXES THE CREATE TABLES ISSUE
-# from auth import app, db
-# db.init_app(app) 
-# app.app_context().push()
-# db.create_all()
-# exit()
 
-#engine = sa.create_engine("mysql+pymysql://root:fortheproject24#@localhost:3306/users", echo=True)
 
-#meta = sa.MetaData()
 # add mysql db
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:fortheproject24#@localhost:3306/users"
 # secret key
 app.config['SECRET_KEY'] = "asecretkey"
 # initialise db
 db = SQLAlchemy(app)
-#db.init_app(app)
 bcrypt = Bcrypt(app)
 
 # helps w/ loading users from ids
@@ -47,21 +38,6 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-# metadata user table?
-
-#user = sa.Table(
-#    "user",
-#    meta,
-#    sa.Column("id", sa.Integer, primary_key=True),
-#    sa.Column("username", sa.String(20), nullable=False, unique=True),
-#    sa.Column("password", sa.String(80), nullable=False),
-#    sa.Column("email", sa.String(40), nullable=False, unique=True)
-#
-#)
-
-#meta.create_all(engine)
-
-#conn = engine.connect()
 
 
 # creates table for users
@@ -286,7 +262,6 @@ def watchlist(id:int):
         contents = WatchlistContent.query.filter_by(watchlist_id = id).all()
         wlist = Watchlist.query.filter_by(id = id).first()
         return render_template('watchlist.html', contents = contents, wlist = wlist)
-    # return render_template('watchlist.html')
 
 
 #created by following this tutorial: https://www.youtube.com/watch?v=kmtZTo-_gJY
@@ -378,17 +353,6 @@ def add_page_contents(season, race):
 
     if request.method == "POST":
 
-        # if ('content' in request.form):
-        #     current_review = request.form['content']
-        #     new_review = Review(content=current_review, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
-        #     try:
-        #         db.session.add(new_review)
-        #         db.session.commit()
-        #         return redirect(f"/all_seasons/{season}/{race}")
-        #     except Exception as e:
-        #         print(f"Error: {e}")
-        #         return f"Error:{e}"
-
         # add a review
         if form2.review_submit.data and form2.validate():
             new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
@@ -412,26 +376,6 @@ def add_page_contents(season, race):
                 print(f"Error: {e}")
                 return f"Error:{e}"
         
-        # elif form_reply.reply_submit.data and form_reply.validate():
-        #     reply = form_reply.content.data
-        #     new_reply = Reply(user_id = current_user.id, year = year, circuit = circuit_name, username = current_user.username)
-        #     try:
-        #         db.session.add(new_reply)
-        #         db.session.commit()
-        #         return redirect(f"/all_seasons/{season}/{race}")
-        #     except Exception as e:
-        #         print(f"Error: {e}")
-        #         return f"Error:{e}"
-        
-        # if "review_submit" in request.form and form2.validate():
-        #     new_review = Review(content=form2.content.data, year=year, circuit=circuit_name, user_id = current_user.id, username = current_user.username)
-        #     try:
-        #         db.session.add(new_review)
-        #         db.session.commit()
-        #         return redirect(f"/all_seasons/{season}/{race}")
-        #     except Exception as e:
-        #         print(f"Error: {e}")
-        #         return f"Error:{e}"
         
 
     else:
@@ -453,16 +397,7 @@ def add_page_contents(season, race):
         for list in listed:
             all_ids.append(list.watchlist_id)
 
-        # if (year == 2026):
-        #     # past_wins = get_possible_winners(circuit_name)
-        #     # constructors = get_team_wins(circuit_name)
-        #     # wet_races = is_wet_race(circuit_name)
-        #     # sc = is_safety_car(circuit_name)
-        #     # red_flag = is_red_flag(circuit_name)
 
-        #     return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
-        #                         personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
-        #                         listed = listed, all_ids = all_ids, past_wins = past_wins, constructors = constructors, wet_races = wet_races, sc = sc, red_flag=red_flag)
         # else:
         return render_template(f'all_seasons/{season}/{race}.html', reviews=reviews, replies=replies, web_info=web_info, personal_rating=personal_rating, 
                         personal_review = personal_review, avg_rating = avg_rating, form1=form1, form2=form2, form_reply=form_reply, watchlists = watchlists, list_contents = list_contents,
@@ -470,7 +405,6 @@ def add_page_contents(season, race):
 
 
 # delete a review
-#@app.route('/all_seasons/<season>/<race>', methods=['GET', 'POST'])
 @app.route("/delete/<int:id>")
 def delete_review(id:int):
     del_review = Review.query.get_or_404(id)
@@ -502,7 +436,6 @@ def delete_rating(id:int):
 # function for adding a reply
 @app.route("/post_reply/<int:id>", methods=["POST"])
 def post_reply(id:int):
-    #review = Review.query.get_or_404(id)
     form_reply = ReplyForm()
     if request.method == "POST":
         # try making year and circuit on reply table nullable?
@@ -576,7 +509,7 @@ def delete_from_list(id:int):
 
 
 
-
+# function to calculate mean of all ratings given to a race
 def get_avg_rating(year, circuit):
     race_ratings = Rating.query.filter_by(year=year, circuit=circuit).with_entities(Rating.ratingNum).all()
     # add nested for loop to add ratings together?
@@ -598,6 +531,7 @@ def get_avg_rating(year, circuit):
     return mean
 
 
+# only uncomment the commented code below if you would like to recreate the needed tables in your own database
 if __name__ == '__main__':
     # with app.app_context():
     #     db.create_all()

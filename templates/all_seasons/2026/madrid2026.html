@@ -38,7 +38,7 @@
     <h1>{{web_info['meeting_official_name']}}</h1>
 </div>
 <div class="page_contents">
-    <button onclick="showStats()" class="stats_btn" id="stats_btn">➤ Past Race Stats</button>
+    <button onclick="showStats()" class="stats_btn" id="stats_btn">⮝ Past Race Stats</button>
     <div class="stats" id="stats_content">
         <p>As there have been no races at this circuit yet, statistics are unavailable.</p>
     </div>
@@ -47,8 +47,8 @@
             <h2>General Information:</h2>
             <p><strong>Location:</strong> {{web_info['location']}}</p>
             <p><strong>Circuit Type:</strong> {{web_info['circuit_type']}}</p>
-            <p><strong>Started:</strong> {{web_info['date_start']}}</p>
-            <p><strong>Ended:</strong> {{web_info['date_end']}}</p>
+            <p><strong>Start:</strong> {{web_info['date_start']}}</p>
+            <p><strong>End:</strong> {{web_info['date_end']}}</p>
         </div>
         <div class="ratings">
             <h2>Ratings:</h2>
@@ -165,10 +165,10 @@
 
         if (p.style.display === "none"){
             p.style.display = "block"
-            document.getElementById("predict_btn").innerHTML = "⮟ Predictions"
+            document.getElementById("predict_btn").innerHTML = "⮝ Predictions"
         } else {
             p.style.display = "none"
-            document.getElementById("predict_btn").innerHTML = "➤ Predictions"
+            document.getElementById("predict_btn").innerHTML = "⮟ Predictions"
         }
     }
 
