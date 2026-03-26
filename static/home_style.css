@@ -12,8 +12,16 @@ body{
     width: 100%;
     padding-top: 15%;
     padding-bottom: 15%;
-
 }
+
+
+@media screen and (max-width: 500px){
+    body {
+        padding-top: 50%;
+        padding-bottom: 50%; 
+    }
+}
+
 
 h1 {
     font-size: 65px;
@@ -24,12 +32,21 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 10px;
 }
 
 #content_btns {
     display: flex;
     flex-direction: row;
 }
+
+
+@media screen and (max-width: 600px) {
+    #content_btns {
+        flex-direction: column;
+    }
+}
+
 
 .links{
     padding: 10px 20px 10px 20px;
