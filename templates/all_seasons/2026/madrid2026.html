@@ -103,7 +103,7 @@
                     {% endif %}
                     <button onclick="makeReply()">Reply</button>
                 </div>
-                <div id="add_reply" class="add_reply">
+                <div id="add_reply" class="add_reply" style="display: none;">
                     <form method="POST" action="/post_reply/{{review.id}}">
                         {{form_reply.hidden_tag()}}
                         {{form_reply.content}}

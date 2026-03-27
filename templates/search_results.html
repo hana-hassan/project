@@ -30,14 +30,22 @@
                     <h3 onclick="showFilters()" id="filter_link">⮟ Filters: </h3>
                     <!-- filter dowpdowns -->
                     <div id="filters" style="display: none;">
-                        <label for="winners">Winning Driver: </label>
-                        {{ s_form.dr_winner }}
-                        <label for="team">Winning Team: </label>
-                        {{ s_form.team_winner }}
-                        <label for="condition">Race Conditions: </label>
-                        {{ s_form.conditions }}
-                        <label for="condition">Season: </label>
-                        {{ s_form.years }}
+                        <div class="dropdown">
+                            <label for="winners">Winning Driver: </label>
+                            {{ s_form.dr_winner }}
+                        </div>
+                        <div class="dropdown">
+                            <label for="winners">Winning Team: </label>
+                            {{ s_form.team_winner }}    
+                        </div>
+                        <div class="dropdown">
+                            <label for="winners">Race Conditions: </label>
+                            {{ s_form.conditions }}
+                        </div>
+                        <div class="dropdown">
+                            <label for="condition">Season: </label>
+                            {{ s_form.years }}
+                        </div>
                     </div>
                     <!-- search bar -->
                     <div id="search_bar">

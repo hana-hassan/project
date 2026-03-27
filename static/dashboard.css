@@ -41,6 +41,7 @@ h3 {
     min-width: 40%;
 }
 
+/*to keep all buttons in one line when page is viewed on smaller screens*/
 @media screen and (max-width: 600px){
     .navbar ul {
         display: flex;
@@ -116,6 +117,7 @@ h3 {
     font-size: 20px;
 }
 
+/*'create watchlist' form section*/
 #add_wl {
     width: 100%;
     display: none;
@@ -175,6 +177,8 @@ input[type="submit"]:hover {
     font-size: 20px;
     font-weight: bold;
 }
+
+/*created watchlists section*/
 
 .wlist {
     display: flex;

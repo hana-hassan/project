@@ -18,6 +18,7 @@ h2 {
     font-size: x-large;
 }
 
+/*styles navbar*/
 .navbar_container{
     padding: 0;
     width: 100%;
@@ -36,6 +37,14 @@ h2 {
     min-width: 40%;
 }
 
+/*to keep all buttons in one line when page is viewed on smaller screens*/
+@media screen and (max-width: 600px){
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 .navbar ul li{
     float: right;
 }
@@ -52,6 +61,7 @@ h2 {
     background-color: #4a1ba8;
 }
 
+/*styling for all rows in dash app*/
 .row{
    padding: 10px;
    border-radius: 5px;
@@ -69,6 +79,7 @@ h2 {
     margin-bottom: 5px;
 }
 
+/*styling for all visualisation graphs*/
 .vis_div {
     padding: 10px;
     margin-bottom: 10px;

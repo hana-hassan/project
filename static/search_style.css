@@ -7,7 +7,6 @@ body{
     background-color: #180632;
     color: white;
     font-family: monospace;
-
 }
 
 h1 {
@@ -17,6 +16,8 @@ h1 {
 h3 {
     font-size: 25px;
 }
+
+/*navbar section*/
 
 .navbar {
     background-color: #280659;
@@ -29,6 +30,14 @@ h3 {
     padding: 0;
     margin: 0;
     min-width: 40%;
+}
+
+
+@media screen and (max-width: 600px){
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .navbar ul li{
@@ -47,6 +56,7 @@ h3 {
     background-color: #4a1ba8;
 }
 
+
 .page {
     min-height: 100vh;
     height: 100%;
@@ -55,16 +65,23 @@ h3 {
     padding-bottom: 10%;
 }
 
+/*makes sure content is in the middle of the page*/
 .content{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 10px;
 }
 
 p {
     font-size: large;
+    /*disclaimer must be centered*/
+    margin: 0 auto;
+    justify-self: center;
 }
+
+/*form section*/
 
 #search_container {
     width: 80%;
@@ -84,6 +101,13 @@ p {
     margin-left: 5px;
     margin-right: 5px;
     display: none;
+    flex-direction: row;
+}
+
+@media screen and (max-width: 900px){
+    #filters {
+        flex-direction: column;
+    }
 }
 
 #filters h3 {
@@ -133,6 +157,13 @@ p {
     border: none;
     font-family: monospace;
     font-size: large;
+}
+
+/*to prevent text in button from overflowing when viewed on smaller screens*/
+@media screen and (max-width: 500px){
+    #search_bar button {
+        font-size: 10px;
+    }
 }
 
 #search_bar button:hover {

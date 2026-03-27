@@ -14,7 +14,7 @@ body{
     padding-bottom: 15%;
 }
 
-
+/*to recenter content when page is viewed on smaller screens*/
 @media screen and (max-width: 500px){
     body {
         padding-top: 50%;
@@ -40,7 +40,7 @@ h1 {
     flex-direction: row;
 }
 
-
+/*to prevent buttons from looking squished/overflowing when viewed on smaller screens*/
 @media screen and (max-width: 600px) {
     #content_btns {
         flex-direction: column;

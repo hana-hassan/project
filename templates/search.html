@@ -19,22 +19,30 @@
     <div class="page">
         <div class="content">
             <h1>Search for races</h1>
-            <!-- Disclaimed added to help users understand how the search function works -->
-            <p><strong>NOTE: </strong> To get the best results, search for races by entering the <italic>country</italic> in which the race occurs.</p>
             <form method="POST" action="{{url_for('search_results')}}" id="search_bar">
                 {{ s_form.hidden_tag() }}
                 <div id="search_container">
+                    <!-- Disclaimer added to help users understand how the search function works -->
+                    <p><strong>NOTE: </strong> To get the best results, search for races by entering the <italic>country</italic> in which the race occurs.</p>
                     <!--filter dropdowns-->
                     <h3 onclick="showFilters()" id="filter_link">⮟ Filters: </h3>
                     <div id="filters" style="display: none;">
-                        <label for="winners">Winning Driver: </label>
-                        {{ s_form.dr_winner }}
-                        <label for="winners">Winning Team: </label>
-                        {{ s_form.team_winner }}
-                        <label for="winners">Race Conditions: </label>
-                        {{ s_form.conditions }}
-                        <label for="condition">Season: </label>
-                        {{ s_form.years }}
+                        <div class="dropdown">
+                            <label for="winners">Winning Driver: </label>
+                            {{ s_form.dr_winner }}
+                        </div>
+                        <div class="dropdown">
+                            <label for="winners">Winning Team: </label>
+                            {{ s_form.team_winner }}    
+                        </div>
+                        <div class="dropdown">
+                            <label for="winners">Race Conditions: </label>
+                            {{ s_form.conditions }}
+                        </div>
+                        <div class="dropdown">
+                            <label for="condition">Season: </label>
+                            {{ s_form.years }}
+                        </div>
                     </div>
                     <!--search bar section-->
                     <div id="search_bar">
@@ -52,7 +60,7 @@
             let f = document.getElementById("filters")
 
             if (f.style.display === "none"){
-                f.style.display = "block"
+                f.style.display = "flex"
                 document.getElementById("filter_link").innerHTML = "⮝ Filters: "
             } else {
                 f.style.display = "none"

@@ -31,7 +31,7 @@ def init_app(url_path):
     app = Dash(server=g.cur_app, url_base_pathname=url_path)
 
     app.layout = dbc.Container([
-
+        # row to hold navbar
         dbc.Row([
             dbc.Col([
                 html.Div( className="navbar", children=[
@@ -165,14 +165,6 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
 
         if positions_df.empty:
             print("No positions data available for this driver")
-
-    # params1 = {
-    #     'session_key' : s_key
-    # }
-
-    # url_laps = requests.Request('GET','https://api.openf1.org/v1/laps', params=params1).prepare().url
-    # response_laps = requests.get(url_laps)
-    # all_laps = pd.DataFrame(response_laps.json())
 
 
     all_laps = get_laps(s_key)

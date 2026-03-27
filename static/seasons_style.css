@@ -41,6 +41,13 @@ h3 {
     margin: 0;
 }
 
+@media screen and (max-width: 600px){
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 .navbar ul li{
     float: right;
 }

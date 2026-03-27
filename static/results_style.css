@@ -29,6 +29,7 @@ h3 {
     color: white;
 }
 
+/*navbar section*/
 .navbar {
     background-color: #280659;
     overflow: hidden;
@@ -40,6 +41,13 @@ h3 {
     padding: 0;
     margin: 0;
     min-width: 40%;
+}
+
+@media screen and (max-width: 600px){
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 .navbar ul li{
@@ -175,6 +183,13 @@ hr {
     font-size: large;
 }
 
+/*to prevent text in button from overflowing when viewed on smaller screens*/
+@media screen and (max-width: 500px){
+    #search_bar button {
+        font-size: 10px;
+    }
+}
+
 #search_bar button:hover {
     background-color: #4f179e;
     color: white;
@@ -182,7 +197,7 @@ hr {
     font-weight: bold;
 }
 
-
+/*contains all search results*/
 #results_container{
     border-radius: 5px;
     background-color: rgb(23, 23, 27);

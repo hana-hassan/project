@@ -29,7 +29,7 @@ bcrypt = Bcrypt(app)
 # helps w/ loading users from ids
 
 login_manager = LoginManager(app)
-#login_manager.init.app(app)
+
 login_manager.login_view = "login"
 
 # (load_user/user id desc)
@@ -79,8 +79,6 @@ class Reply(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
     content = db.Column(db.String(360), nullable=False)
-    # year = db.Column(db.Integer)
-    # circuit = db.Column(db.String(20))
     username = db.Column(db.String(20), nullable=False)
 
 # creates table for watchlists
@@ -420,7 +418,7 @@ def delete_review(id:int):
     except Exception as e:
         return f"Error:{e}"
     
-    # end of adjusted code snippet
+# end of adjusted code snippet
 
 @app.route("/delete_rating/<int:id>")
 def delete_rating(id:int):
@@ -438,7 +436,6 @@ def delete_rating(id:int):
 def post_reply(id:int):
     form_reply = ReplyForm()
     if request.method == "POST":
-        # try making year and circuit on reply table nullable?
         new_reply = Reply(user_id = current_user.id, review_id = id, content = form_reply.content.data, username = current_user.username)
         try:
             db.session.add(new_reply)
@@ -512,7 +509,7 @@ def delete_from_list(id:int):
 # function to calculate mean of all ratings given to a race
 def get_avg_rating(year, circuit):
     race_ratings = Rating.query.filter_by(year=year, circuit=circuit).with_entities(Rating.ratingNum).all()
-    # add nested for loop to add ratings together?
+
     # divide by length of list
     rating_len = len(race_ratings)
 
