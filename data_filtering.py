@@ -19,15 +19,16 @@ control_base = 'https://api.openf1.org/v1/race_control'
 
 # used one main dataset to create two filtered ones for the predictions section for webpages for 2026 races
 # filtered f1 wins dataset no. 1 (used to retrieve the wins of drivers since 2003 in the current 2026 grid)
-winners = pd.read_csv('f1_dataset_filtered.csv')
+winners = pd.read_csv('tables/f1_dataset_filtered.csv')
 
 # filtered f1 wins dataset no. 1 (used to retrieve the constructor wins from 2006-2025 at all tracks in the 2026 calendar)
-constructor_wins = pd.read_csv('constructor_winners.csv')
+constructor_wins = pd.read_csv('tables/constructor_winners.csv')
 
 # attempt to make a csv file to hold "stats" for races since retrieving info from the API at all times is not reliable
-races = pd.read_csv('races_stats.csv')
+races = pd.read_csv('tables/races_stats.csv')
 
 
+# returns the race with a matching year and circuit  
 def get_race(year, circuit):
 
     params = {
@@ -51,6 +52,7 @@ def get_race(year, circuit):
 
     return race[['session_key', 'year', 'circuit_short_name', 'date_start', 'date_end']]
 
+# returns meeting with the circuit name and year given
 def get_meeting(short_name, year):
 
     params = {
@@ -64,7 +66,7 @@ def get_meeting(short_name, year):
 
     return meeting[['circuit_short_name','circuit_image', 'circuit_type', 'country_flag', 'location', 'meeting_official_name']]
 
-
+# returns the laps of the session
 def get_laps(session_key):
 
     params = {
@@ -80,6 +82,7 @@ def get_laps(session_key):
 
     return all_laps
 
+# returns the drivers involved in the session
 def get_drivers(session_key):
 
     params = {
@@ -92,7 +95,7 @@ def get_drivers(session_key):
 
     return all_drivers
 
-
+# gets the positions of the given driver during the session
 def get_position(driver_num, session_key):
 
     params = {
@@ -106,6 +109,7 @@ def get_position(driver_num, session_key):
 
     return all_positions
 
+# returns the positions of all drivers involved in the session
 def get_all_positions(session_key):
 
     params = {
@@ -122,6 +126,7 @@ def get_all_positions(session_key):
 
     return all_positions[['date', 'driver_number', 'position']]
 
+# returns the stints of the given driver during the session
 def get_stints(driver_num, session_key):
 
     params = {
@@ -137,6 +142,7 @@ def get_stints(driver_num, session_key):
 
     return dr_stints
 
+# returns qualification results
 def get_quali(year, circuit):
 
     params = {
@@ -153,7 +159,7 @@ def get_quali(year, circuit):
     return quali[['session_key', 'year', 'circuit_short_name']]
 
 
-
+# returns the starting positions of all drivers
 def get_starting_grid(session_key):
     
     params = {
@@ -166,7 +172,7 @@ def get_starting_grid(session_key):
 
     return grid
 
-
+# returns the race results
 def get_results(session_key, quali_key):
 
     params = {
@@ -189,7 +195,7 @@ def get_results(session_key, quali_key):
 
     return results_df[["driver_number", "position", "final_position", "pos_difference"]]
 
-
+# returns the dictionary containing general information for race to be displayed on the race's webpage
 def get_website_info (year, circuit):
 
     race = get_race(year, circuit)
@@ -207,6 +213,7 @@ def get_website_info (year, circuit):
         return info[0]
 
 
+# dictionary for race page titles and circuit names
 circuits = {'aus' : 'Melbourne', 'china' : 'Shanghai', 'japan' : 'Suzuka', 'bahrain' : 'Sakhir',
             'saudi' : 'Jeddah', 'miami' : 'Miami', 'imola' : 'Imola', 'monaco' : 'Monte Carlo',
             'spain' : 'Catalunya', 'canada' : 'Montreal', 'austria' : 'Spielberg', 'britain' : 'Silverstone',
@@ -215,11 +222,12 @@ circuits = {'aus' : 'Melbourne', 'china' : 'Shanghai', 'japan' : 'Suzuka', 'bahr
             'mexico' : 'Mexico City', 'brazil' : 'Interlagos', 'vegas' : 'Las Vegas', 'qatar' : 'Lusail',
             'abu_dhabi' : 'Yas Marina Circuit', 'madrid' : 'Madring'}
 
+# returns the circuit name of the given race section of the page title
 def get_circuit_name (page_name):
     
     return circuits[page_name[:-4]]
 
-
+# returns the page name of the given year and circuit 
 def get_page_name(year, circuit):
 
     season = str(year)
@@ -257,6 +265,7 @@ def get_team_wins(circuit):
     return (winners_dict)
 
 
+# returns the session keys of all past sessions at the given circuit
 def get_session_keys(circuit):
     years = ["2023", "2024", "2025"]
     keys = []

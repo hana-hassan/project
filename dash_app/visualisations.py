@@ -1,7 +1,7 @@
 from urllib.request import urlopen
 import json # to connect to api
 import pandas as pd # for data 
-#import dash # for web app + visualisations
+# for web app + visualisations
 from dash import Dash, dcc, html, Input, Output, callback
 import dash_bootstrap_components as dbc
 import plotly.express as px
@@ -11,9 +11,12 @@ from flask import g
 import requests
 import plotly.io as pio
 from data_filtering import get_laps, get_position, get_race, get_drivers, get_all_positions, get_stints, get_quali, get_starting_grid, get_results
+
+
 base_url_sessions = "https://api.openf1.org/v1/sessions"
 base_url_drivers = "https://api.openf1.org/v1/drivers"
 
+# retrieves all drivers and sessions available for dropdowns
 response = urlopen(base_url_sessions)
 data = json.loads(response.read().decode('utf-8'))
 df = pd.DataFrame(data)
@@ -68,6 +71,42 @@ def init_app(url_path):
                 dcc.Dropdown(className = 'dropdowns', id="circuits", options = [{'label': circuit_short_name, 'value': circuit_short_name} for circuit_short_name in df["circuit_short_name"].unique()],
                              value="Spa-Francorchamps",
                              placeholder="Select a circuit")
+            ])
+        ], style={'padding' : 20}),
+
+        # Driver number and names table to help people with matching names to numbers
+        dbc.Row([
+            dbc.Col([
+                html.H2('Driver Numbers and Names'),
+                dbc.Table([
+                    html.Thead(html.Tr([html.Th("Driver Number"), html.Th("Driver Name(s)")])),
+                    html.Tr([html.Td("1"), html.Td("Max Verstappen (2023-2025)/Lando Norris (2026)")]),
+                    html.Tr([html.Td("2"), html.Td("Logan Sargeant")]),
+                    html.Tr([html.Td("3"), html.Td("Daniel Ricciardo (2023-2024)/Max Verstappen (2026)")]),
+                    html.Tr([html.Td("4"), html.Td("Lando Norris")]),
+                    html.Tr([html.Td("5"), html.Td("Gabriel Borteleto")]),
+                    html.Tr([html.Td("6"), html.Td("Isack Hadjar")]),
+                    html.Tr([html.Td("7"), html.Td("Jack Doohan")]),
+                    html.Tr([html.Td("10"), html.Td("Pierre Gasly")]),
+                    html.Tr([html.Td("11"), html.Td("Sergio Perez")]),
+                    html.Tr([html.Td("12"), html.Td("Kimi Antonelli")]),
+                    html.Tr([html.Td("14"), html.Td("Fernando Alonso")]),
+                    html.Tr([html.Td("16"), html.Td("Charles Leclerc")]),
+                    html.Tr([html.Td("18"), html.Td("Lance Stroll")]),
+                    html.Tr([html.Td("20"), html.Td("Kevin Magnussen")]),
+                    html.Tr([html.Td("22"), html.Td("Yuki Tsunoda")]),
+                    html.Tr([html.Td("23"), html.Td("Alexander Albon")]),
+                    html.Tr([html.Td("24"), html.Td("Zhou Guanyu")]),
+                    html.Tr([html.Td("27"), html.Td("Nico Hulkenberg")]),
+                    html.Tr([html.Td("30"), html.Td("Liam Lawson")]),
+                    html.Tr([html.Td("43"), html.Td("Franco Colapinto")]),
+                    html.Tr([html.Td("44"), html.Td("Lewis Hamilton")]),
+                    html.Tr([html.Td("55"), html.Td("Carlos Sainz")]),
+                    html.Tr([html.Td("63"), html.Td("George Russell")]),
+                    html.Tr([html.Td("77"), html.Td("Valterri Bottas")]),
+                    html.Tr([html.Td("81"), html.Td("Oscar Piastri")]),
+                    html.Tr([html.Td("87"), html.Td("Oliver Bearman")])
+                ], bordered=True, className="driver_table"),
             ])
         ], style={'padding' : 20}),
 
@@ -171,6 +210,7 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
     all_positions = get_all_positions(s_key)
     dr_stints = get_stints(driver_num, s_key)
 
+    # adds black background to graphs
     pio.templates.default = "plotly_dark"
 
     # histogram for lap times
@@ -183,6 +223,7 @@ def update_graphs(selected_year, selected_circuit, selected_driver):
         height=450
     )
 
+    # line graph for lap times
     fig =  px.line(all_laps, x="lap_number", y="lap_duration", color="driver_number", markers=True, 
     labels = {"lap_number" : "Lap Number", 
               "lap_duration" : "Lap Duration (seconds)",
