@@ -18,9 +18,11 @@ with app.app_context():
 
 
 # add mysql db
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://root:fortheproject24#@localhost:3306/users"
+# EDIT: Database information was removed for security purposes before making this repo public. 
+# Alternative way to link this project to the database will be added soon. 
+app.config["SQLALCHEMY_DATABASE_URI"] = ""
 # secret key
-app.config['SECRET_KEY'] = "asecretkey"
+app.config['SECRET_KEY'] = ""
 # initialise db
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
